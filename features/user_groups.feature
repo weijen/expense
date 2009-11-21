@@ -12,7 +12,7 @@ Feature: 使用者與團體間的關係
 
 
   Scenario: 新增團體
-    Given I'm logged in as weijen 
+    Given a user is logged in as "weijen" 
     When I visit groups/new
     And I inpus group's name and short name
     And I sumbit

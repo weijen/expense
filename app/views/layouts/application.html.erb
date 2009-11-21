@@ -12,9 +12,9 @@
                             'handicraft/site',
                             'handicraft/color-palette', # remove it for real project
                             'stickie',
-                            'handicraft/themes/default/core',
+                            'handicraft/themes/default/aqua',
                             :cache => 'all' %>
-    <%= stylesheet_link_tag "/css/kuler.css?#{Time.now.to_i}", :id => "current-theme" %>
+                            <!--<%= stylesheet_link_tag "/css/kuler.css?#{Time.now.to_i}", :id => "current-theme" %>-->
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="alternate" type="application/atom+xml" href="/">
 </head>
@@ -23,7 +23,7 @@
         <div id="header">
             <div class="container_16 clearfix">
                 <div class="grid_16">
-                    <h1><%= link_to "Handicraft Project", root_path %></h1>
+                    <h1><%= link_to "團體記帳", root_path %></h1>
                     <%= render :partial => "common/user_navigation" %>
                     <%= render :partial => "common/main_navigation" %>
                 </div>
