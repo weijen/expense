@@ -1,0 +1,163 @@
+/* `Text
+----------------------------------------------------------------------------------------------------*/
+
+html, body {
+    color: #222;
+    background: #f0f0ee;
+}
+
+hr {
+    background: #f0f0ee;
+    color: #f0f0ee;
+}
+
+.hightlight {
+    background-color: #ffc;
+}
+
+h1, h2, h3 {
+    color: #7A1818;
+}
+
+/* `Link
+----------------------------------------------------------------------------------------------------*/
+
+a:link {
+    color: #7A1818;
+}
+
+a:visited {
+    color: #600;
+}
+
+a:hover {
+    color: #CF2929;
+}
+
+a:active {
+    color: #f33;
+}
+
+/* `Header
+----------------------------------------------------------------------------------------------------*/
+
+#header {
+    background: #7A1818;
+}
+
+#header h1 a:link, #header h1 a:active, #header h1 a:hover, #header h1 a:visited {
+    color: #FFF;
+}
+
+/* `Footer
+----------------------------------------------------------------------------------------------------*/
+
+#footer .grid_16 {
+    color: #FFF;
+    background: #262626;
+}
+
+/* `Section
+----------------------------------------------------------------------------------------------------*/
+
+.section {
+    background: #FFF;
+}
+
+.section h2.title, .section h3.title {
+    background: #7A1818;
+    color: #FFF;
+    border-bottom: 10px solid #262626;
+}
+
+/* `Navigation
+----------------------------------------------------------------------------------------------------*/
+
+#main-navigation {
+    background: #262626;
+}
+
+#main-navigation ul li a {
+    background: #262626;
+}
+
+#main-navigation ul li.current a,
+#main-navigation ul li.current a:hover {
+    background: #f0f0ee;
+}
+
+#main-navigation ul li a:hover {
+    background: #f0f0ee;
+    color: #262626;
+}
+
+#main-navigation ul li a:link, #main-navigation ul li a:visited, #main-navigation ul li a:hover, #main-navigation ul li a:active,
+#user-navigation ul li a:link, #user-navigation ul li a:visited, #user-navigation ul li a:hover, #user-navigation ul li a:active {
+    text-decoration: none;
+    color: #FFF;
+}
+
+#main-navigation ul li.current a:link, #main-navigation ul li.current a:visited, #main-navigation ul li.current a:hover, #main-navigation ul li.current a:active {
+    color: #262626;
+}
+
+#sidebar .nav ul li a:link, #sidebar .nav ul li a:visited {
+    background: #FFF;
+    border-bottom: 1px solid #F0F0EE;
+    text-decoration: none;
+}
+
+#sidebar .nav ul li a:hover, #sidebar .nav ul li a:active {
+    background: #470E0E;
+    color: #FFF;
+}
+
+/* `Table
+----------------------------------------------------------------------------------------------------*/
+
+.table th {
+    background: #262626;
+    color: #FFF;
+}
+
+.table td {
+    border-bottom: 1px solid #F0F0EE;
+}
+
+.table tr.even {
+    background: #fff;
+}
+
+/* `Sidebar
+----------------------------------------------------------------------------------------------------*/
+
+#sidebar .notice {
+    background: #E6EEFC;
+}
+
+#sidebar .notice h4 {
+    color: #0B43A8;
+}
+
+/* `Pagination
+----------------------------------------------------------------------------------------------------*/
+
+.pagination a, .pagination span {
+    background: #fff;
+    border: 1px solid #262626;
+}
+
+.pagination span.current {
+    background: #262626;
+    color: #FFF;
+    border-color: #262626;
+}
+
+.pagination a {
+    color: #262626;
+}
+
+.pagination a:hover {
+    color: #FFF;
+    background: #262626;
+}

@@ -10,3 +10,11 @@ Feature: 使用者與團體間的關係
   使用者可以加入團體，但是需要管理者的同意。
   使用者加入團體，並且被同意後，才可以報帳到這個團體中。
 
+
+  Scenario: 新增團體
+    Given an activated user logged in as 'reggie'
+    When she visit groups/new
+    And she inpus group's name and short name
+    And she sumbit
+    Then show group's profile
+    And she is the manager of this group

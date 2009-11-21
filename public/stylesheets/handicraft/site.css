@@ -1,0 +1,127 @@
+body {
+    font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+    line-height: 1.5;
+}
+
+hr {
+    border: 0 solid #ccc;
+    border-top-width: 1px;
+    clear: both;
+    height: 0;
+}
+
+#wrapper {
+    padding-top: 20px;
+}
+
+/* `Header
+----------------------------------------------------------------------------------------------------*/
+
+#header .grid_16 {
+    position: relative;
+}
+
+#header h1 {
+    margin: 0;
+}
+
+#header h1 a:link, #header h1 a:active, #header h1 a:hover, #header h1 a:visited {
+    text-decoration: none;
+}
+
+/* `Footer
+----------------------------------------------------------------------------------------------------*/
+
+#footer {
+    padding-bottom: 20px;
+}
+
+/* `Navigation
+----------------------------------------------------------------------------------------------------*/
+
+.nav ul li {
+    list-style: none;
+}
+
+#user-navigation {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#main-navigation {
+    width: 100%;
+}
+
+#user-navigation ul, #main-navigation ul, .secondary-navigation ul, #sidebar ul.navigation {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+#user-navigation ul li, #main-navigation ul li, .secondary-navigation ul li {
+    float: left;
+}
+
+/* `Table
+----------------------------------------------------------------------------------------------------*/
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.table th {
+    border: none;
+}
+
+.table td {
+    border: none;
+}
+
+.table th {
+    padding: 10px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.table th.first {
+    width: 30px;
+}
+
+.table .checkbox {
+    margin-left: 10px;
+}
+
+.table td {
+    padding: 10px;
+}
+
+.table td.last {
+    text-align: right;
+}
+
+/* `Pagination
+----------------------------------------------------------------------------------------------------*/
+
+.pagination {
+    padding: 0.5em 0;
+}
+
+.pagination a, .pagination span {
+  padding: 2px 5px;
+  margin-right: 5px; 
+  display: block;
+  float: left;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.pagination span.current {
+  font-weight: bold;  
+}
+
+.pagination a {
+  text-decoration: none;  
+}

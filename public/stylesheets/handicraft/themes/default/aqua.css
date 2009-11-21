@@ -1,0 +1,184 @@
+/* `Text
+----------------------------------------------------------------------------------------------------*/
+
+html, body {
+    color: #151f3c;
+    background: #f4f7f9;
+}
+
+hr {
+    background: #f0f0ee;
+    color: #f0f0ee;
+}
+
+.hightlight {
+    background-color: #ff8;
+}
+
+h1, h2, h3 {
+    color: #36393d;
+}
+
+/* `Link
+----------------------------------------------------------------------------------------------------*/
+
+a:link {
+    color: #36393d;
+}
+
+a:visited {
+    color: #423132;
+}
+
+a:hover {
+    color: #666C73;
+}
+
+a:active {
+    color: #666C73;
+}
+
+/* `Header
+----------------------------------------------------------------------------------------------------*/
+
+#header {
+    background: #D9EEFD;
+}
+
+#header h1 a:link, #header h1 a:active, #header h1 a:hover, #header h1 a:visited {
+    color: #555;
+}
+
+/* `Footer
+----------------------------------------------------------------------------------------------------*/
+
+/* override grid */
+#footer {
+    color: #2A2F34;
+    background: #CCD4D7;
+    border-top: 1px solid #FFFFFF;
+    text-shadow: 0 1px 1px #FFFFFF;
+    width: 100%;
+}
+
+#footer .grid_16 {
+    width: 960px;
+    margin: 0 auto;
+    float: none;
+    display: block;
+}
+
+#footer address {
+    padding: 0.5em 0;
+}
+
+/* `Section
+----------------------------------------------------------------------------------------------------*/
+
+#main .section .hd h2.title {
+    padding: 20px 0 10px;
+}
+
+#main .section .bd {
+    padding: 0 0 10px;
+}
+
+.section .hd h2.title, .section .hd h3.title, .section h2.title, .section h3.title {
+    text-shadow: rgb(255, 255, 255) 0px 1px 1px;
+    padding: 20px 20px 10px;
+}
+
+#sidebar .section .bd {
+    padding: 0 20px 20px;
+}
+
+/* `Navigation
+----------------------------------------------------------------------------------------------------*/
+
+#main-navigation ul li a,
+#user-navigation ul li a {
+    color: #444;
+    text-shadow: #fff 0px 1px 1px;
+    border-bottom: 1px solid #D9EEFD;
+}
+
+#main-navigation ul li a:hover,
+#user-navigation ul li a:hover {
+    color: #007700;
+    border-bottom: 1px solid #007700;
+}
+
+#main-navigation ul li a:link, #main-navigation ul li a:visited, #main-navigation ul li a:hover, #main-navigation ul li a:active,
+#user-navigation ul li a:link, #user-navigation ul li a:visited, #user-navigation ul li a:hover, #user-navigation ul li a:active {
+    text-decoration: none;
+}
+
+#main-navigation ul li.current a:link, #main-navigation ul li.current a:visited, #main-navigation ul li.current a:hover, #main-navigation ul li.current a:active, #main-navigation ul li.current a:hover {
+    color: #007700;
+    border-bottom: 1px solid #007700;
+}
+
+#sidebar .nav ul li a:link, #sidebar .nav ul li a:visited {
+    background: #FFF;
+    border-bottom: 1px solid #F0F0EE;
+    text-decoration: none;
+}
+
+#sidebar .nav ul li a:hover, #sidebar .nav ul li a:active {
+    background: #666;
+    color: #fff;
+}
+
+/* `Table
+----------------------------------------------------------------------------------------------------*/
+
+.table th {
+    background: #36393d;
+    color: #FFF;
+}
+
+.table td {
+    border-bottom: 1px solid #F0F0EE;
+}
+
+.table tr.even {
+    background: #ebebeb;
+}
+
+/* `Sidebar
+----------------------------------------------------------------------------------------------------*/
+
+#sidebar .section {
+    background: #D7E0E2;
+}
+
+#sidebar .notice {
+    background: #E6EEFC;
+}
+
+#sidebar .notice h4 {
+    color: #0B43A8;
+}
+
+/* `Pagination
+----------------------------------------------------------------------------------------------------*/
+
+.pagination a, .pagination span {
+    background: #cfcfcf;
+    border: 1px solid #c1c1c1;
+}
+
+.pagination span.current {
+    background: #36393d;
+    color: #FFF;
+    border: 1px solid #36393d;
+}
+
+.pagination a {
+    color: #1a1a1a;
+}
+
+.pagination a:hover {
+    border: 1px solid #666;
+    background: #fff;
+}

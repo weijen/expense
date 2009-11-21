@@ -1,0 +1,255 @@
+.form .form-fields {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+}
+
+.form .form-fields li {
+    clear: both;
+    display: block;
+    margin: 0;
+    padding: 6px 5px 9px 9px;
+}
+
+.form li:after, form li div:after {
+    clear: both;
+    content: ' ';
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.form li, form li div {
+    display: inline-block;
+}
+
+* html .form li, * html form li div {
+    height: 1%;
+}
+
+.form li, form li div {
+    display: block;
+}
+
+.form li div, .form li span {
+    margin: 0 .3em 0 0;
+    padding: 0;
+    color: #444;
+}
+
+.form li div.col span {
+    display: block;
+    width: 100%;
+    float: left;
+    padding: 0;
+}
+
+.form li div label, .form li span label {
+    margin: 0;
+    padding-top: 6px;
+    clear: both;
+    color: #444;
+    display: block;
+}
+
+.form li div span label {
+    padding-bottom: 12px;
+}
+
+label.desc {
+    font-weight: bold;
+    color: #222;
+    margin: 0;
+    padding: 0 0 3px 0;
+    border: none;
+    display: block;
+}
+
+.left-label li, .right-label li {
+    padding-top: 9px;
+}
+
+.left-label label.desc, .right-label label.desc {
+    float: left;
+    width: 15%;
+    margin: 0px 15px 0 0;
+}
+
+.right-label label.desc {
+    text-align: right;
+}
+
+.left-label li div.col, .right-label li div.col {
+    float: left;
+}
+
+.left-label div.col, .right-label div.col {
+    float: left;
+    width: 80%;
+    margin-top: -3px;
+}
+
+.form div label.inline {
+    display: inline;
+    margin-right: 1em;
+}
+
+/* ----- fields ----- */
+
+input.text, input.search, input.file, textarea.textarea, select.select {
+    font-family: "Lucida Grande", Tahoma, Arial, sans-serif;
+    font-size: 100%;
+    color: #333;
+    margin: 0;
+    padding: 2px 0;
+}
+
+input.text, input.search, textarea.textarea {
+    border-top: 1px solid #7c7c7c;
+    border-left: 1px solid #c3c3c3;
+    border-right: 1px solid #c3c3c3;
+    border-bottom: 1px solid #ddd;
+    background: #fff url(/images/form/fieldbg.gif) repeat-x top;
+}
+
+input.search {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    padding-left: 6px;
+}
+
+input.checkbox, input.radio {
+    display: block;
+    margin: 4px 0 0 0;
+    padding: 0;
+    width: 13px;
+    height: 13px;
+}
+
+/* ----- buttons ----- */
+
+.form li.buttons {
+    clear: both;
+    padding-top: 10px;
+}
+
+.form.left-label .form-fields li.buttons, .form.right-label .form-fields li.buttons {
+    margin-left: 15px;
+}
+
+/* double margin */
+.ie6 .left-label .buttons, .ie6 .right-label .buttons,
+.ie7 .left-label .buttons, .ie7 .right-label .buttons {
+    display: inline; 
+}
+
+.left-label .buttons .submit, .right-label .buttons .submit {
+    margin-left: 15%;
+    margin-right: 15px;
+}
+
+/* ----- error message ----- */
+
+.form li.error {
+    display: block;
+    background-color: #FFDFDF !important;
+    margin-bottom: 3px !important;
+    background: -webkit-gradient(linear, left top, right top, from(#fff), to(#ffdfdf));
+}
+
+.form li.error label {
+    color: #DF0000 !important;
+}
+
+.form p.error {
+    display: none;
+}
+
+form li.error p.error {
+    display: block;
+    margin: 0;
+    padding: 7px 0 0 0;
+    color: #DF0000;
+    font-weight: bold;
+    clear: both;
+}
+
+.left-label p.error, .right-label p.error {
+    margin-left: 15%;
+    padding-left: 15px;
+}
+
+/* ----- require ----- */
+
+.form span.require {
+    display: inline;
+    float: none;
+    color: red !important;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+/* ----- instruction ----- */
+
+.form li.focused {
+    background-color: #fff7c0;
+}
+
+.form li.focused, .form li:hover {
+    position: relative;
+    /* Makes Instructs z-index stay on top in IE. */
+}
+
+.form .instruction {
+    margin: 0;
+    visibility: hidden;
+}
+
+.form li.focused .instruction, .form li:hover .instruction {
+    left: 100%;
+    /* Prevent scrollbars for IE Instruct fix */
+    visibility: visible;
+}
+
+.form .instruction em {
+    font-style: normal;
+    color: #ff4c05;
+}
+
+/* ----- captcha ----- */
+
+.form img.captcha {
+    vertical-align: top;
+}
+
+/* ----- two column ----- */
+
+.form .left-field,
+.form .right-field {
+    width: 46%;
+}
+
+.form .form-fields .left-field {
+    float: left;
+    clear: left;
+}
+
+.form .form-fields  .right-field {
+    float: right;
+    clear: none;
+}
+
+.form .fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.form .fieldset .legend {
+    padding: 0 20px;
+}

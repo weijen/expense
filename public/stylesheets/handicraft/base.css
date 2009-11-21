@@ -1,0 +1,73 @@
+body {
+	font:12px/1.5 Arial, Helvetica, sans-serif;
+}
+select,
+input,
+button,
+textarea {
+	font:12px Arial, Helvetica, sans-serif;
+}
+table {
+	font-size:inherit;
+	font:100%;
+}
+pre,
+code,
+kbd,
+samp,
+tt {
+	font-family:monospace;
+	line-height:100%;
+}
+h1 {
+	font-size:18px;  
+}
+h2 {
+	font-size:16px;
+}
+h3 {
+	font-size:14px;  
+}
+abbr,acronym {
+	border-bottom:1px dotted #000;
+	cursor:help;
+} 
+blockquote {
+	margin:1em;
+}
+ol {
+	list-style: decimal;
+    list-style-position: outside;
+}
+ul {
+	list-style: disc;
+    list-style-position: outside;
+}
+dl dd {
+	margin-left:1em;
+}
+th {
+	font-weight:bold;
+	text-align:center;
+}
+caption {
+	margin-bottom:.5em;
+	text-align:center;
+}
+p,
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul,
+pre,
+table,
+address,
+fieldset {
+	margin-bottom: 1em;
+}
