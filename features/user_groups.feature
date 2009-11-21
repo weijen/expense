@@ -12,9 +12,9 @@ Feature: 使用者與團體間的關係
 
 
   Scenario: 新增團體
-    Given an activated user logged in as 'reggie'
-    When she visit groups/new
-    And she inpus group's name and short name
-    And she sumbit
+    Given I'm logged in as weijen 
+    When I visit groups/new
+    And I inpus group's name and short name
+    And I sumbit
     Then show group's profile
-    And she is the manager of this group
+    And I'm the manager of this group
