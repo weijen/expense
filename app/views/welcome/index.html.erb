@@ -1,6 +1,14 @@
 <% content_for :sidebar do -%>
+<% groups = [@current_user.own_groups, @current_user.groups].flatten.uniq -%>
 <div>
   <h2>Groups I followed</h2>
+  <table>
+    <% groups.each do |group| -%>
+      <td>
+        <%= link_to group.short_name, group_path(group) %>
+      </td>
+    <% end -%>
+  </table>
 </div>
 <% end -%>
 

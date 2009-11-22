@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
 
   
   has_many :own_groups, :class_name => "Group", :foreign_key => :owner_id
+  has_and_belongs_to_many :groups, :class_name => "Group", :join_table => "users_groups"
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.

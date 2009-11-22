@@ -1,6 +1,7 @@
 require 'digest/sha1'
 class Group < ActiveRecord::Base
   belongs_to :owner, :class_name => "User", :foreign_key => :owner_id
+  has_and_belongs_to_many :users, :class_name => "User", :join_table => "users_groups"
 
   validates_presence_of :name, :short_name
   validates_length_of :name, :minimum => 3
