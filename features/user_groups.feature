@@ -25,5 +25,5 @@ Feature: 使用者與團體間的關係
 
   Scenario: 我可以看到我所追蹤的所有團體
     Given I am logged in as "weijen" 
-    When I go to user/groups
-    Then I can see all groups I followed
+    When I go to the home page 
+    Then I should see "Groups I followed"

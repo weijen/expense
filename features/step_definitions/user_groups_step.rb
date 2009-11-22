@@ -50,5 +50,3 @@ Then /^the group is not exist$/ do
   @group.should be_nil
 end
 
-
-
