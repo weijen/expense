@@ -1,12 +1,8 @@
 <div id="main-navigation" class="nav clearfix">
-  
-  <%= render_list [ link_to("Home", "/"),
-                    link_to("M", "/handicraft/main"),
-                    link_to("M / S", "/handicraft/main_sidebar"),
-                    link_to("S / M", "/handicraft/sidebar_main"),
-                    link_to("M (F)", "/handicraft/main_fluid"),
-                    link_to("M / S (F)", "/handicraft/main_sidebar_fluid"),
-                    link_to("S / M (F)", "/handicraft/sidebar_main_fluid")
-                  ], :class => 'menu' -%>
-                  
+
+  <%= render_list [ 
+    link_to("Home", "/"),
+    link_to("all groups", groups_path)
+  ], :class => 'menu' -%>
+
 </div>                  

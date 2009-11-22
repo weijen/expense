@@ -12,36 +12,56 @@
                             'handicraft/site',
                             'handicraft/color-palette', # remove it for real project
                             'stickie',
-                            'handicraft/themes/default/aqua',
+                            'handicraft/themes/default/red',
                             :cache => 'all' %>
                             <!--<%= stylesheet_link_tag "/css/kuler.css?#{Time.now.to_i}", :id => "current-theme" %>-->
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="alternate" type="application/atom+xml" href="/">
 </head>
 <%= render_body_tag %>
-    <div id="doc">
-        <div id="header">
-            <div class="container_16 clearfix">
-                <div class="grid_16">
-                    <h1><%= link_to "團體記帳", root_path %></h1>
-                    <%= render :partial => "common/user_navigation" %>
-                    <%= render :partial => "common/main_navigation" %>
-                </div>
-            </div>
-        </div>
-        <div id="wrapper" class="container_16 clearfix">
-            <div class="grid_16">
-                <%= render_stickies %>
-                <%= yield %>
-            </div>
-        </div>
-        <div id="footer" class="container_16 clearfix">
-            <div class="grid_16">
-                <address>Copyright &copy; 2009 Handicraft Project</address>
-            </div>
-        </div>
+<div id="doc">
+  <div id="header">
+    <div class="container_16 clearfix">
+      <div class="grid_16">
+        <h1><%= link_to "團體記帳", root_path %></h1>
+        <%= render :partial => "common/user_navigation" %>
+        <%= render :partial => "common/main_navigation" %>
+      </div>
     </div>
-    <%= javascript_include_tag 'jquery-1.3.2.min',
+  </div>
+  <div id="wrapper" class="container_16 clearfix">
+    <div class="grid_16">
+      <%= render_stickies %>
+      <% if @content_for_box %>
+        <div id="box"  class="container_16 cleafix">
+          <%= yield(:box) %>
+        </div>
+      <% else %>
+        <div id="wrapper" class="container_16">
+          <% if @content_for_sidebar %>
+            <div id="main" class="grid_11 alpha">
+              <%= yield %>
+            </div>
+            <div id="sidebar" class="grid_5 omega">
+              <%= yield :sidebar %>
+            </div>
+          <% else %>
+            <div id="main">
+              <%= yield %>
+            </div>
+          <% end %>
+          <div class="clear"></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div id="footer" class="container_16 clearfix">
+    <div class="grid_16">
+      <address>Copyright &copy; 2009 Handicraft Project</address>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag 'jquery-1.3.2.min',
                                'core',
                                'jquery.metadata',
                                'jquery.form',
@@ -50,8 +70,8 @@
                                'application',
                                'theme-chooser', # remove it for real project
                                :cache => 'all' %>
-    <%= init_tinymce_hammer_if_required %>
-    <%= yield_authenticity_token %>
-    <%= yield :page_specific_javascript %>
+<%= init_tinymce_hammer_if_required %>
+<%= yield_authenticity_token %>
+<%= yield :page_specific_javascript %>
 </body>
 </html>
