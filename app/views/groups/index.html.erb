@@ -1,23 +1,28 @@
-<h1>Listing groups</h1>
+<div class="block">
+  <div class="content clearfix">
+    <h2>Listing groups</h2>
+    <div class="inner grid_10 alpha">
+      <table class ='table'>
+        <tr>
+          <th>Name</th>
+          <th>Short name</th>
+          <th colspan = '3'>Function</th>
+        </tr>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Short name</th>
-    <th>Secret</th>
-  </tr>
+        <% @groups.each do |group| %>
+          <tr>
+            <td><%=h group.name %></td>
+            <td><%=h group.short_name %></td>
+            <td><%= link_to 'Show', group %></td>
+            <td><%= link_to 'Edit', edit_group_path(group) %></td>
+            <td><%= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete %></td>
+          </tr>
+        <% end %>
+      </table>
 
-<% @groups.each do |group| %>
-  <tr>
-    <td><%=h group.name %></td>
-    <td><%=h group.short_name %></td>
-    <td><%=h group.secret_id %></td>
-    <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Edit', edit_group_path(group) %></td>
-    <td><%= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+    </div>
+  </div>
+</div>
 
 <br />
 

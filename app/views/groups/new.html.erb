@@ -1,19 +1,14 @@
-<h1>New group</h1>
+<div class="block">
+  <div class="content clearfix">
+    <h2>New group</h2>
+    <div class="inner">
+      <% handicraft_form_for(@group, :html =>{:class => :form}) do |f| %>
+        <%= render :partial => 'form', :locals => {:f =>f} %>
+        <div class="group navform">
+          <%= f.submit 'Create' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<% form_for(@group) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :short_name %><br />
-    <%= f.text_field :short_name %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
-
-<%= link_to 'Back', groups_path %>

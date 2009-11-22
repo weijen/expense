@@ -1,18 +1,11 @@
-<p>
-  <b>Name:</b>
-  <%=h @group.name %>
-</p>
-
-<p>
-  <b>Short name:</b>
-  <%=h @group.short_name %>
-</p>
-
-<p>
-  <b>Secret:</b>
-  <%=h @group.secret_id %>
-</p>
-
-
+<div class="block">
+  <div class="content clearfix">
+    <h2>Show Group</h2>
+    <div class="inner grid_10 alpha">
+      <p>Name: <%=h @group.name %></p>
+      <p>Short name:  <%=h @group.short_name %></p>
+    </div>
+  </div>
+</div>
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>
