@@ -10,7 +10,14 @@ module NavigationHelpers
     
     when /the home\s?page/
       '/'
-    
+    when /groups\/new/
+      new_group_path
+    when /show group/
+      group_path(@group)
+    when /groups\/edit/
+      edit_group_path(@group)
+    when /groups\/delete/
+      delete_group_path(@group)
     # Add more mappings here.
     # Here is a more fancy example:
     #

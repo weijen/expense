@@ -12,6 +12,14 @@ class CreateUsers < ActiveRecord::Migration
       t.column :remember_token_expires_at, :datetime
     end
     add_index :users, :login, :unique => true
+
+   User.create!(
+    :login => "root",
+    :password => 'expense2009',
+    :password_confirmation => 'expense2009',
+    :email => "service@example.com"
+  )
+
   end
 
   def self.down

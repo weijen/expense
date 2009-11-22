@@ -1,4 +1,4 @@
-Given /^a user is logged in as "(.*)"$/ do |login|
+Given /^I am logged in as "(.*)"$/ do |login|
   @current_user = User.create!(
     :login => login,
     :password => 'generic',
@@ -16,23 +16,39 @@ Given /^a user is logged in as "(.*)"$/ do |login|
   response.body.should =~ /Logged/m  
 end
 
-When /^I visit groups\/new$/ do
-  pending
+Then /^A group named "(.*)" should be created$/ do |group_name|
+  @group = Group.find_by_name(group_name) 
+  @group.should_not be_nil
 end
 
-When /^I inpus group's name and short name$/ do
-  pending
+Then /^I am the manager of this group$/ do
+  @group.owner.should eql(@current_user) 
 end
 
-When /^I sumbit$/ do
-  pending
+Given /^a group named "([^\"]*)" is belongs to me$/ do |group_name|
+  @group = Group.create!(
+    :name => group_name,
+    :short_name => group_name,
+    :owner_id => @current_user.id
+  )
 end
 
-Then /^show group's profile$/ do
-  pending
+Given /^a group named "([^\"]*)" is not belongs to me$/ do |group_name|
+  @group = Group.create!(
+    :name => group_name,
+    :short_name => group_name
+  )
 end
 
-Then /^I'm the manager of this group$/ do
-  pending
+Then /^the group name become "([^\"]*)"$/ do |group_name|
+  @group = @group.reload
+  @group.name.should eql(group_name)
 end
+
+Then /^the group is not exist$/ do
+  @group = @group.reload
+  @group.should be_nil
+end
+
+
 
