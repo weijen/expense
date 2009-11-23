@@ -53,6 +53,14 @@ class User < ActiveRecord::Base
     write_attribute :email, (value ? value.downcase : nil)
   end
 
+  def manager?(group)
+    group.owner_id == self.id
+  end
+
+  def follow?(group)
+    self.groups.include?(group)
+  end
+
   protected
     
 

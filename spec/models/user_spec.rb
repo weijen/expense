@@ -260,5 +260,25 @@ describe User, "the relationship with group" do
     @user.groups.unproven[0].name.should eql("test group 2")
   end
 
+  it "should return true if user own this group" do
+    group = Group.create!(:name => "test group 1", :short_name => "tg1", :owner_id => @user.id)
+    @user.manager?(group).should be_true
+  end
+
+  it "should return false if user doesn't own this group" do
+    group = Group.create!(:name => "test group 1", :short_name => "tg1", :owner_id => @user.id + 2)
+    @user.manager?(group).should be_false
+  end
+
+  it "should return true if user follow this group" do
+    group = Group.create!(:name => "test group 3", :short_name => "tg3", :owner_id => @user.id + 2)
+    @user.groups << group
+    @user.follow?(group).should be_true
+  end
+
+  it "should return false if user doesn't follow this group" do
+    group = Group.create!(:name => "test group 3", :short_name => "tg3", :owner_id => @user.id + 2)
+    @user.follow?(group).should be_false
+  end
 
 end
