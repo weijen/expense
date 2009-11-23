@@ -225,3 +225,40 @@ protected
     record
   end
 end
+
+describe User, "the relationship with group" do
+  before(:each) do
+    @user = User.create!(
+      :login => "proven_user",
+      :password => 'generic',
+      :password_confirmation => 'generic',
+      :email => "proven_user@example.com"
+    )
+    @user.groups.create!(:name => "test group 1", :short_name => "tg1")
+    @user.groups.create!(:name => "test group 2", :short_name => "tg2")
+    @user.save
+
+    @user.user_group_relations[0].proven = true
+    @user.user_group_relations[0].save
+  end
+  
+  it "should have 2 user_group_relations this user" do
+    @user.user_group_relations.length.should eql(2)
+  end
+
+  it "should have 2 groups this user joined" do
+    @user.groups.length.should eql(2)
+  end
+
+  it "should have 1 group this user joined and provened" do
+    @user.groups.proven.length.should eql(1)
+    @user.groups.proven[0].name.should eql("test group 1")
+  end
+
+  it "should have 1 group this user joined but still not proven"  do
+    @user.groups.unproven.length.should eql(1)
+    @user.groups.unproven[0].name.should eql("test group 2")
+  end
+
+
+end

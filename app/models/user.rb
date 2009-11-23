@@ -20,7 +20,12 @@ class User < ActiveRecord::Base
 
   
   has_many :own_groups, :class_name => "Group", :foreign_key => :owner_id
-  has_and_belongs_to_many :groups, :class_name => "Group", :join_table => "users_groups"
+  has_many :user_group_relations
+  has_many :groups, :through => :user_group_relations 
+
+  named_scope :proven, :include=> :user_group_relations, :conditions => ["user_group_relations.proven == ?", true]
+  named_scope :unproven, :include => :user_group_relations, :conditions => ["user_group_relations.proven == ?", false]
+
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.

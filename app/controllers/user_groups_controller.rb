@@ -1,5 +1,15 @@
 class UserGroupsController < ApplicationController
-  def create
+  before_filter :login_required
+  before_filter :get_group
+  def join
+    @current_user.groups << @group
+    notice_stickie "join but not proven"
+    redirect_to group_path(@group)
   end
 
+  private
+  
+  def get_group
+    @group = Group.find_by_secret_id(params[:id])
+  end
 end

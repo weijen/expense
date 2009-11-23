@@ -32,3 +32,8 @@ Feature: 使用者與團體間的關係
     When I go to show group
     And I press "join"
     Then I should see "join but not proven"
+    And I join this group but not proven
+
+  Scenario: 如果我是這個團體的管理員，我不應該看到join button
+
+  Scenario: 如果我已經加入這個團體了，我不應該看到join button
