@@ -69,7 +69,7 @@ class GroupsController < ApplicationController
   end
   
   def group_owner_required
-    unless @group.owner.include?(@current_user)
+    unless @group.owners.include?(@current_user)
       error_stickie "You don't have the right to edit this group"
       redirect_to "/"
       return false

@@ -22,7 +22,7 @@ Then /^A group named "(.*)" should be created$/ do |group_name|
 end
 
 Then /^I am the manager of this group$/ do
-  @group.owner.should include(@current_user) 
+  @group.owners.should include(@current_user) 
 end
 
 Given /^a group named "([^\"]*)" is belongs to me$/ do |group_name|

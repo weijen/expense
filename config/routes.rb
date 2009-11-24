@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.resources :users do |user|
-    user.resources :groups, :controller => 'user_groups', :member => {:join => :get}
+    user.resources :groups, :controller => 'user_groups', :member => {:follow => :get, :unfollow => :get}
   end
 
   map.resource :session

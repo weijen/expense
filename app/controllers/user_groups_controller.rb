@@ -1,9 +1,15 @@
 class UserGroupsController < ApplicationController
   before_filter :login_required
   before_filter :get_group
-  def join
+  def follow 
     @current_user.groups << @group
-    notice_stickie "join but not proven"
+    notice_stickie "Follow but not proven"
+    redirect_to group_path(@group)
+  end
+
+  def unfollow
+    @current_user.group.user_group_relations.destroy
+    notice_stickie "Unfollowed this group"
     redirect_to group_path(@group)
   end
 
