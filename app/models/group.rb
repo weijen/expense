@@ -1,6 +1,5 @@
 require 'digest/sha1'
 class Group < ActiveRecord::Base
-  belongs_to :owner, :class_name => "User", :foreign_key => :owner_id
   has_many :user_group_relations
   has_many :users, :through => :user_group_relations 
 
@@ -14,6 +13,10 @@ class Group < ActiveRecord::Base
 
   def to_param
     self.secret_id
+  end
+
+  def owners
+    self.users.owner
   end
 
   private

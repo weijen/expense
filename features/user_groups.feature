@@ -26,7 +26,7 @@ Feature: 使用者與團體間的關係
     Given I am logged in as "weijen"
     And a group named "test_group" is not belongs to me
     When I go to show group
-    And I press "Join"
+    And I follow "Join"
     Then I should see "join but not proven"
     And I join this group but not proven
 
@@ -34,12 +34,12 @@ Feature: 使用者與團體間的關係
     Given I am logged in as "weijen"
     And a group named "test_group" is belongs to me
     When I go to show group
-    Then I should not see "Join" button  
+    Then I should not see "Join" 
 
   Scenario: 如果我已經加入這個團體了，我不應該看到join button
     Given I am logged in as "weijen"
     And a group named "test_group" is not belongs to me
     When I go to show group
-    And I press "Join"
+    And I follow "Join"
     Then I go to show group
-    And I should not see "Join" button  
+    And I should not see "Join" 

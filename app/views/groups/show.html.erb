@@ -8,7 +8,8 @@
   </div>
 </div>
 <br />
-<%= button_to("Join", join_user_group_path(@current_user, @group), :html => {:method => :post}) if !@current_user.manager?(@group) && !@current_user.follow?(@group) %>
+<%= link_to("Join", join_user_group_path(@current_user, @group)) if !@current_user.manager?(@group) && !@current_user.follow?(@group) %>
+<%= link_to("Follower", "#") if @current_user.manager?(@group) %>
 
 <br />
 <%= link_to 'Edit', edit_group_path(@group) %> |

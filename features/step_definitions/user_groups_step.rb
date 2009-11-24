@@ -22,15 +22,15 @@ Then /^A group named "(.*)" should be created$/ do |group_name|
 end
 
 Then /^I am the manager of this group$/ do
-  @group.owner.should eql(@current_user) 
+  @group.owner.should include(@current_user) 
 end
 
 Given /^a group named "([^\"]*)" is belongs to me$/ do |group_name|
   @group = Group.create!(
     :name => group_name,
-    :short_name => group_name,
-    :owner_id => @current_user.id
+    :short_name => group_name
   )
+  @group.user_group_relations.create(:user_id => @current_user.id, :manager => true, :proven => true)
 end
 
 Given /^a group named "([^\"]*)" is not belongs to me$/ do |group_name|
@@ -55,4 +55,7 @@ Then /^I join this group but not proven$/ do
   @current_user.groups.should include(@group)
 end
 
+Then /^I should not see "([^\"]*)" button$/ do |value|
+  response.should_not have_selector("input[type=submit]", :value => value)
+end
 

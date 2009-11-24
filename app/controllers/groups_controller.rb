@@ -13,7 +13,6 @@ class GroupsController < ApplicationController
   end
 
   def show
-
     respond_to do |format|
       format.html 
     end
@@ -32,7 +31,8 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(params[:group])
-    @group.owner_id = @current_user.id
+    ugr = UserGroupRelation.new(:user_id => @current_user.id, :manager => true, :proven => true)
+    @group.user_group_relations << ugr
 
     respond_to do |format|
       if @group.save
@@ -69,7 +69,7 @@ class GroupsController < ApplicationController
   end
   
   def group_owner_required
-    unless @group.owner == @current_user
+    unless @group.owner.include?(@current_user)
       error_stickie "You don't have the right to edit this group"
       redirect_to "/"
       return false

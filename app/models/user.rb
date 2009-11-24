@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
 
   named_scope :proven, :include=> :user_group_relations, :conditions => ["user_group_relations.proven == ?", true]
   named_scope :unproven, :include => :user_group_relations, :conditions => ["user_group_relations.proven == ?", false]
+  named_scope :owner,  :include => :user_group_relations, :conditions => ["user_group_relations.manager == ?", true]
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -54,7 +55,7 @@ class User < ActiveRecord::Base
   end
 
   def manager?(group)
-    group.owner_id == self.id
+    group.owners.include?(self)
   end
 
   def follow?(group)
