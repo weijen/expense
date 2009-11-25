@@ -2,11 +2,21 @@
   <% groups = @current_user.groups -%>
   <div>
     <h2>Groups I followed</h2>
-    <table>
+    <table class="table">
+      <tr>
+        <th>Group</th>
+        <th>Amount</th>
+        <th>Function</th>
+      </tr>
       <% groups.each do |group| -%>
         <td>
           <%= link_to group.short_name, group_path(group) %>
         </td>
+        <td>
+          <%= group.expenses.sum(:amount) %>
+        </td>
+      <td>
+      </td>
       <% end -%>
     </table>
   </div>

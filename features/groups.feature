@@ -2,6 +2,7 @@ Feature: 團體的的操作
 
   (done)使用者可以新增一個團體，而這個使用者就必然是這個團體的管理員。
   (done)管理員可以修改團體的資料，或者刪除團體。
+  團體應該有開始時間與結束時間
 
   Scenario: 新增團體的正常狀況
     Given I am logged in as "weijen" 
