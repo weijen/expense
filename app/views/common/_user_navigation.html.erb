@@ -1,13 +1,14 @@
 <div id="user-navigation" class="nav clearfix">
 
-   <%= render_list :class => 'menu' do |list|
-         if logged_in?
-           list << link_to("Settings", "#")
-           list << link_to("Logout", "/logout")
-         else
-           list << link_to("Login", "/login")
-           list << link_to("Signup", '/signup')
-         end
-      end -%>
+  <%= render_list :class => 'menu' do |list|
+    if logged_in?
+      list << link_to("My expense", expenses_path)
+      list << link_to("Settings", "#")
+      list << link_to("Logout", "/logout")
+    else
+      list << link_to("Login", "/login")
+      list << link_to("Signup", '/signup')
+    end
+  end -%>
 
 </div>

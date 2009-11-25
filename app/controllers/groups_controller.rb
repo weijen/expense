@@ -68,12 +68,4 @@ class GroupsController < ApplicationController
     @group = Group.find_by_secret_id(params[:id])
   end
   
-  def group_owner_required
-    unless @group.owners.include?(@current_user)
-      error_stickie "You don't have the right to edit this group"
-      redirect_to "/"
-      return false
-    end
-    return true
-  end
 end

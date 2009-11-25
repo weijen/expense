@@ -1,5 +1,5 @@
 <%= f.error_messages %>
-<p><%= f.select(:group_id, @groups.map{ |g| [g.short_name, g.id] }, :label => "Group") %></p>
+<p><%= f.select(:group_id, @current_user.groups.proven.map{ |g| [g.short_name, g.id] }, :label => "Group") %></p>
 <p><%= f.text_field :tag_id, :label => "Tag" %></p>
 <p><%= f.check_box :is_income, :label => "is_income"%></p>
 <p><%= f.text_field :amount, :label => "amount" %></p>

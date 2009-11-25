@@ -2,7 +2,7 @@ class ExpensesController < ApplicationController
   before_filter :login_required
 
   def index
-    @expenses = Expense.all
+    @expenses = @current_user.expenses.all
 
     respond_to do |format|
       format.html 
@@ -10,7 +10,7 @@ class ExpensesController < ApplicationController
   end
 
   def show
-    @expense = Expense.find(params[:id])
+    @expense = @current_user.expenses.find(params[:id])
 
     respond_to do |format|
       format.html
@@ -18,15 +18,15 @@ class ExpensesController < ApplicationController
   end
 
   def new
-    @expense = Expense.new
-    @groups = @current_user.groups.proven
+    @expense = @current_user.expenses.new
     respond_to do |format|
       format.html 
     end
   end
 
   def edit
-    @expense = Expense.find(params[:id])
+    @groups = @current_user.groups.proven
+    @expense = @current_user.expenses.find(params[:id])
   end
 
   def create
@@ -43,7 +43,7 @@ class ExpensesController < ApplicationController
   end
 
   def update
-    @expense = Expense.find(params[:id])
+    @expense = @current_user.expenses.find(params[:id])
 
     respond_to do |format|
       if @expense.update_attributes(params[:expense])
@@ -56,7 +56,7 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
-    @expense = Expense.find(params[:id])
+    @expense = @current_user.expenses.find(params[:id])
     @expense.destroy
 
     respond_to do |format|

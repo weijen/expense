@@ -23,10 +23,8 @@
     <div class="container_16 clearfix">
       <div class="grid_16">
         <h1><%= link_to "團體記帳", root_path %></h1>
-        <% unless @content_for_box -%>
         <%= render :partial => "common/user_navigation" %>
-        <%= render :partial => "common/main_navigation" %>
-        <% end -%>
+        <%= render :partial => "common/main_navigation" if @current_user -%>
       </div>
     </div>
   </div>

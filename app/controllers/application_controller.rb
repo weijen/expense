@@ -6,4 +6,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   include AuthenticatedSystem
+
+  def group_owner_required
+    unless @group.owners.include?(@current_user)
+      error_stickie "You don't have the right to edit this group"
+      redirect_to "/"
+      return false
+    end
+    return true
+  end
+
 end

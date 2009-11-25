@@ -17,7 +17,7 @@
 
         <% @expenses.each do |expense| %>
           <tr>
-            <td><%=h expense.group.short_name %></td>
+            <td><%=link_to expense.group.short_name, group_path(expense.group) %></td>
             <td></td>
             <td><%=h expense.is_income %></td>
             <td><%=h expense.amount %></td>
