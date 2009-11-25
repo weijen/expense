@@ -1,16 +1,7 @@
 <h1>New expense</h1>
 
 <% handicraft_form_for(@expense) do |f| %>
-  <%= f.error_messages %>
-
-  <p><%= f.select(:group_id, @groups.map{ |g| [g.short_name, g.id] }, :label => "Group") %></p>
-
-  <p><%= f.text_field :tag_id, :label => "Tag" %></p>
-  <p><%= f.check_box :is_income, :label => "is_income"%></p>
-  <p><%= f.text_field :amount, :label => "amount" %></p>
-  <p><%= f.text_field :commit, :label => "commit" %></p>
-  <p><%= f.date_select :charge_date, :label => "charge_date" %></p>
-  <p><%= f.select :currency_id, Currency.find(:all).map{ |c| [c.name, c.id] }, :label => "Currency" %></p>
+  <%= render :partial => 'form', :locals => { :f => f }%>
   <p><%= f.submit 'Create' %></p>
 <% end %>
 

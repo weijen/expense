@@ -1,40 +1,7 @@
 <h1>Editing expense</h1>
 
-<% form_for(@expense) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :group_id %><br />
-    <%= f.text_field :group_id %>
-  </p>
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
-  <p>
-    <%= f.label :tag_id %><br />
-    <%= f.text_field :tag_id %>
-  </p>
-  <p>
-    <%= f.label :is_income %><br />
-    <%= f.check_box :is_income %>
-  </p>
-  <p>
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
-  </p>
-  <p>
-    <%= f.label :commit %><br />
-    <%= f.text_field :commit %>
-  </p>
-  <p>
-    <%= f.label :charge_date %><br />
-    <%= f.date_select :charge_date %>
-  </p>
-  <p>
-    <%= f.label :currency_id %><br />
-    <%= f.text_field :currency_id %>
-  </p>
+<% handicraft_form_for(@expense) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f }%>
   <p>
     <%= f.submit 'Update' %>
   </p>
