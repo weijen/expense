@@ -1,20 +1,38 @@
 <% content_for :sidebar do -%>
-<% groups = @current_user.groups -%>
-<div>
-  <h2>Groups I followed</h2>
-  <table>
-    <% groups.each do |group| -%>
-      <td>
-        <%= link_to group.short_name, group_path(group) %>
-      </td>
-    <% end -%>
-  </table>
-</div>
+  <% groups = @current_user.groups -%>
+  <div>
+    <h2>Groups I followed</h2>
+    <table>
+      <% groups.each do |group| -%>
+        <td>
+          <%= link_to group.short_name, group_path(group) %>
+        </td>
+      <% end -%>
+    </table>
+  </div>
 <% end -%>
 
 <div class="block">
   <div class="content clearfix">
     <h2>Dashboard</h2>
+    <div class="inner grid_10 alpha">
+      <table class ='table'>
+        <tr>
+          <th>Group</th>
+          <th>User</th>
+          <th>Amount</th>
+          <th>Date</th>
+        </tr>
+        <% @expenses.each do |expense| -%>
+          <tr>
+            <td><%= link_to expense.group.short_name, group_path(expense.group) %></td>
+            <td><%= expense.user.login %></td>
+            <td><%= expense.amount %></td>
+            <td><%= expense.charge_date %></td>
+          </tr>
+        <% end -%>
+      </table>
+    </div>
   </div>
 </div>
 
