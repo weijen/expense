@@ -9,14 +9,17 @@
         <th>Function</th>
       </tr>
       <% groups.each do |group| -%>
+        <tr>
         <td>
           <%= link_to group.short_name, group_path(group) %>
         </td>
-        <td>
+        <td class='money'>
           <%= group.expenses.sum(:amount) %>
         </td>
-      <td>
-      </td>
+        <td>
+          <%= link_to "AllExpenses", group_expenses_path(group) %>
+        </td>
+    </tr>
       <% end -%>
     </table>
   </div>
@@ -37,7 +40,7 @@
           <tr>
             <td><%= link_to expense.group.short_name, group_path(expense.group) %></td>
             <td><%= expense.user.login %></td>
-            <td><%= expense.amount %></td>
+            <td class='money'><%= expense.amount %></td>
             <td><%= expense.charge_date %></td>
           </tr>
         <% end -%>

@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def group_follower_required
-    unless @group.followers.include?(@current_user)
+    unless @group.proved_users.include?(@current_user)
       error_stickie "You don't have the right to edit this group"
       redirect_to "/"
       return false

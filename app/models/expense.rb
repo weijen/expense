@@ -22,7 +22,14 @@ class Expense < ActiveRecord::Base
 
   validates_numericality_of :amount, :greater_than => 0
 
+  named_scope :income, :conditions => { :is_income => true }
+  named_scope :outgoing, :conditions => { :is_income => false } 
+
   def charge_date
     self["charge_date"] || Date.today
+  end
+
+  def self.total
+    self.income.sum(:amount) - self.outgoing.sum(:amount) 
   end
 end

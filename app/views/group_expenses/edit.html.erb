@@ -1,2 +1,15 @@
-<h1>GroupExpenses#edit</h1>
-<p>Find me in app/views/group_expenses/edit.html.erb</p>
+<div class="block">
+  <div class="content clearfix">
+    <h2>Editing expense</h2>
+    <div class="inner">
+      <% handicraft_form_for([@group,@expense]) do |f| %>
+        <%= render :partial => 'form', :locals => { :f => f }%>
+        <div class="group navform">
+          <%= f.submit 'Update' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= link_to 'Show', @expense %> |
+<%= link_to 'Back', expenses_path %>

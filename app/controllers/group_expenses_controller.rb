@@ -5,7 +5,8 @@ class GroupExpensesController < ApplicationController
   before_filter :get_expense_and_owner_required, :only => [:edit, :update, :destroy]
 
   def index
-    @expenses = @group.expenses.paginate :page => params[:page], :order => 'updated_at DESC', :per_page => 20
+    @expenses = @group.expenses.find(:all, :order => :charge_date)
+    @total = @group.expenses.total
   end
 
   def new
@@ -19,7 +20,7 @@ class GroupExpensesController < ApplicationController
     respond_to do |format|
       if @expense.save
         notice_stickie("Expense was successfully created.")
-        format.html { redirect_to(@expense) }
+        format.html { redirect_to group_expenses_url(@group) }
       else
         format.html { render :action => "new" }
       end
@@ -33,7 +34,7 @@ class GroupExpensesController < ApplicationController
     respond_to do |format|
       if @expense.update_attributes(params[:expense])
         notice_stickie('Expense was successfully updated.')
-        format.html { redirect_to(@expense) }
+        format.html { redirect_to group_expenses_url(@group) }
       else
         format.html { render :action => "edit" }
       end
@@ -53,9 +54,9 @@ class GroupExpensesController < ApplicationController
     @group = Group.find_by_secret_id(params[:group_id])
   end
 
-  def get_expense
+  def get_expense_and_owner_required
     @expense = @group.expenses.find(params[:id])
-    unless @current_user.expenses.indlude?(@expense)
+    unless @current_user.expenses.include?(@expense)
       error_stickie("You are no right to edit this expense")
       return false
     end

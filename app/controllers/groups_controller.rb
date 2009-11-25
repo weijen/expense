@@ -31,11 +31,10 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(params[:group])
-    ugr = UserGroupRelation.new(:user_id => @current_user.id, :manager => true, :proven => true)
-    @group.user_group_relations << ugr
-
+    
     respond_to do |format|
       if @group.save
+        @group.add_manager(@current_user)
         notice_stickie 'Group was successfully created.'
         format.html { redirect_to(@group) }
       else

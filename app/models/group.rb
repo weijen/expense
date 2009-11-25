@@ -37,6 +37,10 @@ class Group < ActiveRecord::Base
     self.users.proven - self.users.owner
   end
 
+  def proved_users
+    self.users.proven
+  end
+
   def unprove_users
     self.users.unproven
   end

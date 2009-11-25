@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
   end
 
   def proven?(group)
-    self.groups.proven.include?(group)
+    group.owners.include?(self) || group.followers.include?(self)
   end
 
   def follow?(group)

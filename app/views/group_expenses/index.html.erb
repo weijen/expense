@@ -3,25 +3,30 @@
     <h2>Group: <%= @group.name %> Expenses</h2>
     <div class="inner grid_10 alpha">
       <table class ='table'>
-        <tr>
-          <th>User</th>
-          <th>Amount</th>
-          <th>Date</th>
-          <th></th>
-        </tr>
+        <% date = Date.parse("2000-01-01") %>
         <% @expenses.each do |expense| -%>
+          <% if expense.charge_date != date -%>
+            <% date = expense.charge_date -%>
+            <tr>
+              <td colspan='4'><strong><%= date.to_s(:db) %></strong></td>
+            </tr>
+          <% end -%>
           <tr>
             <td><%= expense.user.login %></td>
-            <td><%= expense.amount %></td>
-            <td><%= expense.charge_date %></td>
+            <td><%= (expense.is_income ? "income" : "outgoing") %></td>
+            <td class='money'><%= expense.amount %></td>
             <td>
               <%= render_list :class => 'menu' do |list|
                 list << link_to("Edit", edit_group_expense_path(@group, expense)) if @current_user.expenses.include?(expense)
-                list << link_to("Destroy", group_expense_path(@group,expense), :method => :delete)
+                list << link_to("Destroy", group_expense_path(@group,expense), :method => :delete)  if @current_user.expenses.include?(expense)
               end -%>
             </td>
           </tr>
         <% end -%>
+        <tr>
+          <td colspan='3' class='money'><%= @total %></td>
+          <td />
+        </tr>
       </table>
     </div>
   </div>
