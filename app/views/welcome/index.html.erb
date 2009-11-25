@@ -1,5 +1,5 @@
 <% content_for :sidebar do -%>
-<% groups = [@current_user.own_groups, @current_user.groups].flatten.uniq -%>
+<% groups = @current_user.groups -%>
 <div>
   <h2>Groups I followed</h2>
   <table>

@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: groups
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  short_name :string(255)
+#  secret_id  :string(255)
+#  owner_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 # one:

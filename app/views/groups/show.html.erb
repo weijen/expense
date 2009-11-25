@@ -9,7 +9,7 @@
 </div>
 <br />
 <%= link_to("Follow", follow_user_group_path(@current_user, @group)) if !@current_user.manager?(@group) && !@current_user.follow?(@group) %>
-<%= link_to("Follower", "#") if @current_user.manager?(@group) %>
+<%= link_to("Follower", group_users_path(@group)) if @current_user.manager?(@group) %>
 <%= link_to("Unfollow", follow_user_group_path(@current_user, @group)) if !@current_user.manager?(@group) && @current_user.follow?(@group) %>
 
 <br />

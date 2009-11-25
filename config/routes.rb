@@ -1,6 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :groups
-
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
@@ -9,7 +7,13 @@ ActionController::Routing::Routes.draw do |map|
     user.resources :groups, :controller => 'user_groups', :member => {:follow => :get, :unfollow => :get}
   end
 
-  map.resource :session
+  map.resources :groups do |group|
+    group.resources :users, :controller => 'group_users'
+  end
 
+  map.resource :session
   map.root :controller => 'welcome'
+
+  map.connect ':controller/:action/:id'
+  map.connect ':controller/:action/:id.:format'
 end

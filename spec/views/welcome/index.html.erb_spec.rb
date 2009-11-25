@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "Welcome/index.html.erb" do
   before(:each) do
-    @groups = (1..2).to_a.map{ |i| mock_model(Group, :name => "test group #{i}", :short_name => "tg#{i}") }
+    @groups = (1..10).to_a.map{ |i| mock_model(Group, :name => "test group #{i}", :short_name => "tg#{i}") }
     @current_user = mock_model(User,
                                :login => "weijen",
                                :password => 'generic',

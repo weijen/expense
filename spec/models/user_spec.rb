@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                        :integer         not null, primary key
+#  login                     :string(40)
+#  name                      :string(100)     default("")
+#  email                     :string(100)
+#  crypted_password          :string(40)
+#  salt                      :string(40)
+#  created_at                :datetime
+#  updated_at                :datetime
+#  remember_token            :string(40)
+#  remember_token_expires_at :datetime
+#
+
 # -*- coding: utf-8 -*-
 require File.dirname(__FILE__) + '/../spec_helper'
 
@@ -261,7 +277,8 @@ describe User, "the relationship with group" do
   end
 
   it "should return true if user own this group" do
-    group = Group.create!(:name => "test group 1", :short_name => "tg1", :owner_id => @user.id)
+    group = Group.create!(:name => "test group 1", :short_name => "tg1")
+
     @user.manager?(group).should be_true
   end
 

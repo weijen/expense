@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: groups
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  short_name :string(255)
+#  secret_id  :string(255)
+#  owner_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'spec_helper'
 
 describe Group do
@@ -30,10 +43,7 @@ describe Group do
 
       @group.users << @p_user
       @group.users << @up_user
-      @group.user_group_relations[0].proven = true
-      @group.save
-      @group.user_group_relations[0].proven = true
-      @group.user_group_relations[0].save
+      @group.add_follower(@p_user)
     end
     it "should have 2 user_group_relations" do
       @group.user_group_relations.length.should eql(2)
@@ -53,5 +63,15 @@ describe Group do
       @group.users.unproven[0].should eql(@up_user)
     end
 
+    it "should get ture when user be added to managers" do
+      user =  User.create!(
+        :login => "test",
+        :password => 'generic',
+        :password_confirmation => 'generic',
+        :email => "test@example.com"
+      )
+      @group.add_manager(user)
+      @group.owners.should include(user)
+    end
   end
 end

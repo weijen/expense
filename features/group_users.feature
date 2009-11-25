@@ -9,7 +9,7 @@ Feature: 團體對會員的關係
 
   Scenario: 管理者可以看到這個團體已proven的所有會員
 
-  Scenario: 管理者可以看到這個團已unproven的所有會員
+  Scenario: 管理者可以看到這個團unproven的所有會員
 
   Scenario: 管理者可以prove某個會員
 
