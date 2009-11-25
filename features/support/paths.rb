@@ -18,6 +18,8 @@ module NavigationHelpers
       edit_group_path(@group)
     when /group users page/
       group_users_path(@group)
+    when /new_expense_path/
+      new_expense_path
       # Add more mappings here.
       # Here is a more fancy example:
       #

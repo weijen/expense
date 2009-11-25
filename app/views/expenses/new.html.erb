@@ -1,43 +1,17 @@
 <h1>New expense</h1>
 
-<% form_for(@expense) do |f| %>
+<% handicraft_form_for(@expense) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :group_id %><br />
-    <%= f.text_field :group_id %>
-  </p>
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
-  <p>
-    <%= f.label :tag_id %><br />
-    <%= f.text_field :tag_id %>
-  </p>
-  <p>
-    <%= f.label :is_income %><br />
-    <%= f.check_box :is_income %>
-  </p>
-  <p>
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
-  </p>
-  <p>
-    <%= f.label :commit %><br />
-    <%= f.text_field :commit %>
-  </p>
-  <p>
-    <%= f.label :charge_date %><br />
-    <%= f.date_select :charge_date %>
-  </p>
-  <p>
-    <%= f.label :currency_id %><br />
-    <%= f.text_field :currency_id %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
+  <p><%= f.select(:group_id, @groups.map{ |g| [g.short_name, g.id] }, :label => "Group") %></p>
+
+  <p><%= f.text_field :tag_id, :label => "Tag" %></p>
+  <p><%= f.check_box :is_income, :label => "is_income"%></p>
+  <p><%= f.text_field :amount, :label => "amount" %></p>
+  <p><%= f.text_field :commit, :label => "commit" %></p>
+  <p><%= f.date_select :charge_date, :label => "charge_date" %></p>
+  <p><%= f.select :currency_id, Currency.find(:all).map{ |c| [c.name, c.id] }, :label => "Currency" %></p>
+  <p><%= f.submit 'Create' %></p>
 <% end %>
 
 <%= link_to 'Back', expenses_path %>

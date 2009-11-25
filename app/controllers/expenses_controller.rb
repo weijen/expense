@@ -19,7 +19,7 @@ class ExpensesController < ApplicationController
 
   def new
     @expense = Expense.new
-
+    @groups = @current_user.groups.proven
     respond_to do |format|
       format.html 
     end
@@ -30,11 +30,11 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    @expense = Expense.new(params[:expense])
+    @expense = @current_user.expenses.new(params[:expense])
 
     respond_to do |format|
       if @expense.save
-        notice_stickie = 'Expense was successfully created.'
+        notice_stickie("Expense was successfully created.")
         format.html { redirect_to(@expense) }
       else
         format.html { render :action => "new" }
@@ -47,7 +47,7 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.update_attributes(params[:expense])
-        notice_stickie = 'Expense was successfully updated.'
+        notice_stickie('Expense was successfully updated.')
         format.html { redirect_to(@expense) }
       else
         format.html { render :action => "edit" }
