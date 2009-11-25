@@ -12,21 +12,19 @@
           <th>Comment</th>
           <th>Charge date</th>
           <th>Currency</th>
-          <th colspan=3></th>
+          <th></th>
         </tr>
 
         <% @expenses.each do |expense| %>
           <tr>
             <td><%=link_to expense.group.short_name, group_path(expense.group) %></td>
-            <td></td>
+            <td><%=h expense.tag.name %></td>
             <td><%=h expense.is_income ? "income" : "outgoing" %></td>
             <td><%=h expense.amount %></td>
             <td><%=h expense.comment %></td>
             <td><%=h expense.charge_date %></td>
             <td><%=h expense.currency.name %></td>
-            <td><%= link_to 'Show', expense %></td>
-            <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
-            <td><%= link_to 'Destroy', expense, :confirm => 'Are you sure?', :method => :delete %></td>
+            <td><%= link_to 'Show', expense %>|<%= link_to 'Edit', edit_expense_path(expense) %>|<%= link_to 'Destroy', expense, :confirm => 'Are you sure?', :method => :delete %></td>
           </tr>
         <% end %>
       </table>

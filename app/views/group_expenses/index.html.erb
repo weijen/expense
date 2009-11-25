@@ -12,8 +12,10 @@
             </tr>
           <% end -%>
           <tr>
-            <td><%= expense.user.login %></td>
-            <td><%= (expense.is_income ? "income" : "outgoing") %></td>
+            <td><%=h expense.user.login %></td>
+            <td><%=h expense.tag.name %></td>
+            <td><%=h (expense.is_income ? "income" : "outgoing") %></td>
+            <td><%=h expense.comment %></td>
             <td class='money'><%= expense.amount %></td>
             <td>
               <%= render_list :class => 'menu' do |list|
@@ -24,10 +26,13 @@
           </tr>
         <% end -%>
         <tr>
-          <td colspan='3' class='money'><%= @total %></td>
+          <td colspan='5' class='money'><%= @total %></td>
           <td />
         </tr>
       </table>
     </div>
   </div>
 </div>
+
+<%= link_to "Show Group", group_path(@group) %>|
+<%= link_to "NewExpense", new_group_expense_path(@group) %>

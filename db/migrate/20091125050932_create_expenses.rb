@@ -3,7 +3,7 @@ class CreateExpenses < ActiveRecord::Migration
     create_table :expenses do |t|
       t.integer :group_id, :null => false
       t.integer :user_id, :null => false
-      t.integer :tag_id
+      t.integer :tag_id, :null => false
       t.boolean :is_income, :default => false
       t.float :amount, :null => false
       t.string :comment

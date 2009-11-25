@@ -5,10 +5,10 @@
 #  id          :integer         not null, primary key
 #  group_id    :integer         not null
 #  user_id     :integer         not null
-#  tag_id      :integer
+#  tag_id      :integer         not null
 #  is_income   :boolean
 #  amount      :float           not null
-#  commit      :string(255)
+#  comment     :string(255)
 #  charge_date :date
 #  currency_id :integer
 #  created_at  :datetime

@@ -9,6 +9,7 @@
           list << link_to("Unfollow", user_group_path(@current_user,@group), :method => :delete) if !@current_user.manager?(@group) && @current_user.follow?(@group)
           list << link_to("AllExpenses", group_expenses_path(@group))  if @current_user.manager?(@group) || @current_user.proven?(@group)
           list << link_to("NewExpense", new_group_expense_path(@group)) if @current_user.manager?(@group) || @current_user.proven?(@group)
+          list << link_to("AllTags", group_tags_path(@group)) if @current_user.manager?(@group) || @current_user.proven?(@group)
           list << link_to('Edit', edit_group_path(@group)) if @current_user.manager?(@group)
         end -%> 
       </div>

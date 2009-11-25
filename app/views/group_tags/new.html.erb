@@ -1,2 +1,13 @@
-<h1>GroupTags#new</h1>
-<p>Find me in app/views/group_tags/new.html.erb</p>
+<div class="block">
+  <div class="content clearfix">
+    <h2>Group: <%= @group.name %> New tag</h2>
+    <div class="inner">
+      <% handicraft_form_for([@group,@tag]) do |f| %>
+        <%= render :partial => 'form', :locals => { :f => f }%>
+        <div class="group navform">
+          <%= f.submit 'Create' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

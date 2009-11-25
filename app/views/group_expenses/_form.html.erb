@@ -1,6 +1,8 @@
 <%= f.error_messages %>
-<p><%= f.text_field :tag_id, :label => "Tag" %></p>
-<p><%= f.check_box :is_income, :label => "is_income"%></p>
+<p>
+<%= f.select :tag_id, @group.tags.map{ |tag| [tag.name, tag.id]}, :label => "Tag" %>
+<span><%= link_to "NewTag", new_group_tag_path(@group) %></span>
+</p>
 <p><%= f.text_field :amount, :label => "amount" %></p>
 <p><%= f.text_field :comment, :label => "comment" %></p>
 <p><%= f.date_select :charge_date, :label => "charge_date" %></p>

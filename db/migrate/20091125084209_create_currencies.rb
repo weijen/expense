@@ -7,11 +7,6 @@ class CreateCurrencies < ActiveRecord::Migration
     end
 
     Currency.create!(:name => "TWD")
-    Currency.create!(:name => "USD")
-    Currency.create!(:name => "EUR")
-    Currency.create!(:name => "CNY")
-    Currency.create!(:name => "JPY")
-    Currency.create!(:name => "HKD")
   end
 
   def self.down

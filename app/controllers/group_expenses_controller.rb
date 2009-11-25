@@ -10,6 +10,12 @@ class GroupExpensesController < ApplicationController
   end
 
   def new
+    if @group.tags.empty?
+      notice_stickie "Please create a new tag"
+      redirect_to new_group_tag_path(@group)
+      return
+    end
+    store_location
     @expense = @group.expenses.new
   end
 
@@ -45,7 +51,7 @@ class GroupExpensesController < ApplicationController
     @expense.destroy
 
     respond_to do |format|
-      format.html { redirect_to(expenses_url) }
+      format.html { redirect_to(group_expenses_url(@group)) }
     end
   end
 
