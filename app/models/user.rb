@@ -95,10 +95,5 @@ class User < ActiveRecord::Base
       return "unproven"
     end
   end
-
-
   protected
-    
-
-
 end

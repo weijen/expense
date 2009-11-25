@@ -14,7 +14,7 @@
           <%= link_to group.short_name, group_path(group) %>
         </td>
         <td class='money'>
-          <%= group.expenses.sum(:amount) %>
+          <%= group.expenses.total %>
         </td>
         <td>
           <%= link_to "AllExpenses", group_expenses_path(group) %>
