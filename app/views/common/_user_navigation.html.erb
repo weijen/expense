@@ -2,7 +2,7 @@
 
   <%= render_list :class => 'menu' do |list|
     if logged_in?
-      list << link_to("My expense", expenses_path)
+      list << link_to("MyExpenses", expenses_path)
       list << link_to("Settings", "#")
       list << link_to("Logout", "/logout")
     else
