@@ -73,5 +73,16 @@ describe Group do
       @group.add_manager(user)
       @group.owners.should include(user)
     end
+
+    it "should get trun when user be added to followers" do
+      user =  User.create!(
+        :login => "test",
+        :password => 'generic',
+        :password_confirmation => 'generic',
+        :email => "test@example.com"
+      )
+      @group.add_follower(user)
+      @group.followers.should include(user)
+    end
   end
 end

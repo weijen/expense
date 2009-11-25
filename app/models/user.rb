@@ -78,13 +78,13 @@ class User < ActiveRecord::Base
     self.groups.include?(group)
   end
 
-  def relation(group)
+  def position(group)
     case
     when self.manager?(group)
       return "manager"
-    when !self.manager?(group) && self.follow(group)
+    when !self.manager?(group) && self.follow?(group)
       return "follower"
-    when !self.manager?(group) && self.follow(group)
+    when !self.manager?(group) && self.follow?(group)
       return "unproven"
     end
   end

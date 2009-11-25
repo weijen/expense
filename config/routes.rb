@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :groups do |group|
-    group.resources :users, :controller => 'group_users'
+    group.resources :users, :controller => 'group_users', :member => {:prove => :get}
   end
 
   map.resource :session

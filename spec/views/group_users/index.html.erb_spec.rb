@@ -13,16 +13,23 @@ describe "/group_users/index" do
       case
       when i <= 3
         ans = "manager"
+        @group.should_receive(:followers).and_return([])
+        @group.should_receive(:unprove_users).and_return([])
       when i > 3 && i <= 6
         ans = "follower"
+        @group.should_receive(:followers).and_return([user])
+        @group.should_receive(:unprove_users).and_return([])
       when i > 6
         ans = "unproven"
+        @group.should_receive(:followers).and_return([])
+        @group.should_receive(:unprove_users).and_return([user])
       end
       
-      user.should_receive(:relation).with(@group).and_return(ans)
+      user.should_receive(:position).with(@group).and_return(ans)
       user
     end
 
+    
     assigns[:followers] = users
     assigns[:group] = @group
 

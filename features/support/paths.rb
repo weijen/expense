@@ -16,6 +16,8 @@ module NavigationHelpers
       group_path(@group)
     when /groups\/edit/
       edit_group_path(@group)
+    when /group users page/
+      group_users_path(@group)
       # Add more mappings here.
       # Here is a more fancy example:
       #

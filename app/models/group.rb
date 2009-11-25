@@ -32,6 +32,14 @@ class Group < ActiveRecord::Base
     self.users.owner
   end
 
+  def followers
+    self.users.proven - self.users.owner
+  end
+
+  def unprove_users
+    self.users.unproven
+  end
+
   def add_manager(user)
     unless self.users.include?(user)
       ugr = self.user_group_relations.new(:user_id => user.id)
@@ -52,6 +60,15 @@ class Group < ActiveRecord::Base
     ugr.proven = true
     ugr.save
   end 
+
+  def add_unprove_user(user)
+    self.user_group_relations.create(:user_id => user.id) unless self.user_group_relations.find_by_user_id(user.id)
+  end
+
+  def remove_follower(user)
+    ugr = self.user_group_relations.find_by_user_id(user.id)
+    ugr.destroy if ugr
+  end
 
   private
 

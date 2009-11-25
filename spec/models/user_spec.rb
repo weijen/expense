@@ -278,7 +278,7 @@ describe User, "the relationship with group" do
 
   it "should return true if user own this group" do
     group = Group.create!(:name => "test group 1", :short_name => "tg1")
-
+    group.add_manager(@user)
     @user.manager?(group).should be_true
   end
 
