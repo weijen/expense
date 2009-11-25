@@ -1,0 +1,43 @@
+<p>
+  <b>Group:</b>
+  <%=h @expense.group_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @expense.user_id %>
+</p>
+
+<p>
+  <b>Tag:</b>
+  <%=h @expense.tag_id %>
+</p>
+
+<p>
+  <b>Is income:</b>
+  <%=h @expense.is_income %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%=h @expense.amount %>
+</p>
+
+<p>
+  <b>Commit:</b>
+  <%=h @expense.commit %>
+</p>
+
+<p>
+  <b>Charge date:</b>
+  <%=h @expense.charge_date %>
+</p>
+
+<p>
+  <b>Currency:</b>
+  <%=h @expense.currency_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_expense_path(@expense) %> |
+<%= link_to 'Back', expenses_path %>

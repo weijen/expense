@@ -37,7 +37,8 @@ class User < ActiveRecord::Base
   
   has_many :own_groups, :class_name => "Group", :foreign_key => :owner_id
   has_many :user_group_relations
-  has_many :groups, :through => :user_group_relations 
+  has_many :groups, :through => :user_group_relations
+  has_many :expenses
 
   named_scope :proven, :include=> :user_group_relations, :conditions => ["user_group_relations.proven == ?", true]
   named_scope :unproven, :include => :user_group_relations, :conditions => ["user_group_relations.proven == ?", false]

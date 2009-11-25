@@ -14,7 +14,8 @@
 require 'digest/sha1'
 class Group < ActiveRecord::Base
   has_many :user_group_relations
-  has_many :users, :through => :user_group_relations 
+  has_many :users, :through => :user_group_relations
+  has_many :expenses
 
   validates_presence_of :name, :short_name
   validates_length_of :name, :minimum => 3

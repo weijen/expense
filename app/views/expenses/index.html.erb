@@ -1,0 +1,34 @@
+<h1>Listing expenses</h1>
+
+<table>
+  <tr>
+    <th>Group</th>
+    <th>User</th>
+    <th>Tag</th>
+    <th>Is income</th>
+    <th>Amount</th>
+    <th>Commit</th>
+    <th>Charge date</th>
+    <th>Currency</th>
+  </tr>
+
+<% @expenses.each do |expense| %>
+  <tr>
+    <td><%=h expense.group_id %></td>
+    <td><%=h expense.user_id %></td>
+    <td><%=h expense.tag_id %></td>
+    <td><%=h expense.is_income %></td>
+    <td><%=h expense.amount %></td>
+    <td><%=h expense.commit %></td>
+    <td><%=h expense.charge_date %></td>
+    <td><%=h expense.currency_id %></td>
+    <td><%= link_to 'Show', expense %></td>
+    <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
+    <td><%= link_to 'Destroy', expense, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New expense', new_expense_path %>
