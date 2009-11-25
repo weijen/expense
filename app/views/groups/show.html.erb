@@ -4,6 +4,7 @@
     <div class="inner grid_10 alpha">
       <p>Name: <%=h @group.name %></p>
       <p>Short name:  <%=h @group.short_name %></p>
+      <p>Consume Sum: <%=h @group.expenses.sum(:amount) %> </p>
     </div>
   </div>
 </div>
@@ -15,3 +16,21 @@
 <br />
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>
+
+<% content_for :sidebar do -%>
+  <table class ='table'>
+    <tr>
+      <th>User</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+    <% @group.expenses.find(:all, :limit => 20).each do |expense| -%>
+      <tr>
+        <td><%= expense.user.login %></td>
+        <td><%= expense.amount %></td>
+        <td><%= expense.charge_date %></td>
+      </tr>
+    <% end -%>
+  </table>
+
+<% end -%>
