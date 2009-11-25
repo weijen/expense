@@ -18,6 +18,7 @@
 class Expense < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
+  belongs_to :currency
 
   validates_numericality_of :amount, :greater_than => 0
 

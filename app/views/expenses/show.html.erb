@@ -1,42 +1,52 @@
-<p>
-  <b>Group:</b>
-  <%=h @expense.group_id %>
-</p>
+<div class="block">
+  <div class="content clearfix">
+    <h2>Show Expense</h2>
+    <div class="inner grid_10 alpha">
 
-<p>
-  <b>User:</b>
-  <%=h @expense.user_id %>
-</p>
+      <p>
+      <b>Group:</b>
+      <%=h @expense.group.name %>
+      </p>
 
-<p>
-  <b>Tag:</b>
-  <%=h @expense.tag_id %>
-</p>
+      <p>
+      <b>User:</b>
+      <%=h @expense.user.login %>
+      </p>
 
-<p>
-  <b>Is income:</b>
-  <%=h @expense.is_income %>
-</p>
+      <!--
+      <p>
+      <b>Tag:</b>
+      <%=h @expense.tag_id %>
+      </p>
+      -->
 
-<p>
-  <b>Amount:</b>
-  <%=h @expense.amount %>
-</p>
+      <p>
+      <b>Is income:</b>
+      <%=h @expense.is_income %>
+      </p>
 
-<p>
-  <b>comment:</b>
-  <%=h @expense.comment%>
-</p>
+      <p>
+      <b>Amount:</b>
+      <%=h @expense.amount %>
+      </p>
 
-<p>
-  <b>Charge date:</b>
-  <%=h @expense.charge_date %>
-</p>
+      <p>
+      <b>Comment:</b>
+      <%=h @expense.comment%>
+      </p>
 
-<p>
-  <b>Currency:</b>
-  <%=h @expense.currency_id %>
-</p>
+      <p>
+      <b>Charge date:</b>
+      <%=h @expense.charge_date %>
+      </p>
+
+      <p>
+      <b>Currency:</b>
+      <%=h @expense.currency.name %>
+      </p>
+    </div>
+  </div>
+</div>
 
 
 <%= link_to 'Edit', edit_expense_path(@expense) %> |

@@ -1,31 +1,38 @@
-<h1>My expenses</h1>
+<div class="block">
+  <div class="content clearfix">
+    <h2>My expenses</h2>
+    <div class="inner grid_10 alpha">
 
-<table>
-  <tr>
-    <th>Group</th>
-    <th>Tag</th>
-    <th>Is income</th>
-    <th>Amount</th>
-    <th>Comment</th>
-    <th>Charge date</th>
-    <th>Currency</th>
-  </tr>
+      <table class='table'>
+        <tr>
+          <th>Group</th>
+          <th>Tag</th>
+          <th>Is income</th>
+          <th>Amount</th>
+          <th>Comment</th>
+          <th>Charge date</th>
+          <th>Currency</th>
+          <th colspan=3></th>
+        </tr>
 
-<% @expenses.each do |expense| %>
-  <tr>
-    <td><%=h expense.group.short_name %></td>
-    <td><%=h  %></td>
-    <td><%=h expense.is_income %></td>
-    <td><%=h expense.amount %></td>
-    <td><%=h expense.comment %></td>
-    <td><%=h expense.charge_date %></td>
-    <td><%=h expense.currency_id %></td>
-    <td><%= link_to 'Show', expense %></td>
-    <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
-    <td><%= link_to 'Destroy', expense, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+        <% @expenses.each do |expense| %>
+          <tr>
+            <td><%=h expense.group.short_name %></td>
+            <td></td>
+            <td><%=h expense.is_income %></td>
+            <td><%=h expense.amount %></td>
+            <td><%=h expense.comment %></td>
+            <td><%=h expense.charge_date %></td>
+            <td><%=h expense.currency_id %></td>
+            <td><%= link_to 'Show', expense %></td>
+            <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
+            <td><%= link_to 'Destroy', expense, :confirm => 'Are you sure?', :method => :delete %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
 
 <br />
 

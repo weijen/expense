@@ -23,3 +23,14 @@ Feature: 團體的帳目
     And I press "Create"
     Then I should see "Expense was successfully created"
 
+  Scenario: 我是proven follower，我可以報帳到我所follow的團體
+    Given I am logged in as "weijen"
+    And a group named "test_group" is not belongs to me
+    And I follow this group and be proved
+    When I go to new_expense_path
+    And I select "test_group" from "group"
+    And I fill in "amount" with "100" 
+    And I press "Create"
+    Then I should see "Expense was successfully created"
+
+
