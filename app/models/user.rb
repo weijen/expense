@@ -74,15 +74,17 @@ class User < ActiveRecord::Base
   
   # check position for group
   def manager?(group)
-    group.owners.include?(self)
+    urg = self.user_group_relations.find_by_group_id(group.id) 
+    urg.manager
   end
 
   def proven?(group)
-    group.owners.include?(self) || group.followers.include?(self)
+    urg = self.user_group_relations.find_by_group_id(group.id) 
+    urg.proven
   end
 
   def follow?(group)
-    self.groups.include?(group)
+    urg = self.user_group_relations.find_by_group_id(group.id)
   end
 
   def position(group)
