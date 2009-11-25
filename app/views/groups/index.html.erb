@@ -6,16 +6,20 @@
         <tr>
           <th>Name</th>
           <th>Short name</th>
-          <th colspan = '3'>Function</th>
+          <th>Function</th>
         </tr>
 
         <% @groups.each do |group| %>
           <tr>
             <td><%=h group.name %></td>
             <td><%=h group.short_name %></td>
-            <td><%= link_to 'Show', group %></td>
-            <td><%= link_to 'Edit', edit_group_path(group) %></td>
-            <td><%= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete %></td>
+            <td>
+              <%= render_list :class => 'menu' do |list|
+              list << link_to('Show', group)
+              list << link_to('Edit', edit_group_path(group)) if @current_user.manager?(group) 
+              list << link_to('Destroy', group, :confirm => 'Are you sure?', :method => :delete) if @current_user.manager?(group) 
+              end -%>
+            </td>
           </tr>
         <% end %>
       </table>

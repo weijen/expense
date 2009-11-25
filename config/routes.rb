@@ -11,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :groups do |group|
     group.resources :users, :controller => 'group_users', :member => {:prove => :get}
+    group.resources :expenses, :controller => "group_expenses"
   end
 
   map.resource :session

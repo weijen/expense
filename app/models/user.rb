@@ -70,9 +70,14 @@ class User < ActiveRecord::Base
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
   end
-
+  
+  # check position for group
   def manager?(group)
     group.owners.include?(self)
+  end
+
+  def proven?(group)
+    self.groups.proven.include?(group)
   end
 
   def follow?(group)

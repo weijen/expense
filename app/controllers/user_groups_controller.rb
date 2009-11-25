@@ -7,8 +7,8 @@ class UserGroupsController < ApplicationController
     redirect_to group_path(@group)
   end
 
-  def unfollow
-    @current_user.group.user_group_relations.destroy
+  def destroy 
+    @group.remove_follower(@current_user)
     notice_stickie "Unfollowed this group"
     redirect_to group_path(@group)
   end

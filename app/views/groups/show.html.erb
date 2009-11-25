@@ -2,35 +2,37 @@
   <div class="content clearfix">
     <h2>Show Group</h2>
     <div class="inner grid_10 alpha">
+      <div>
+        <%= render_list :class => 'menu' do |list|
+          list << link_to("Follower", group_users_path(@group)) if @current_user.manager?(@group)
+          list << link_to("Follow", follow_user_group_path(@current_user, @group)) if !@current_user.manager?(@group) && !@current_user.follow?(@group) 
+          list << link_to("Unfollow", user_group_path(@current_user,@group), :method => :delete) if !@current_user.manager?(@group) && @current_user.follow?(@group)
+          list << link_to("AllExpenses", group_expenses_path(@group))  if @current_user.manager?(@group) || @current_user.proven?(@group)         
+          list << link_to('Edit', edit_group_path(@group)) if @current_user.manager?(@group) 
+        end -%> 
+      </div>
       <p>Name: <%=h @group.name %></p>
       <p>Short name:  <%=h @group.short_name %></p>
       <p>Consume Sum: <%=h @group.expenses.sum(:amount) %> </p>
     </div>
   </div>
 </div>
-<br />
-<%= link_to("Follow", follow_user_group_path(@current_user, @group)) if !@current_user.manager?(@group) && !@current_user.follow?(@group) %>
-<%= link_to("Follower", group_users_path(@group)) if @current_user.manager?(@group) %>
-<%= link_to("Unfollow", follow_user_group_path(@current_user, @group)) if !@current_user.manager?(@group) && @current_user.follow?(@group) %>
-
-<br />
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
 
 <% content_for :sidebar do -%>
-  <table class ='table'>
-    <tr>
-      <th>User</th>
-      <th>Amount</th>
-      <th>Date</th>
-    </tr>
-    <% @group.expenses.find(:all, :limit => 20).each do |expense| -%>
+  <% if @current_user.proven?(@group) -%>
+    <table class ='table'>
       <tr>
-        <td><%= expense.user.login %></td>
-        <td><%= expense.amount %></td>
-        <td><%= expense.charge_date %></td>
+        <th>User</th>
+        <th>Amount</th>
+        <th>Date</th>
       </tr>
-    <% end -%>
-  </table>
-
+      <% @group.expenses.find(:all, :limit => 20).each do |expense| -%>
+        <tr>
+          <td><%= expense.user.login %></td>
+          <td><%= expense.amount %></td>
+          <td><%= expense.charge_date %></td>
+        </tr>
+      <% end -%>
+    </table>
+  <% end -%>
 <% end -%>
