@@ -1,0 +1,7 @@
+<%= f.error_messages %>
+<p><%= f.text_field :tag_id, :label => "Tag" %></p>
+<p><%= f.check_box :is_income, :label => "is_income"%></p>
+<p><%= f.text_field :amount, :label => "amount" %></p>
+<p><%= f.text_field :comment, :label => "comment" %></p>
+<p><%= f.date_select :charge_date, :label => "charge_date" %></p>
+<p><%= f.select :currency_id, Currency.find(:all).map{ |c| [c.name, c.id] }, :label => "Currency" %></p>

@@ -1,8 +1,28 @@
 <div class="block">
   <div class="content clearfix">
-    <h2>GroupExpenses</h2>
+    <h2>Group: <%= @group.name %> Expenses</h2>
     <div class="inner grid_10 alpha">
-
+      <table class ='table'>
+        <tr>
+          <th>User</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+        <% @expenses.each do |expense| -%>
+          <tr>
+            <td><%= expense.user.login %></td>
+            <td><%= expense.amount %></td>
+            <td><%= expense.charge_date %></td>
+            <td>
+              <%= render_list :class => 'menu' do |list|
+                list << link_to("Edit", edit_group_expense_path(@group, expense)) if @current_user.expenses.include?(expense)
+                list << link_to("Destroy", group_expense_path(@group,expense), :method => :delete)
+              end -%>
+            </td>
+          </tr>
+        <% end -%>
+      </table>
     </div>
   </div>
 </div>

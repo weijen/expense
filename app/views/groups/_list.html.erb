@@ -1,0 +1,14 @@
+<table class ='table'>
+  <tr>
+    <th>User</th>
+    <th>Amount</th>
+    <th>Date</th>
+  </tr>
+  <% expenses.each do |expense| -%>
+    <tr>
+      <td><%= expense.user.login %></td>
+      <td><%= expense.amount %></td>
+      <td><%= expense.charge_date %></td>
+    </tr>
+  <% end -%>
+</table>
