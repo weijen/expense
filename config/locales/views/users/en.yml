@@ -3,3 +3,6 @@ en:
   signup_fail_stickie: "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
   signup_title: "Sign up as a new user"
   signup: "Sign up"
+  account_setting: "Account setting"
+  account_update_successfully_stickie: 'Account setting was successfully updated.'
+

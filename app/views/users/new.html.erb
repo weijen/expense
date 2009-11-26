@@ -2,14 +2,11 @@
   <div class="block" id="block-login">
     <h2><%= t(:signup_title) %></h2>
     <% @user.password = @user.password_confirmation = nil %>
-
+    
     <div class="content login">
       <%= error_messages_for :user %>
       <% handicraft_form_for :user, :url => users_path do |f| -%>
-        <p><%= f.text_field :login, :label => User.human_attribute_name(:login) %></p>
-        <p><%= f.text_field :email, :label => User.human_attribute_name(:email) %></p>
-        <p><%= f.password_field :password, :label => User.human_attribute_name(:password) %></p>
-        <p><%= f.password_field :password_confirmation, :label => User.human_attribute_name(:password_confirmation) %></p>
+        <%= render :partial => 'form', :locals => { :f => f } %>
         <p><%= submit_tag t(:signup) %></p>
       <% end -%>
     </div>

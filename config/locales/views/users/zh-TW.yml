@@ -3,3 +3,5 @@
   signup_fail_stickie: "註冊失敗，請您再試一次、或是與管理員聯絡。"
   signup_title: "註冊一個新的帳號"
   signup: "註冊"
+  account_setting: "帳號設定"
+  account_update_successfully_stickie: "設定修改成功"

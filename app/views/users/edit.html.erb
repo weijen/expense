@@ -1,0 +1,13 @@
+<div class="block">
+  <div class="content clearfix">
+    <h2><%= t(:account_setting) %></h2>
+    <div class="inner">
+      <% handicraft_form_for(@current_user,:html =>{:class => :form}) do |f| %>
+         <%= render :partial => 'form', :locals => {:f =>f}  %>
+        <div class="group navform">
+          <%= f.submit 'Update' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

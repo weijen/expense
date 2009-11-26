@@ -27,5 +27,14 @@ class UsersController < ApplicationController
   end
 
   def update
+   respond_to do |format|
+      if @current_user.update_attributes(params[:user])
+        notice_stickie t(:account_update_successfully_stickie)
+        format.html { redirect_to("/") }
+      else
+        format.html { render :action => "edit" }
+      end
+    end
+ 
   end
 end
