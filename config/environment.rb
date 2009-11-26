@@ -40,4 +40,4 @@ Rails::Initializer.run do |config|
   config.i18n.default_locale = "zh-TW"
 end
 
-SITE_NAME = "團體記帳"
+SITE_NAME = "團體記帳0.0.1版 | 請小心輕放"

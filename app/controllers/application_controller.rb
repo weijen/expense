@@ -25,10 +25,11 @@ class ApplicationController < ActionController::Base
     return true
   end
 
-  before_filter :set_locale
+  before_filter :set_locale if @current_user
   def set_locale
     # if params[:locale] is nil then I18n.default_locale will be used
-    I18n.locale = params[:locale]
+    I18n.locale = @current_user.locale
+    logger.debug "* Locale set to '#{I18n.locale}'"
   end
 
   def default_url_options(options={})
