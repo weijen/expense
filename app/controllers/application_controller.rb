@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
 
   def group_owner_required
-    unless @group.owners.include?(@current_user)
+    unless @current_user.manager?(@group)
       error_stickie "You don't have the right to edit this group"
       redirect_to "/"
       return false
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def group_follower_required
-    unless @group.proved_users.include?(@current_user)
+    unless @current_user.proven?(@group)
       error_stickie "You don't have the right to edit this group"
       redirect_to "/"
       return false
