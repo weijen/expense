@@ -1,5 +1,5 @@
 <%= f.error_messages %>
-<p><%= f.select(:group_id, @current_user.groups.proven.map{ |g| [g.short_name, g.id] }, :label => "Group") %></p>
+<p><%= f.select(:group_id, @groups.map{ |g| [g.short_name, g.id] }, :label => "Group") %></p>
 <p><%= f.select(:tag_id, @current_user.tags.map{ |tag| [tag.name, tag.id] }, :label => "Tag", :description => "這裡應該是group被選擇、然後更新") %></p>
 <p><%= f.text_field :amount, :label => "amount" %></p>
 <p><%= f.text_field :comment, :label => "comment" %></p>

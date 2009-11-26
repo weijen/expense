@@ -36,6 +36,10 @@ class Expense < ActiveRecord::Base
   end
 
   def set_is_income
+    unless self.tag_id
+      self.errors.add(:tag_id, "can't be blank")
+      return false
+    end
     self.is_income = self.tag.is_income
     return true
   end
