@@ -15,7 +15,9 @@
       </div>
       <p>Name: <%=h @group.name %></p>
       <p>Short name:  <%=h @group.short_name %></p>
+      <%  @current_user.proven?(@group) -%>
       <p>Total: <%=h @group.expenses.total %> </p>
+      <% end -%>
     </div>
   </div>
 </div>
