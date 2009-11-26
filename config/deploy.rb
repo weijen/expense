@@ -3,7 +3,6 @@ set :application, "expense"
 default_run_options[:pty] = true
 set :repository,  "git@github.com:weijen/expense.git"
 set :scm, "git"
-set :scm_password, "james314"
 set :user, "weijen"
 set :runner, "weijen"
 set :deploy_to, "/var/www/#{application}"
