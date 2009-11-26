@@ -101,15 +101,6 @@ a:active {
     color: #262626;
 }
 
-#main-navigation ul li {
-  margin-right: 5px;
-}
- 
-#user-navigation ul li {
-  padding: 5px 10px;
-}
-
-
 #sidebar .nav ul li a:link, #sidebar .nav ul li a:visited {
     background: #FFF;
     border-bottom: 1px solid #F0F0EE;

@@ -11,6 +11,7 @@
                             'handicraft/form',
                             'handicraft/site',
                             'stickie',
+                            'handicraft/themes/default/core',
                             'handicraft/themes/default/red',
                             'application',
                             :cache => 'all' %>
@@ -25,7 +26,7 @@
       <div class="grid_16">
         <h1><%= link_to "團體記帳", root_path %></h1>
         <%= render :partial => "common/user_navigation" %>
-        <%= render :partial => "common/main_navigation" if @current_user -%>
+        <%= render :partial => "common/main_navigation" %>
       </div>
     </div>
   </div>

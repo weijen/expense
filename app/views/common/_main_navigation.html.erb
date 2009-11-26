@@ -1,9 +1,13 @@
 <div id="main-navigation" class="nav clearfix">
-
+<% if @current_user %>
   <%= render_list [ 
     link_to("Home", "/"),
     link_to("Groups", groups_path),
     link_to("NewGroup", new_group_path)
   ], :class => 'menu' -%>
-
-</div>                  
+<% else %>
+<%= render_list [ 
+  link_to("Home", "/"),
+], :class => 'menu' -%>
+<% end %>
+</div>
