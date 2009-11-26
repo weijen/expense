@@ -1,0 +1,5 @@
+en:
+  signup_successfully_stickie: "Thanks for signing up!  We're sending you an email with your activation code."
+  signup_fail_stickie: "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+  signup_title: "Sign up as a new user"
+  signup: "Sign up"

@@ -12,6 +12,7 @@
 #  updated_at                :datetime
 #  remember_token            :string(40)
 #  remember_token_expires_at :datetime
+#  locale                    :string(255)     default("zh-TW")
 #
 
 

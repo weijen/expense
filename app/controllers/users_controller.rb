@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  
+  before_filter :login_required, :only => [:edit, :update]
+
   def new
     @user = User.new
   end
@@ -15,10 +16,16 @@ class UsersController < ApplicationController
       # reset session
       self.current_user = @user # !! now logged in
       redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      notice_stickie(t(:signup_successfully_stickie))
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      error_stickie(t(:signup_fail_stickie))
       render :action => 'new'
     end
+  end
+
+  def edit
+  end
+
+  def update
   end
 end

@@ -1,0 +1,12 @@
+"zh-TW":
+  activerecord:
+    models:
+      user: "會員"
+    attributes:
+      user:
+        login: "帳號"
+        name: "姓名"
+        password: "密碼"
+        password_confirmation: "密碼確認"
+        email: "Email"
+        locale: "語系"
