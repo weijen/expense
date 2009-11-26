@@ -26,7 +26,7 @@ class Expense < ActiveRecord::Base
   named_scope :income, :conditions => { :is_income => true }
   named_scope :outgoing, :conditions => { :is_income => false } 
 
-  before_save :set_is_income
+  before_save :set_is_income, :increment_tag_used_count
   def charge_date
     self["charge_date"] || Date.today
   end
@@ -42,5 +42,14 @@ class Expense < ActiveRecord::Base
     end
     self.is_income = self.tag.is_income
     return true
+  end
+
+  def increment_tag_used_count
+    unless self.tag_id
+      self.errors.add(:tag_id, "can't be blank")
+      return false
+    end
+    self.tag.used_count += 1
+    self.tag.save
   end
 end

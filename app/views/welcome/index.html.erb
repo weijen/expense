@@ -17,7 +17,9 @@
           <%= group.expenses.total %>
         </td>
         <td>
-          <%= link_to "AllExpenses", group_expenses_path(group) %>
+          <%= link_to "AllExps", group_expenses_path(group) %>|
+          <%= link_to "NewExp", new_group_expense_path(group) %>
+
         </td>
     </tr>
       <% end -%>
