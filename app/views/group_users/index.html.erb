@@ -14,8 +14,8 @@
         <td><%= follower.login %></td>
         <td><%= follower.position(@group) %></td>
         <td>
-          <%= link_to("prove", prove_group_user_path(@group, follower)) if @group.unprove_users.include?(follower) %>
-          <%= link_to("remove", group_user_path(@group, follower), :method => :delete) unless @group.owners.include?(follower) %>
+          <%= link_to("prove", prove_group_user_path(@group, follower)) if follower.unprove?(@group) %>
+          <%= link_to("remove", group_user_path(@group, follower), :method => :delete) unless follower.manager?(@group) %>
         </td>
       </tr>
     <% end -%>
