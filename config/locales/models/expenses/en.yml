@@ -1,0 +1,14 @@
+en:
+  activerecord:
+    models:
+      expense: "Expense"
+    attributes:
+      expense:
+        user: "User"
+        group: "Group"
+        tag: "Tag"
+        amount: "Amount"
+        note: "Note"
+        entry_date: "Entry date"
+        created_at: "Created at"
+        currency: "Currency"

@@ -1,8 +1,8 @@
 <table class ='table'>
   <tr>
-    <th>User</th>
-    <th>Amount</th>
-    <th>Entry Date</th>
+    <th><%=h Expense.human_attribute_name("user") %></th>
+    <th><%=h Expense.human_attribute_name("amount") %></th>
+    <th><%=h Expense.human_attribute_name("entry_date") %></th>
   </tr>
   <% expenses.each do |expense| -%>
     <tr>

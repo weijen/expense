@@ -1,21 +1,21 @@
 <div class="block">
   <div class="content clearfix">
-    <h2>Show Group</h2>
+    <h2><%= t("group.show")+@group.name %></h2>
     <div class="inner grid_10 alpha">
       <%= render_list :class => 'menu' do |list|
-        list << link_to("Joined Users", group_users_path(@group)) if @current_user.manager?(@group)
-        list << link_to("Join Group (Not approved)", follow_user_group_path(@current_user, @group)) if @current_user.not_join?(@group)
-        list << link_to("Quit Group", user_group_path(@current_user,@group), :method => :delete) if @current_user.join?(@group)
-        list << link_to("AllExpenses", group_expenses_path(@group)) if @current_user.approved?(@group)
-        list << link_to("NewExpense", new_group_expense_path(@group)) if @current_user.approved?(@group)
-        list << link_to("AllTags", group_tags_path(@group)) if @current_user.approved?(@group)
-        list << link_to('Edit', edit_group_path(@group)) if @current_user.manager?(@group)
+        list << link_to(t("group.joined_users"), group_users_path(@group)) if @current_user.manager?(@group)
+        list << link_to(t("group.requiest_to_join"), follow_user_group_path(@current_user, @group)) if @current_user.not_join?(@group)
+        list << link_to(t("group.quit"), user_group_path(@current_user,@group), :method => :delete) if @current_user.join?(@group)
+        list << link_to(t("group.all_expenses"), group_expenses_path(@group)) if @current_user.approved?(@group)
+        list << link_to(t("group.new_expense"), new_group_expense_path(@group)) if @current_user.approved?(@group)
+        list << link_to(t("group.all_tags"), group_tags_path(@group)) if @current_user.approved?(@group)
+        list << link_to(t("edit"), edit_group_path(@group)) if @current_user.manager?(@group)
       end -%>
       <br /><br />
-      <p>Name: <%=h @group.name %></p>
-      <p>Short name:  <%=h @group.short_name %></p>
+      <p><%=h Group.human_attribute_name("name") %>: <%=h @group.name %></p>
+      <p><%=h Group.human_attribute_name("short_name") %>: <%=h @group.short_name %></p>
       <% if @current_user.approved?(@group) -%>
-        <p>Total: <%=h @group.expenses.total %> </p>
+        <p><%=h Group.human_attribute_name("total") %>: <%=h @group.expenses.total %> </p>
       <% end -%>
     </div>
   </div>

@@ -7,3 +7,7 @@
   list-style-type: none;
   margin-right: 15px;
 }
+
+div.box {
+  margin-top: 20px;
+}

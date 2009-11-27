@@ -1,0 +1,14 @@
+"zh-TW":
+  activerecord:
+    models:
+      expense: "費用"
+    attributes:
+      expense:
+        user: "團友"
+        group: "團體"
+        tag: "分類"
+        amount: "金額"
+        note: "備註"
+        entry_date: "消費日期"
+        created_at: "建立日期"
+        currency: "貨幣"

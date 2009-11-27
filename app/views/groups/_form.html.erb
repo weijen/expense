@@ -1,3 +1,8 @@
 <%= f.error_messages %>
-<%= f.text_field :name, :label => "name" %>
-<%= f.text_field :short_name, :label => "short name" %>
+<%= f.text_field :name, :label => Group.human_attribute_name(:name) %>
+<%= f.text_field :short_name, :label => Group.human_attribute_name(:short_name) %>
+<br />
+<h3><%= t("group.select_tag") %></h3>
+<%= f.many_check_boxes("tag_ids", Tag.income.map{|tag| [tag.name, tag.id]}, :label => t("group.income_tag")) %>
+<%= f.many_check_boxes("tag_ids", Tag.outgoing.map{|tag| [tag.name, tag.id]}, :label => t("group.outgoing_tag")) %>
+

@@ -4,3 +4,9 @@
 en:
   logo: "Group Expenses 0.0.1 | Easy Break Version"
   have_no_right_to: "You have no right to access this page"
+  create: "Create"
+  update: "Update"
+  edit: "Edit"
+  show: "Show"
+  destroy: "Destroy"
+  are_you_sure_to_destroy: "Are you sure to destroy?"

@@ -1,11 +1,11 @@
 <div class="block">
   <div class="content clearfix">
-    <h2>Editing group</h2>
+    <h2><%=h t("group.edit") %></h2>
     <div class="inner">
       <% handicraft_form_for(@group,:html =>{:class => :form}) do |f| %>
          <%= render :partial => 'form', :locals => {:f =>f}  %>
         <div class="group navform">
-          <%= f.submit 'Update' %>
+          <%= f.submit t("update") %>
         </div>
       <% end %>
     </div>

@@ -1,12 +1,13 @@
 <div class="block">
   <div class="content clearfix">
-    <h2>Listing groups</h2>
+    <h2><%= t("group.list") %></h2>
     <div class="inner grid_10 alpha">
+      <%= link_to t("group.new"), new_group_path %>
       <table class ='table'>
         <tr>
-          <th>Name</th>
-          <th>Short name</th>
-          <th>Function</th>
+          <th><%= Group.human_attribute_name(:name) %></th>
+          <th><%= Group.human_attribute_name(:short_name) %></th>
+          <th></th>
         </tr>
 
         <% @groups.each do |group| %>
@@ -15,9 +16,9 @@
             <td><%=h group.short_name %></td>
             <td>
               <%= render_list :class => 'menu' do |list|
-              list << link_to('Show', group)
-              list << link_to('Edit', edit_group_path(group)) if @current_user.manager?(group) 
-              list << link_to('Destroy', group, :confirm => 'Are you sure?', :method => :delete) if @current_user.manager?(group) 
+                list << link_to(t(:show), group)
+                list << link_to(t(:edit), edit_group_path(group)) if @current_user.manager?(group) 
+                list << link_to(t(:destroy), group, :confirm => 'Are you sure?', :method => :delete) if @current_user.manager?(group) 
               end -%>
             </td>
           </tr>
@@ -27,7 +28,3 @@
     </div>
   </div>
 </div>
-
-<br />
-
-<%= link_to 'New group', new_group_path %>

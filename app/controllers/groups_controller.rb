@@ -35,7 +35,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save
         @group.add_manager(@current_user)
-        notice_stickie 'Group was successfully created.'
+        notice_stickie t("group.create_successfully")
         format.html { redirect_to(@group) }
       else
         format.html { render :action => "new" }
@@ -47,7 +47,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
-        notice_stickie 'Group was successfully updated.'
+        notice_stickie t("group.update_successfully")
         format.html { redirect_to(@group) }
       else
         format.html { render :action => "edit" }
@@ -62,6 +62,8 @@ class GroupsController < ApplicationController
       format.html { redirect_to(groups_url) }
     end
   end
+
+  private
 
   def get_group
     @group = Group.find_by_secret_id(params[:id])

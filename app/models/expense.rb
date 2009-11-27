@@ -8,7 +8,7 @@
 #  tag_id      :integer         not null
 #  is_income   :boolean
 #  amount      :float           not null
-#  comment     :string(255)
+#  note        :string(255)
 #  entry_date  :date
 #  currency_id :integer
 #  created_at  :datetime
@@ -22,6 +22,7 @@ class Expense < ActiveRecord::Base
   belongs_to :currency
 
   validates_numericality_of :amount, :greater_than => 0
+  validates_presence_of :tag_id, :group_id, :user_id
 
   named_scope :income, :conditions => { :is_income => true }
   named_scope :outgoing, :conditions => { :is_income => false } 
@@ -36,20 +37,11 @@ class Expense < ActiveRecord::Base
   end
 
   def set_is_income
-    unless self.tag_id
-      self.errors.add(:tag_id, "can't be blank")
-      return false
-    end
     self.is_income = self.tag.is_income
-    return true
   end
 
   def increment_tag_used_count
-    unless self.tag_id
-      self.errors.add(:tag_id, "can't be blank")
-      return false
-    end
     self.tag.counter += 1
-    self.tag.save
+    self.tag.save!
   end
 end

@@ -15,4 +15,7 @@ class Tag < ActiveRecord::Base
   belongs_to :user
   has_many :tag_group_relations
   has_many :groups, :through => :tag_group_relations
+
+  named_scope :income, :conditions => ["is_income = ?", true]
+  named_scope :outgoing, :conditions => ["is_income = ?", false]
 end

@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   include AuthenticatedSystem
+  before_filter :set_locale
 
   def group_manager_required
     unless @current_user.manager?(@group)
@@ -25,16 +26,18 @@ class ApplicationController < ActionController::Base
     return true
   end
 
-  before_filter :set_locale if @current_user
+  private
+  
   def set_locale
     # if params[:locale] is nil then I18n.default_locale will be used
-    I18n.locale = params[:locale]
+    logger.info "Hello"
+    I18n.locale = params[:locale] || (current_user ? current_user.locale : nil) || I18n.locale
     logger.debug "* Locale set to '#{I18n.locale}'"
   end
 
   def default_url_options(options={})
     logger.debug "default_url_options is passed options: #{options.inspect}\n"
-    { :locale => @current_user ? @current_user.locale : I18n.locale }
+    { :locale => I18n.locale }
   end
 
 end

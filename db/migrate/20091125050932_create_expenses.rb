@@ -6,7 +6,7 @@ class CreateExpenses < ActiveRecord::Migration
       t.integer :tag_id, :null => false
       t.boolean :is_income, :default => false
       t.float :amount, :null => false
-      t.string :comment
+      t.string :note
       t.date :entry_date
       t.integer :currency_id
 
