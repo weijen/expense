@@ -19,7 +19,8 @@ class Group < ActiveRecord::Base
   has_many :tags
 
   validates_presence_of :name, :short_name
-  validates_length_of :name, :minimum => 3
+  validates_length_of :name, :within => 3..40
+  validates_length_of :short_name, :within => 3..40
 
   before_create :set_secret_id
 
