@@ -1,13 +1,14 @@
 class CreateTags < ActiveRecord::Migration
   def self.up
     create_table :tags do |t|
-      t.integer :group_id, :null => false
       t.integer :user_id, :null => false
       t.string  :name, :null => false
       t.boolean :is_income, :defaule => false
-      t.integer :used_count, :default => 0
+      t.integer :counter, :default => 0
       t.timestamps
     end
+    add_index :tags, :name, :unique => true
+    add_index :tags, :counter
   end
 
   def self.down

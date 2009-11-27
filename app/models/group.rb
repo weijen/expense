@@ -15,8 +15,9 @@ require 'digest/sha1'
 class Group < ActiveRecord::Base
   has_many :user_group_relations
   has_many :users, :through => :user_group_relations
+  has_many :tag_group_relations
+  has_many :tags, :through => :tag_group_relations
   has_many :expenses
-  has_many :tags
 
   validates_presence_of :name, :short_name
   validates_length_of :name, :within => 3..40
@@ -24,27 +25,27 @@ class Group < ActiveRecord::Base
 
   before_create :set_secret_id
 
-  named_scope :proven, :include=> :user_group_relations, :conditions => ["user_group_relations.proven == ?", true]
-  named_scope :unproven, :include => :user_group_relations, :conditions => ["user_group_relations.proven == ?", false]
+  named_scope :approved_groups, :include=> :user_group_relations, :conditions => ["user_group_relations.approved == ?", true]
+  named_scope :unprove_groups, :include => :user_group_relations, :conditions => ["user_group_relations.approved == ?", false]
 
   def to_param
     self.secret_id
   end
 
-  def owners
-    self.users.owner
+  def managers
+    self.users.managers
   end
 
-  def followers
-    self.users.proven - self.users.owner
+  def approved_users_but_not_manager
+    self.users.approved_users - self.users.managers
   end
 
-  def proved_users
-    self.users.proven
+  def approved_users
+    self.users.approved_users
   end
 
-  def unprove_users
-    self.users.unproven
+  def unapprove_users
+    self.users.unprove_users
   end
 
   def add_manager(user)
@@ -53,22 +54,22 @@ class Group < ActiveRecord::Base
     else
       ugr = self.user_group_relations.find_by_user_id(user.id)
     end
-    ugr.proven = true
+    ugr.approved = true
     ugr.manager = true
     ugr.save
   end
 
-  def add_follower(user)
+  def add_approved_user(user)
     unless self.users.include?(user)
       ugr = self.user_group_relations.new(:user_id => user.id)
     else
       ugr = self.user_group_relations.find_by_user_id(user.id)
     end
-    ugr.proven = true
+    ugr.approved = true
     ugr.save
   end 
 
-  def add_unprove_user(user)
+  def add_unapprove_user(user)
     self.user_group_relations.create(:user_id => user.id) unless self.user_group_relations.find_by_user_id(user.id)
   end
 

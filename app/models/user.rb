@@ -35,16 +35,14 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
-  
-  has_many :own_groups, :class_name => "Group", :foreign_key => :owner_id
   has_many :user_group_relations
   has_many :groups, :through => :user_group_relations
   has_many :expenses
   has_many :tags
 
-  named_scope :proven, :include=> :user_group_relations, :conditions => ["user_group_relations.proven == ?", true]
-  named_scope :unproven, :include => :user_group_relations, :conditions => ["user_group_relations.proven == ?", false]
-  named_scope :owner,  :include => :user_group_relations, :conditions => ["user_group_relations.manager == ?", true]
+  named_scope :approved_users, :include=> :user_group_relations, :conditions => ["user_group_relations.approved == ?", true]
+  named_scope :unapprove_users, :include => :user_group_relations, :conditions => ["user_group_relations.approved == ?", false]
+  named_scope :managers,  :include => :user_group_relations, :conditions => ["user_group_relations.manager == ?", true]
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -79,28 +77,35 @@ class User < ActiveRecord::Base
     urg.manager if urg
   end
 
-  def proven?(group)
+  def approved?(group)
     urg = self.user_group_relations.find_by_group_id(group.id) 
-    urg.proven if urg
+    urg.approved if urg
   end
 
-  def follow?(group)
+  def approved_but_not_manager?(group)
+    urg = self.user_group_relations.find_by_group_id(group.id) 
+    (urg.approved && !urg.manager) if urg
+  end
+
+  def join?(group)
     urg = self.user_group_relations.find_by_group_id(group.id)
   end
 
-  def unprove?(group)
+  def unapprove?(group)
     urg = self.user_group_relations.find_by_group_id(group.id)
-    !urg.proven  if urg
+    !urg.approved  if urg
   end
 
   def position(group)
     case
     when self.manager?(group)
       return "manager"
-    when !self.manager?(group) && self.follow?(group)
-      return "follower"
-    when !self.manager?(group) && self.follow?(group)
-      return "unproven"
+    when !self.approved_but_not_manager?(group)
+      return "approved user"
+    when !self.unapprove?(group)
+      return "unapprove user"
+    else
+      return "other"
     end
   end
   protected

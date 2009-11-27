@@ -3,7 +3,7 @@ class CreateUserGroupRelations < ActiveRecord::Migration
     create_table :user_group_relations do |t|
       t.integer :user_id, :null => false
       t.integer :group_id, :null => false
-      t.boolean :proven, :default => false
+      t.boolean :approved, :default => false
       t.boolean :manager, :default => false
       t.timestamps
     end

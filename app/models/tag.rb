@@ -14,5 +14,6 @@
 
 class Tag < ActiveRecord::Base
   belongs_to :user
-  belongs_to :group
+  has_many :tag_group_relations
+  has_many :groups, :through => :tag_group_relations
 end

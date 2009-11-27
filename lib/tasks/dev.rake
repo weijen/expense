@@ -25,21 +25,24 @@ namespace :dev do
       User.create!(:login => name, :password => 'expense2009', :password_confirmation => 'expense2009', :email => "#{name}@example.com")
     end
 
-    puts "Create Group"
     users = User.find :all
     range = 20
-    @fake_group_name.each_with_index do |name, i|
+
+    puts "Create Tags"
+    @fake_outgoing_tag_name.each do |name|
+      Tag.create!(:user_id => users[rand(range)].id, :name => name, :is_income => false)
+    end
+
+    @fake_income_tag_name.each do |name|
+      Tag.create!(:user_id => users[rand(range)].id, :name => name, :is_income => true)
+    end
+
+
+    puts "Create Group"
+        @fake_group_name.each_with_index do |name, i|
       group = Group.create!(:name => name, :short_name => name)
       group.add_manager(users[i])
-
-      puts "Create Tags"
-      @fake_outgoing_tag_name.each do |name|
-        Tag.create!(:user_id => users[i].id, :group_id => group.id, :name => name, :is_income => false)
-      end
-
-      @fake_income_tag_name.each do |name|
-        Tag.create!(:user_id => users[i].id, :group_id => group.id, :name => name, :is_income => true)
-      end
+      group.tags << Tag.find(:all)
 
       puts "Setting followers and create expenses"
       followed_users_position = []
@@ -48,7 +51,7 @@ namespace :dev do
         redo if followed_users_position.include?(user_position)
         followed_users_position << user_position
         user = users[user_position]
-        group.add_follower(user)
+        group.add_approved_user(user)
 
         5.times do
           charge_date = Date.today - rand(10).days
@@ -62,7 +65,7 @@ namespace :dev do
         user_position = rand(range + 9)
         redo if followed_users_position.include?(user_position)
         followed_users_position << user_position
-        group.add_unprove_user(users[user_position])
+        group.add_unapprove_user(users[user_position])
       end
     end #create groups
   end

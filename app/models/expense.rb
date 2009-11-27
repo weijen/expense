@@ -49,7 +49,7 @@ class Expense < ActiveRecord::Base
       self.errors.add(:tag_id, "can't be blank")
       return false
     end
-    self.tag.used_count += 1
+    self.tag.counter += 1
     self.tag.save
   end
 end
