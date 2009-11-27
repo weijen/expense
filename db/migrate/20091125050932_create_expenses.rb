@@ -12,6 +12,11 @@ class CreateExpenses < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :expenses, :group_id
+    add_index :expenses, :user_id
+    add_index :expenses, :tag_id
+    add_index :expenses, :charge_date
+    add_index :expenses, :currency_id
   end
 
   def self.down

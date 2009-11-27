@@ -5,8 +5,7 @@ class CreateCurrencies < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    Currency.create!(:name => "TWD")
+    add_index :currencies, :name
   end
 
   def self.down

@@ -13,14 +13,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :locale, :default => "zh-TW"
     end
     add_index :users, :login, :unique => true
-
-   User.create!(
-    :login => "root",
-    :password => 'expense2009',
-    :password_confirmation => 'expense2009',
-    :email => "service@example.com"
-  )
-
+    add_index :users, :email, :unique => true
   end
 
   def self.down
