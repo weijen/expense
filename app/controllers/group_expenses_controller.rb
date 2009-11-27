@@ -34,6 +34,7 @@ class GroupExpensesController < ApplicationController
   end
 
   def edit
+    store_location
   end
 
   def update
