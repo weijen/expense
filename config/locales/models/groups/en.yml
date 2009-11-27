@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      user: "User"
+    attributes:
+      user:
+        login: "Account"
+        name: "Name"  
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+        email: "Email"
+        locale: "Locale"

@@ -5,7 +5,7 @@
 #  id         :integer         not null, primary key
 #  user_id    :integer         not null
 #  group_id   :integer         not null
-#  proven     :boolean
+#  approved   :boolean
 #  manager    :boolean
 #  created_at :datetime
 #  updated_at :datetime

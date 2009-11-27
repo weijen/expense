@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: tag_group_relations
+#
+#  id         :integer         not null, primary key
+#  tag_id     :integer
+#  group_id   :integer
+#  counter    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:

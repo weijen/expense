@@ -9,7 +9,7 @@
 #  is_income   :boolean
 #  amount      :float           not null
 #  comment     :string(255)
-#  charge_date :date
+#  entry_date  :date
 #  currency_id :integer
 #  created_at  :datetime
 #  updated_at  :datetime
