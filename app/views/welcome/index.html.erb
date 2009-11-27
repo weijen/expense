@@ -42,7 +42,7 @@
           <tr>
             <td><%= link_to expense.group.short_name, group_path(expense.group) %></td>
             <td><%= expense.user.login %></td>
-            <td class='money'><%= expense.amount %></td>
+            <td class='money'><%= show_amount(expense)%></td>
             <td><%= expense.charge_date %></td>
           </tr>
         <% end -%>

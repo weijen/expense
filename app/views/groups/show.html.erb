@@ -24,6 +24,6 @@
 
 <% content_for :sidebar do -%>
   <% if @current_user.proven?(@group) -%>
-    <%= render :partial => 'list', :locals => {:expenses => @group.expenses} %>
+    <%= render :partial => 'list', :locals => {:expenses => @group.expenses.find(:all, :limit => 10)} %>
   <% end -%>
 <% end -%>

@@ -8,15 +8,14 @@
           <% if expense.charge_date != date -%>
             <% date = expense.charge_date -%>
             <tr>
-              <td colspan='4'><strong><%= date.to_s(:db) %></strong></td>
+              <td colspan='3'><strong><%= date.to_s(:db) %></strong></td>
             </tr>
           <% end -%>
           <tr>
             <td><%=h expense.user.login %></td>
             <td><%=h expense.tag.name %></td>
-            <td><%=h (expense.is_income ? "income" : "outgoing") %></td>
             <td><%=h expense.comment %></td>
-            <td class='money'><%= expense.amount %></td>
+            <td class='money'><%= show_amount(expense) %></td>
             <td>
               <%= render_list :class => 'menu' do |list|
                 list << link_to("Edit", edit_group_expense_path(@group, expense)) if @current_user.expenses.include?(expense)
@@ -26,7 +25,7 @@
           </tr>
         <% end -%>
         <tr>
-          <td colspan='5' class='money'><%= @total %></td>
+          <td colspan='4' class='money'><%= @total %></td>
           <td />
         </tr>
       </table>
