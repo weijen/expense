@@ -54,7 +54,7 @@ namespace :dev do
           charge_date = Date.today - rand(10).days
           amount = (rand(20) + 1) * 100
           tag = Tag.find(rand(11) + 1)
-          Expense.create!(:group_id => group.id, :user_id => user.id, :tag_id => tag.id, :amount => amount, :comment => "Testing expense", :charge_date => charge_date )
+          Expense.create!(:group_id => group.id, :user_id => user.id, :tag_id => tag.id, :amount => amount, :comment => "Testing expense", :charge_date => charge_date, :currency_id => 1 )
         end
       end
 

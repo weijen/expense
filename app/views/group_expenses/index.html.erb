@@ -8,7 +8,7 @@
           <% if expense.charge_date != date -%>
             <% date = expense.charge_date -%>
             <tr>
-              <th colspan='2'><%= date.to_s(:db) %></th>
+              <th colspan='5'><%= date.to_s(:db) %></th>
             </tr>
           <% end -%>
           <tr>
