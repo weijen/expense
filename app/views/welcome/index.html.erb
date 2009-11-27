@@ -1,7 +1,7 @@
 <% content_for :sidebar do -%>
   <% groups = @current_user.groups -%>
   <div>
-    <h2>Groups I followed</h2>
+    <h2>Joined Groups</h2>
     <table class="table">
       <tr>
         <th>Group</th>
@@ -36,14 +36,14 @@
           <th>Group</th>
           <th>User</th>
           <th>Amount</th>
-          <th>Date</th>
+          <th>Entry date</th>
         </tr>
         <% @expenses.each do |expense| -%>
           <tr>
             <td><%= link_to expense.group.short_name, group_path(expense.group) %></td>
             <td><%= expense.user.login %></td>
             <td class='money'><%= show_amount(expense)%></td>
-            <td><%= expense.charge_date %></td>
+            <td><%= expense.entry_date %></td>
           </tr>
         <% end -%>
       </table>

@@ -2,13 +2,13 @@
   <tr>
     <th>User</th>
     <th>Amount</th>
-    <th>Charge Date</th>
+    <th>Entry Date</th>
   </tr>
   <% expenses.each do |expense| -%>
     <tr>
       <td><%= expense.user.login %></td>
       <td class='money'><%= show_amount(expense) %></td>
-      <td><%= expense.charge_date %></td>
+      <td><%= expense.entry_date %></td>
     </tr>
   <% end -%>
 </table>

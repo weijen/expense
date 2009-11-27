@@ -2,27 +2,27 @@
   <div class="content clearfix">
     <h2>Show Group</h2>
     <div class="inner grid_10 alpha">
-        <%= render_list :class => 'menu' do |list|
-          list << link_to("Follower", group_users_path(@group)) if @current_user.manager?(@group)
-          list << link_to("Follow", follow_user_group_path(@current_user, @group)) if !@current_user.manager?(@group) && !@current_user.follow?(@group) 
-          list << link_to("Unfollow", user_group_path(@current_user,@group), :method => :delete) if !@current_user.manager?(@group) && @current_user.follow?(@group)
-          list << link_to("AllExpenses", group_expenses_path(@group))  if @current_user.manager?(@group) || @current_user.proven?(@group)
-          list << link_to("NewExpense", new_group_expense_path(@group)) if @current_user.manager?(@group) || @current_user.proven?(@group)
-          list << link_to("AllTags", group_tags_path(@group)) if @current_user.manager?(@group) || @current_user.proven?(@group)
-          list << link_to('Edit', edit_group_path(@group)) if @current_user.manager?(@group)
-        end -%>
-        <br /><br />
+      <%= render_list :class => 'menu' do |list|
+        list << link_to("Joined Users", group_users_path(@group)) if @current_user.manager?(@group)
+        list << link_to("Join Group (Not approved)", follow_user_group_path(@current_user, @group)) if @current_user.not_join?(@group)
+        list << link_to("Quit Group", user_group_path(@current_user,@group), :method => :delete) if @current_user.join?(@group)
+        list << link_to("AllExpenses", group_expenses_path(@group)) if @current_user.approved?(@group)
+        list << link_to("NewExpense", new_group_expense_path(@group)) if @current_user.approved?(@group)
+        list << link_to("AllTags", group_tags_path(@group)) if @current_user.approved?(@group)
+        list << link_to('Edit', edit_group_path(@group)) if @current_user.manager?(@group)
+      end -%>
+      <br /><br />
       <p>Name: <%=h @group.name %></p>
       <p>Short name:  <%=h @group.short_name %></p>
-      <% if @current_user.proven?(@group) -%>
-      <p>Total: <%=h @group.expenses.total %> </p>
+      <% if @current_user.approved?(@group) -%>
+        <p>Total: <%=h @group.expenses.total %> </p>
       <% end -%>
     </div>
   </div>
 </div>
 
 <% content_for :sidebar do -%>
-  <% if @current_user.proven?(@group) -%>
+  <% if @current_user.approved?(@group) -%>
     <%= render :partial => 'list', :locals => {:expenses => @group.expenses.find(:all, :limit => 10)} %>
   <% end -%>
 <% end -%>

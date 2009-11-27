@@ -88,12 +88,16 @@ class User < ActiveRecord::Base
   end
 
   def join?(group)
-    urg = self.user_group_relations.find_by_group_id(group.id)
+    self.user_group_relations.find_by_group_id(group.id)
   end
 
   def unapprove?(group)
     urg = self.user_group_relations.find_by_group_id(group.id)
     !urg.approved  if urg
+  end
+
+  def not_join?(group)
+    !self.user_group_relations.find_by_group_id(group.id)
   end
 
   def position(group)
