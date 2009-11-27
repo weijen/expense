@@ -7,7 +7,7 @@ class CreateExpenses < ActiveRecord::Migration
       t.boolean :is_income, :default => false
       t.float :amount, :null => false
       t.string :comment
-      t.date :charge_date
+      t.date :entry_date
       t.integer :currency_id
 
       t.timestamps
@@ -15,7 +15,7 @@ class CreateExpenses < ActiveRecord::Migration
     add_index :expenses, :group_id
     add_index :expenses, :user_id
     add_index :expenses, :tag_id
-    add_index :expenses, :charge_date
+    add_index :expenses, :entry_date
     add_index :expenses, :currency_id
   end
 

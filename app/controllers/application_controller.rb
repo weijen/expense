@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   include AuthenticatedSystem
 
-  def group_owner_required
+  def group_manager_required
     unless @current_user.manager?(@group)
       error_stickie t(:have_no_right_to)
       redirect_to "/"
@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
     return true
   end
 
-  def group_follower_required
-    unless @current_user.proven?(@group)
+  def group_approved_user_required
+    unless @current_user.approved?(@group)
       error_stickie t(:have_no_right_to)
       redirect_to "/"
       return false

@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :login_required
   before_filter :get_group, :only=>[:edit, :update, :destroy, :show]
-  before_filter :group_owner_required, :only=>[:edit, :update, :destroy]
+  before_filter :group_manager_required, :only=>[:edit, :update, :destroy]
 
 
   def index
