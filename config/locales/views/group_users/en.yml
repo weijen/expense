@@ -1,0 +1,8 @@
+en:
+  group_users:
+    approve_user: "Approve user: {{login}}"
+    remove_user: "Remove user: {{login}}"
+    all_users: "{{group}} users"
+    approve: "Approve"
+    remove: "Remove"
+    confirm_remove: "Remove {{user}}?"

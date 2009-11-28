@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
     return true
   end
 
+  def get_group_from_group_id
+    @group = Group.find_by_secret_id(params[:group_id])
+  end
+
   private
   
   def set_locale

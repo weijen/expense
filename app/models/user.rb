@@ -100,17 +100,11 @@ class User < ActiveRecord::Base
     !self.user_group_relations.find_by_group_id(group.id)
   end
 
-  def position(group)
-    case
-    when self.manager?(group)
-      return "manager"
-    when !self.approved_but_not_manager?(group)
-      return "approved user"
-    when !self.unapprove?(group)
-      return "unapprove user"
-    else
-      return "other"
-    end
+  # show brief info
+  
+  def to_brief_info
+    return "#{login}(#{name})"
   end
+  
   protected
 end

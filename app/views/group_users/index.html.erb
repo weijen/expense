@@ -1,21 +1,21 @@
-<h1>All Followers</h1>
+<h1><%= t("group_users.all_users", :group => @group.name) %></h1>
 
 <table class='table'>
   <thead>
     <tr>
-      <th>login</th>
-      <th>relation</th>
-      <th>function</th>
+      <th><%= User.human_attribute_name(:login) %></th>
+      <th><%= User.human_attribute_name(:login) %></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <% @followers.each do |follower| -%> 
+    <% @group_users.each do |user| -%> 
       <tr>
-        <td><%= follower.login %></td>
-        <td><%= follower.position(@group) %></td>
+        <td><%= user.to_brief_info %></td>
+        <td><%= user_position_in_group(user,@group) %></td>
         <td>
-          <%= link_to("prove", prove_group_user_path(@group, follower)) if follower.unprove?(@group) %>
-          <%= link_to("remove", group_user_path(@group, follower), :method => :delete) unless follower.manager?(@group) %>
+          <%= link_to(t("group_users.approve"), approve_group_user_path(@group, user)) if user.unapprove?(@group) %>
+          <%= link_to(t("group_users.remove"), group_user_path(@group, user), :method => :delete, :confirm => t("group_users.confirm_remove", :user => user.to_brief_info)) unless user.manager?(@group) %>
         </td>
       </tr>
     <% end -%>

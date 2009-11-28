@@ -1,9 +1,14 @@
 en:
   activerecord:
     models:
-      group: "Group"
+      user_group_relation: "User Group Relation"
     attributes:
-      group:
-        name: "Name"  
-        short_name: "Short name"
-        total: "Total"
+      user_group_relation:
+        user: "User"
+        group: "Group"
+        position: "Position"
+        manager: "Manager"
+        approved_user: "Approved user"
+        unapprove_user: "Unapprove user"
+        other: "other"
+

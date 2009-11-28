@@ -1,9 +1,14 @@
 "zh-TW":
   activerecord:
     models:
-      group: "團體"
+      user_group_relation: "使用者與團體的關聯"
     attributes:
-      group:
-        name: "名稱"  
-        short_name: "短名"
-        total: "總計"
+      user_group_relation:
+        user: "團友"
+        group: "團體"
+        position: "身分"
+        manager: "管理員"
+        approved_user: "已認證團友"
+        unapprove_user: "未認證團友"
+        other: "奇怪，你怎麼在這裡"
+

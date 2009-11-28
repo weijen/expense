@@ -1,0 +1,17 @@
+"zh-TW":
+  group:
+    create_successfully: '成功建立團體'
+    update_successfully: '成功更新團體資料'
+    new: '新增團體'
+    select_tag: "請選擇預設的分類方式，如果都沒有適合的，晚點你可以建立新的類別。"
+    income_tag: "收入類別"
+    outgoing_tag: "支出類別"
+    show: "團體："
+    joined_users: "團友們"
+    requiest_to_join: "申請加入"
+    quit: "離開"
+    all_expenses: "帳本"
+    new_expense: "報帳"
+    all_tags: "所有類別"
+    edit: "編輯團體"
+    list: "所有團體"
