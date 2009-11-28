@@ -26,7 +26,8 @@ class Group < ActiveRecord::Base
   before_create :set_secret_id
 
   named_scope :approved_groups, :include=> :user_group_relations, :conditions => ["user_group_relations.approved == ?", true]
-  named_scope :unprove_groups, :include => :user_group_relations, :conditions => ["user_group_relations.approved == ?", false]
+  named_scope :unapprove_groups, :include => :user_group_relations, :conditions => ["user_group_relations.approved == ?", false]
+  named_scope :managed_groups, :include => :user_group_relations, :conditions => ["user_group_relations.manager == ?", true]
 
   def to_param
     self.secret_id

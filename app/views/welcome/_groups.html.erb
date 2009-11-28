@@ -1,0 +1,29 @@
+<% content_for :sidebar do -%>
+  <% groups = @current_user.groups -%>
+  <div>
+    <h2><%= t('welcome.joined_groups') %></h2>
+    <table class="table">
+      <tr>
+        <th><%= UserGroupRelation.human_attribute_name(:group) %></th>
+        <th><%= UserGroupRelation.human_attribute_name(:total) %></th>
+        <th></th>
+      </tr>
+      <% groups.each do |group| -%>
+        <tr>
+        <td>
+          <%= link_to group.short_name, group_path(group) %>
+        </td>
+        <td class='money'>
+          <%= group.expenses.total %>
+        </td>
+        <td>
+          <%= render_list :class => "menu" do |list|
+            list << link_to(t("welcome.overview"), group_expenses_path(group))
+            list << link_to(t("welcome.add_expense"), new_group_expense_path(group))
+          end -%>
+        </td>
+    </tr>
+      <% end -%>
+    </table>
+  </div>
+<% end -%>

@@ -1,0 +1,6 @@
+en:
+  sessions:
+    login_stickie: "Logged in successfully"
+    logout_stickie: "You have been logged out."
+    login_fail_stickie: "Couldn't log you in as '{{login}}'"
+    login: "Login" 

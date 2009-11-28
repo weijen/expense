@@ -1,0 +1,6 @@
+"zh-TW":
+  sessions:
+    login_stickie: "您已經成功登入"
+    logout_stickie: "您已經登出"
+    login_fail_stickie: "帳號{{login}}登入失敗，請在試一次，或與管理人員聯絡"
+    login: "登入"

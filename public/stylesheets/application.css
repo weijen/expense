@@ -11,3 +11,34 @@
 div.box {
   margin-top: 20px;
 }
+
+/*
+  --------------------------------------*/
+#sub-navigation {
+    background: #262626;
+}
+
+#sub-navigation ul li a {
+    background: #262626;
+}
+
+#sub-navigation ul li.current a,
+#sub-navigation ul li.current a:hover {
+    background: #f0f0ee;
+}
+
+#sub-navigation ul li a:hover {
+    background: #f0f0ee;
+    color: #262626;
+}
+
+#sub-navigation ul li a:link, #sub-navigation ul li a:visited, #sub-navigation ul li a:hover, #sub-navigation ul li a:active {
+    text-decoration: none;
+    color: #FFF;
+}
+
+#sub-navigation ul li.current a:link, #sub-navigation ul li.current a:visited, #sub-navigation ul li.current a:hover, #sub-navigation ul li.current a:active {
+    color: #262626;
+}/*
+  --------------------------------------*/
+

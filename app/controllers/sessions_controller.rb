@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
       redirect_back_or_default('/')
-      notice_stickie "Logged in successfully"
+      notice_stickie t("sessions.login_stickie")
     else
       note_failed_signin
       @login       = params[:login]
@@ -26,14 +26,14 @@ class SessionsController < ApplicationController
 
   def destroy
     logout_killing_session!
-    notice_stickie "You have been logged out."
+    notice_stickie t("sessions.logout_stickie")
     redirect_back_or_default('/')
   end
 
   protected
   # Track failed login attempts
   def note_failed_signin
-    error_stickie "Couldn't log you in as '#{params[:login]}'"
+    error_stickie t("sessions.login_fail_stickie", :login => params[:login])
     logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
   end
 end

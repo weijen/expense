@@ -1,0 +1,9 @@
+en:
+  welcome:
+    joined_groups: "Joined Groups"
+    overview: "Overview"
+    add_expense: "AddExp"
+    new_expenses: "New Expneses"
+    joined_groups: "Joined Groups"
+    managed_groups: "Managed Groups"
+    my: "My"
