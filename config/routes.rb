@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.setting '/account/setting', :controller => 'users', :action => 'edit'
 
   map.resources :users do |user|
-    user.resources :groups, :controller => 'user_groups', :member => {:follow => :get, :unfollow => :get}
+    user.resources :groups, :controller => 'user_groups', :member => {:join => :get}
   end
 
   map.resources :groups do |group|

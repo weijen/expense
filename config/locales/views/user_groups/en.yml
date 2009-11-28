@@ -1,17 +1,4 @@
 en:
-  group:
-    create_successfully: 'Group was successfully created.'
-    update_successfully: 'Group was successfully updated.'
-    new: 'New Group'
-    select_tag: "Please select default tag for this group. If all tags are not suitable, you can create new tags latter."
-    income_tag: "Imcome Tags"
-    outgoing_tag: "Outgoing Tags"
-    show: "Group: "
-    joined_users: "Joined Users"
-    requiest_to_join: "Request join"
-    quit: "Quit"
-    all_expenses: "AllExpenses"
-    new_expense: "NewExpense"
-    all_tags: "AllTags"
-    edit: "Editing" 
-    list: "Group listing"
+  user_groups:
+    join_stickie: "You request to join group: {{group}}, please wait for approve"
+    unjoint_stickie: "You unjoint group: {{group}}"
