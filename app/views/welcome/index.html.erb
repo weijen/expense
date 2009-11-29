@@ -3,8 +3,8 @@
 <div class="block">
   <div class="content clearfix">
     <h2><%= t("welcome.new_expenses")%></h2>
-    
-      <div id = 'sub-navigation' class="nav clearfix">
+
+    <div id = 'sub-navigation' class="nav clearfix">
       <%= render_list [
         link_to(t("welcome.joined_groups"), "/"),
         link_to(t("welcome.managed_groups"), "/welcome/managed"),
@@ -12,7 +12,7 @@
       ], :class => 'menu' -%>
     </div>
     <br />
-        <div class="inner grid_10 alpha">
+    <div class="inner grid_10 alpha">
       <table class ='table'>
         <tr>
           <th><%= Expense.human_attribute_name(:group) %></th>
@@ -25,7 +25,7 @@
             <td><%= link_to expense.group.short_name, group_path(expense.group) %></td>
             <td><%= expense.user.login %></td>
             <td><%= expense.entry_date %></td>
-            <td class='money'><%= show_amount(expense)%></td>
+            <td class='money'><%= number_to_currency(expense.show_amount, :precision => 0, :unit => "") %></td>
           </tr>
         <% end -%>
       </table>

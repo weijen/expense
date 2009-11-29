@@ -14,7 +14,7 @@
           <%= link_to group.short_name, group_path(group) %>
         </td>
         <td class='money'>
-          <%= group.expenses.total %>
+          <%= number_to_currency(group.expenses.total, :precision => 0, :unit => "") %>
         </td>
         <td>
           <%= render_list :class => "menu" do |list|
