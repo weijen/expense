@@ -18,4 +18,5 @@ class Tag < ActiveRecord::Base
 
   named_scope :income, :conditions => ["is_income = ?", true]
   named_scope :outgoing, :conditions => ["is_income = ?", false]
+  named_scope :sort_by_counter, :order => "counter DESC"
 end

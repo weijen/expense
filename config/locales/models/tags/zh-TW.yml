@@ -1,9 +1,9 @@
 "zh-TW":
   activerecord:
     models:
-      group: "團體"
+      tag: "分類"
     attributes:
-      group:
-        name: "名稱"  
-        short_name: "短名"
-        total: "總計"
+      tag:
+        name: "名稱"
+        is_income: "收入？"
+        counter: "使用次數"

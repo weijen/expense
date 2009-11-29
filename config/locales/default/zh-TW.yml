@@ -137,4 +137,6 @@
   show: "內容"
   destroy: "刪除"
   are_you_sure_to_destroy: "確認刪除"
+  create_successfully_stickie: "成功建立新的{{name}}"
+  update_successfully_stickie: "{{name}} 資料已經更新"
 

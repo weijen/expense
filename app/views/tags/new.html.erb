@@ -1,13 +1,15 @@
 <div class="block">
   <div class="content clearfix">
-    <h2>Group: <%= @group.name %> New tag</h2>
+    <h2><%= t("tags.new") %></h2>
     <div class="inner">
-      <% handicraft_form_for([@group,@tag]) do |f| %>
+      <% handicraft_form_for(@tag) do |f| %>
         <%= render :partial => 'form', :locals => { :f => f }%>
         <div class="group navform">
-          <%= f.submit 'Create' %>
+          <%= f.submit t(:create) %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+
+<br />

@@ -12,8 +12,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :groups do |group|
     group.resources :users, :controller => 'group_users', :member => {:approve => :get}
     group.resources :expenses, :controller => "group_expenses"
-    group.resources :tags, :controller => "group_tags"
   end
+
+  map.resources :tags
 
   map.resources :expenses
 

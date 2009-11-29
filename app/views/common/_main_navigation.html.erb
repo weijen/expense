@@ -3,7 +3,8 @@
   <%= render_list [ 
     link_to("Home", "/"),
     link_to("Groups", groups_path),
-    link_to("NewGroup", new_group_path)
+    link_to("NewGroup", new_group_path),
+    link_to(t("tags.list"), tags_path)
   ], :class => 'menu' -%>
 <% else %>
 <%= render_list [ 

@@ -56,8 +56,9 @@ namespace :dev do
         5.times do
           entry_date = Date.today - rand(10).days
           amount = (rand(20) + 1) * 100
-          tag = Tag.find(rand(11) + 1)
-          Expense.create!(:group_id => group.id, :user_id => user.id, :tag_id => tag.id, :amount => amount, :note => "Testing expense", :entry_date => entry_date, :currency_id => 1 )
+          tag = Tag.find(rand(@fake_outgoing_tag_name.length + @fake_income_tag_name.length - 1) + 1)
+          e = Expense.create(:group_id => group.id, :user_id => user.id, :tag_id => tag.id, :amount => amount, :note => "Testing expense", :entry_date => entry_date, :currency_id => 1 )
+          puts e.errors.full_messages
         end
       end
 

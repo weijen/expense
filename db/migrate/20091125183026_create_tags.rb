@@ -7,7 +7,7 @@ class CreateTags < ActiveRecord::Migration
       t.integer :counter, :default => 0
       t.timestamps
     end
-    add_index :tags, :name, :unique => true
+    add_index :tags, :name
     add_index :tags, :counter
   end
 

@@ -17,4 +17,8 @@ module ApplicationHelper
     end
   end
 
+  def show_tag_type(tag)
+    tag.is_income? ? t("tags.income") : t("tags.outgoing")
+  end
+
 end

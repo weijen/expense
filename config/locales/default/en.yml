@@ -10,3 +10,5 @@ en:
   show: "Show"
   destroy: "Destroy"
   are_you_sure_to_destroy: "Are you sure to destroy?"
+  create_successfully_stickie: "{{name}} was successfully created."
+  update_successfully_stickie: "{{name}} was successfully updated."

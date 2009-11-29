@@ -1,9 +1,9 @@
 en:
   activerecord:
     models:
-      group: "Group"
+      tag: "Tag"
     attributes:
-      group:
-        name: "Name"  
-        short_name: "Short name"
-        total: "Total"
+      tag:
+        name: "Name"
+        is_income: "Income?"
+        counter: "Counter"

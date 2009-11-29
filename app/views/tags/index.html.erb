@@ -1,0 +1,40 @@
+<div class="block">
+  <div class="content clearfix">
+    <h2><%= t("tags.list") -%></h2>
+    <%= link_to t("tags.new"), new_tag_path %>
+    <br />
+    <div class="inner grid_6 alpha">
+      <table class='table'>
+        <tr>
+          <th colspan = '2'><%= t("tags.outgoing") %></th>
+        </tr>
+        <% Tag.outgoing.sort_by_counter.each do |tag| -%>
+          <tr>
+            <td><%= tag.name %></td>
+            <td>
+              <%= link_to(t(:edit), edit_tag_path(tag)) if tag.user == @current_user %>
+            </td>
+          </tr>
+        <% end -%>
+      </table>
+    </div>
+    <div class="inner grid_6 alpha">
+      <table class='table'>
+        <tr>
+          <th colspan = '2'><%= t("tags.income") %></th>
+        </tr>
+        <% Tag.income.sort_by_counter.each do |tag| -%>
+          <tr>
+            <td><%= tag.name %></td>
+            <td>
+              <%= link_to(t(:edit), edit_tag_path(tag)) if tag.user == @current_user %>
+            </td>
+          </tr>
+        <% end -%>
+      </table>
+    </div>
+    
+  </div>
+</div>
+<br />
+<br />
