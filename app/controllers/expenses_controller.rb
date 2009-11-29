@@ -29,6 +29,7 @@ class ExpensesController < ApplicationController
   end
 
   def edit
+    @expense = @current_user.expenses.find(params[:id])
   end
 
   def create
@@ -45,7 +46,6 @@ class ExpensesController < ApplicationController
 
   def update
     @expense = @current_user.expenses.find(params[:id])
-    @groups = @current_user.groups.delete_if{ |group| @current_user.unprove?(group) }
 
     respond_to do |format|
       if @expense.update_attributes(params[:expense])
