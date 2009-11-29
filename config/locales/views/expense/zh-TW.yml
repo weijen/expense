@@ -10,3 +10,4 @@
     show: "帳單內容"
     edit: "修改帳單資料"
     group_overview: "團體 {{group}}的帳本"
+    no_tag_stickie: "請建立分類"

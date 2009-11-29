@@ -1,6 +1,6 @@
 <div class="block">
   <div class="content clearfix">
-    <h2><%= t("expanses.edit") %></h2>
+    <h2><%= t("expenses.edit") %></h2>
     <div class="inner">
       <% handicraft_form_for(@expense) do |f| %>
         <%= render :partial => 'form', :locals => { :f => f, :groups => @groups, :tags => @tags, :kind => @kind }%>

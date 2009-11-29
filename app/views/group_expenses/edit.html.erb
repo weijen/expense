@@ -1,15 +1,13 @@
 <div class="block">
   <div class="content clearfix">
-    <h2>Editing expense</h2>
+    <h2><%= t("expenses.edit") %> / <%= Group.human_name %>: <%= @group.name %></h2>
     <div class="inner">
       <% handicraft_form_for([@group,@expense]) do |f| %>
-        <%= render :partial => 'form', :locals => { :f => f }%>
-        <div class="group navform">
-          <%= f.submit 'Update' %>
-        </div>
+        <%= render :partial => 'form', :locals => { :f => f, :tags => @tags, :kind => @kind }%>
+        <%= f.submit t('update') %>
       <% end %>
     </div>
   </div>
 </div>
 
-<%= link_to "Show Group", group_path(@group) %>
+<%= link_to t("group.show", :group => @group.name), group_path(@group) %>

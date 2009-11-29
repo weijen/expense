@@ -18,7 +18,7 @@
               <%= render_list :class => 'menu' do |list|
                 list << link_to(t(:show), group)
                 list << link_to(t(:edit), edit_group_path(group)) if @current_user.manager?(group) 
-                list << link_to(t(:destroy), group, :confirm => 'Are you sure?', :method => :delete) if @current_user.manager?(group) 
+                list << link_to(t(:destroy), group, :confirm => t(:are_you_sure_to_destroy), :method => :delete) if @current_user.manager?(group) 
               end -%>
             </td>
           </tr>

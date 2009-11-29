@@ -6,7 +6,7 @@
     select_tag: "請選擇預設的分類方式，如果都沒有適合的，晚點你可以建立新的類別。"
     income_tag: "收入類別"
     outgoing_tag: "支出類別"
-    show: "團體："
+    show: "團體：{{group}}"
     joined_users: "團友們"
     requiest_to_join: "申請加入"
     quit: "離開"

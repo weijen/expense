@@ -19,15 +19,16 @@
             <td class='money'><%= number_to_currency(expense.show_amount, :precision => 0, :unit => "") %></td>
             <td>
               <%= render_list :class => 'menu' do |list|
-                list << link_to("Edit", edit_group_expense_path(@group, expense)) if @current_user.expenses.include?(expense)
-                list << link_to("Destroy", group_expense_path(@group,expense), :method => :delete)  if @current_user.expenses.include?(expense)
+                list << link_to(t("edit"), edit_group_expense_path(@group, expense)) if @current_user.expenses.include?(expense)
+                list << link_to(t("destroy"), group_expense_path(@group,expense), :method => :delete, :confirm => t(:are_you_sure_to_destroy))  if @current_user.expenses.include?(expense)
               end -%>
             </td>
           </tr>
         <% end -%>
-        <tr>
-          <td colspan='4' class='money'><%= @total %></td>
-          <td />
+        <tr class = 'total'>
+          <td colspan='3'><%= Group.human_attribute_name(:total) %></td>
+          <td class='money'><%= number_to_currency(@total, :precision => 0, :unit => "") %></td>
+          <td></td>
         </tr>
       </table>
     </div>

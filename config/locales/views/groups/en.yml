@@ -6,7 +6,7 @@ en:
     select_tag: "Please select default tag for this group. If all tags are not suitable, you can create new tags latter."
     income_tag: "Imcome Tags"
     outgoing_tag: "Outgoing Tags"
-    show: "Group: "
+    show: "Group: {{group}}"
     joined_users: "JoinedUsers"
     requiest_to_join: "Request join"
     quit: "Quit"

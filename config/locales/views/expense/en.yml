@@ -9,4 +9,6 @@ en:
     add_outgoing_expense: "Add Outgoing Expense"
     show: "Show Expense"
     edit: "Editing expense"
-    group_overview: "Group: {{group}} Expenses
+    group_overview: "Group: {{group}} Expenses"
+    no_tag_stickie: "Please create a new tag"
+
