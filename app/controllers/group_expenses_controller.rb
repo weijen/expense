@@ -1,11 +1,11 @@
 class GroupExpensesController < ApplicationController
   before_filter :login_required
-  before_filter :get_group
-  before_filter :group_follower_required
+  before_filter :get_group_from_group_id
+  before_filter :group_approved_user_required
   before_filter :get_expense_and_owner_required, :only => [:edit, :update, :destroy]
 
   def index
-    @expenses = @group.expenses.find(:all, :order => :charge_date)
+    @expenses = @group.expenses.find(:all, :order => :entry_date)
     @total = @group.expenses.total
   end
 
@@ -57,9 +57,6 @@ class GroupExpensesController < ApplicationController
   end
 
   private
-  def get_group
-    @group = Group.find_by_secret_id(params[:group_id])
-  end
 
   def get_expense_and_owner_required
     @expense = @group.expenses.find(params[:id])

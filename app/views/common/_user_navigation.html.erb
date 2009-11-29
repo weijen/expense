@@ -2,12 +2,12 @@
 
   <%= render_list :class => 'menu' do |list|
     if logged_in?
-      list << link_to("MyExpenses", expenses_path)
-      list << link_to("Settings", "/account/setting")
-      list << link_to("Logout", "/logout")
+      list << link_to(t("expenses.my"), expenses_path)
+      list << link_to(t(:account_setting), "/account/setting")
+      list << link_to(t(:logout), "/logout")
     else
-      list << link_to("Login", "/login")
-      list << link_to("Signup", '/signup')
+      list << link_to(t(:login), "/login")
+      list << link_to(t(:signup), '/signup')
     end
   end -%>
 

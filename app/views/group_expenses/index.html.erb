@@ -1,12 +1,13 @@
 <div class="block">
   <div class="content clearfix">
-    <h2>Group: <%= @group.name %> Expenses</h2>
+    <h2><%=h t("expenses.group_overview", :group => @group.name) %></h2>
     <div class="inner grid_10 alpha">
+      <%= link_to t("show"), group_path(@group) %>
       <table class ='table'>
         <% date = Date.parse("2000-01-01") %>
         <% @expenses.each do |expense| -%>
-          <% if expense.charge_date != date -%>
-            <% date = expense.charge_date -%>
+          <% if expense.entry_date != date -%>
+            <% date = expense.entry_date -%>
             <tr>
               <th colspan='5'><%= date.to_s(:db) %></th>
             </tr>
@@ -14,8 +15,8 @@
           <tr>
             <td><%=h expense.user.login %></td>
             <td><%=h expense.tag.name %></td>
-            <td><%=h expense.comment %></td>
-            <td class='money'><%= show_amount(expense) %></td>
+            <td><%=h expense.note %></td>
+            <td class='money'><%= number_to_currency(expense.show_amount, :precision => 0, :unit => "") %></td>
             <td>
               <%= render_list :class => 'menu' do |list|
                 list << link_to("Edit", edit_group_expense_path(@group, expense)) if @current_user.expenses.include?(expense)
@@ -33,5 +34,4 @@
   </div>
 </div>
 
-<%= link_to "Show Group", group_path(@group) %>|
-<%= link_to "NewExpense", new_group_expense_path(@group) %>
+

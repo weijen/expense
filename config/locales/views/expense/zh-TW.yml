@@ -8,3 +8,4 @@
     add_outgoing_expense: "新增支出"
     show: "帳單內容"
     edit: "修改帳單資料"
+    group_overview: "團體 {{group}}的帳本"

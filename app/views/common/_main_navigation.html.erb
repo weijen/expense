@@ -1,16 +1,16 @@
 <div id="main-navigation" class="nav clearfix">
 <% if @current_user %>
   <%= render_list [ 
-    link_to("Home", "/"),
+    link_to(t(:home), "/"),
     link_to(t("expenses.add_outgoing_expense"), new_expense_path(:kind => :outgoing)),
     link_to(t("expenses.add_income_expense"), new_expense_path(:kind => :income)),
-    link_to("Groups", groups_path),
-    link_to("NewGroup", new_group_path),
+    link_to(Group.human_name, groups_path),
+    link_to(t("group.new"), new_group_path),
     link_to(t("tags.list"), tags_path)
   ], :class => 'menu' -%>
 <% else %>
 <%= render_list [ 
-  link_to("Home", "/"),
+  link_to(t(:home), "/"),
 ], :class => 'menu' -%>
 <% end %>
 </div>

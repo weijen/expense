@@ -12,3 +12,8 @@ en:
   are_you_sure_to_destroy: "Are you sure to destroy?"
   create_successfully_stickie: "{{name}} was successfully created."
   update_successfully_stickie: "{{name}} was successfully updated."
+  home: "Home"
+  account_setting: "Setting"
+  logout: "Logout"
+  login: "Login"
+  signup: "Signup"

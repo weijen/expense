@@ -22,7 +22,7 @@ class ExpensesController < ApplicationController
 
   def new
     @expense = @current_user.expenses.new
-    
+
     respond_to do |format|
       format.html 
     end
@@ -74,4 +74,4 @@ class ExpensesController < ApplicationController
     @kind = params[:kind] == "income" ? "income" : "outgoing"
   end
 
-  end
+end

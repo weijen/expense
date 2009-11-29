@@ -139,4 +139,8 @@
   are_you_sure_to_destroy: "確認刪除"
   create_successfully_stickie: "成功建立新的{{name}}"
   update_successfully_stickie: "{{name}} 資料已經更新"
-
+  home: "綜覽"
+  account_setting: "帳號設定"
+  logout: "登出"
+  login: "登入"
+  signup: "註冊"
