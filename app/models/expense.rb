@@ -38,10 +38,15 @@ class Expense < ActiveRecord::Base
 
   def set_is_income
     self.is_income = self.tag.is_income
+    true
   end
 
   def increment_tag_used_count
     self.tag.counter += 1
     self.tag.save!
+  end
+
+  def show_amount
+    "#{(is_income ? "" : "-")}#{amount}" 
   end
 end

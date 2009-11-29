@@ -7,7 +7,7 @@ namespace :dev do
 
   task :setup => :environment do
     puts "Create users"
-    User.create!(
+    user = User.create!(
       :login => "root",
       :password => 'expense2009',
       :password_confirmation => 'expense2009',
@@ -16,6 +16,17 @@ namespace :dev do
 
     puts "Create Currencies"
     Currency.create!(:name => "TWD")
+
+    puts "Create Tags"
+    @fake_outgoing_tag_name.each do |name|
+      Tag.create!(:name => name, :is_income => false, :user_id => user.id)
+    end
+
+    @fake_income_tag_name.each do |name|
+      Tag.create!(:name => name, :is_income => true, :user_id => user.id)
+    end
+
+
   end
 
   desc "Build fake data"
@@ -28,18 +39,8 @@ namespace :dev do
     users = User.find :all
     range = 20
 
-    puts "Create Tags"
-    @fake_outgoing_tag_name.each do |name|
-      Tag.create!(:user_id => users[rand(range)].id, :name => name, :is_income => false)
-    end
-
-    @fake_income_tag_name.each do |name|
-      Tag.create!(:user_id => users[rand(range)].id, :name => name, :is_income => true)
-    end
-
-
     puts "Create Group"
-        @fake_group_name.each_with_index do |name, i|
+      @fake_group_name.each_with_index do |name, i|
       group = Group.create!(:name => name, :short_name => name)
       group.add_manager(users[i])
       group.tags << Tag.find(:all)
@@ -53,12 +54,12 @@ namespace :dev do
         user = users[user_position]
         group.add_approved_user(user)
 
-        5.times do
+        10.times do
           entry_date = Date.today - rand(10).days
           amount = (rand(20) + 1) * 100
-          tag = Tag.find(rand(@fake_outgoing_tag_name.length + @fake_income_tag_name.length - 1) + 1)
-          e = Expense.create(:group_id => group.id, :user_id => user.id, :tag_id => tag.id, :amount => amount, :note => "Testing expense", :entry_date => entry_date, :currency_id => 1 )
-          puts e.errors.full_messages
+          tag_id = rand(@fake_outgoing_tag_name.length + @fake_income_tag_name.length)
+          redo if tag_id == 0
+          e = Expense.create(:group_id => group.id, :user_id => user.id, :tag_id => tag_id, :amount => amount, :note => "Testing expense", :entry_date => entry_date, :currency_id => 1 )
         end
       end
 
