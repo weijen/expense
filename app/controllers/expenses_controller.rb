@@ -1,10 +1,11 @@
 class ExpensesController < ApplicationController
   before_filter :login_required
+  before_filter :get_expense_info, :only => [:new, :create, :edit, :update]
 
   def index
-    @expenses = @current_user.expenses.all
+    @expenses = @current_user.expenses.find(:all, :order => "entry_date DESC")
     @groups = @current_user.groups.approved_groups
-    @tags = @current_user.expenses.map{ |expense| expense.tag }.uniq
+    @tags = @current_user.expenses.map{ |expense| expense.tag }.uniq.sort
 
     respond_to do |format|
       format.html 
@@ -21,24 +22,20 @@ class ExpensesController < ApplicationController
 
   def new
     @expense = @current_user.expenses.new
-    @groups = @current_user.groups.delete_if{ |group| @current_user.unprove?(group) }
+    
     respond_to do |format|
       format.html 
     end
   end
 
   def edit
-    @groups = @current_user.groups.delete_if{ |group| @current_user.unprove?(group) }
-    @expense = @current_user.expenses.find(params[:id])
   end
 
   def create
     @expense = @current_user.expenses.new(params[:expense])
-    @groups = @current_user.groups.delete_if{ |group| @current_user.unprove?(group) }
-
     respond_to do |format|
       if @expense.save
-        notice_stickie("Expense was successfully created.")
+        notice_stickie(t(:create_successfully_stickie, :name => Expense.human_name))
         format.html { redirect_to(@expense) }
       else
         format.html { render :action => "new" }
@@ -52,7 +49,7 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.update_attributes(params[:expense])
-        notice_stickie('Expense was successfully updated.')
+        notice_stickie(t(:update_successfully_stickie, :name => Expense.human_name))
         format.html { redirect_to(@expense) }
       else
         format.html { render :action => "edit" }
@@ -68,4 +65,13 @@ class ExpensesController < ApplicationController
       format.html { redirect_to(expenses_url) }
     end
   end
-end
+
+  private
+
+  def get_expense_info
+    @groups = @current_user.groups.approved_groups
+    @tags = Tag.get_sorted_tags(@current_user, params[:kind])
+    @kind = params[:kind] == "income" ? "income" : "outgoing"
+  end
+
+  end

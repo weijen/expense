@@ -49,10 +49,11 @@
             <td><%=h expense.tag.name %></td>
             <td class='money'><%=h number_to_currency(expense.show_amount, :precision => 0) %></td>
             <td><%=h expense.note %></td>
-            <td><%=h expense.charge_date %></td>
+            <td><%=h expense.entry_date %></td>
             <td><%=h expense.currency.name %></td>
             <td>
               <%= render_list :class => 'manu' do |list|
+                list << link_to(t(:show), expense_path(expense))
                 list << link_to(t(:edit), edit_expense_path(expense))
                 list << link_to(t(:destroy), expense, :confirm => t('are_you_sure_to_destroy'), :method => :delete)
               end -%>

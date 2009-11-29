@@ -1,40 +1,40 @@
 <div class="block">
   <div class="content clearfix">
-    <h2>Show Expense</h2>
+    <h2><%= t("expenses.show") %></h2>
     <div class="inner grid_10 alpha">
 
       <p>
-      <b>Group:</b>
+      <b><%= Expense.human_attribute_name(:group) %>:</b>
       <%=h @expense.group.name %>
       </p>
 
       <p>
-      <b>User:</b>
+      <b><%= Expense.human_attribute_name(:user) %>:</b>
       <%=h @expense.user.login %>
       </p>
 
       <p>
-      <b>Tag:</b>
+      <b><%= Expense.human_attribute_name(:tag) %>:</b>
       <%=h @expense.tag_id %>
       </p>
 
       <p>
-      <b>Amount:</b>
+      <b><%= Expense.human_attribute_name(:amount) %>:</b>
       <%=h @expense.show_amount %>
       </p>
 
       <p>
-      <b>Note:</b>
+      <b><%= Expense.human_attribute_name(:note) %>:</b>
       <%=h @expense.note%>
       </p>
 
       <p>
-      <b>Charge date:</b>
-      <%=h @expense.charge_date %>
+      <b><%= Expense.human_attribute_name(:entry_date) %>:</b>
+      <%=h @expense.entry_date %>
       </p>
 
       <p>
-      <b>Currency:</b>
+      <b><%= Expense.human_attribute_name(:currency) %>:</b>
       <%=h @expense.currency.name %>
       </p>
     </div>
@@ -42,5 +42,5 @@
 </div>
 
 
-<%= link_to 'Edit', edit_expense_path(@expense) %> |
-<%= link_to 'Back', expenses_path %>
+<%= link_to t(:edit), edit_expense_path(@expense) %> |
+<%= link_to t("expenses.my"), expenses_path %>

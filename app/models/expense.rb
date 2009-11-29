@@ -30,8 +30,6 @@ class Expense < ActiveRecord::Base
   named_scope :by_tag, lambda { |tag| {:conditions => ["tag_id = ?", tag.id]} }
   named_scope :by_group, lambda { |group| {:conditions => ["group_id = ?", group.id]} }
 
- 
-
   before_save :set_is_income, :increment_tag_used_count
   def charge_date
     self["charge_date"] || Date.today

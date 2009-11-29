@@ -4,3 +4,6 @@
     group_report: "團體報表"
     tag_report: "分類報表"
     overview: "總覽"
+    add_income_expense: "新增收入"
+    add_outgoing_expense: "新增支出"
+    show: "帳單內容"

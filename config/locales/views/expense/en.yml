@@ -4,3 +4,6 @@ en:
     group_report: "Groups' report"
     tag_report: "Tags' report"
     overview: "Overview"
+    add_income_expense: "Add Income Expense"
+    add_outgoing_expense: "Add Outgoing Expense"
+    show: "Show Expense"

@@ -1,7 +1,8 @@
 <%= f.error_messages %>
-<p><%= f.select(:group_id, @groups.map{ |g| [g.short_name, g.id] }, :label => "Group") %></p>
-<p><%= f.select(:tag_id, @current_user.tags.map{ |tag| [tag.name, tag.id] }, :label => "Tag", :description => "這裡應該是group被選擇、然後更新") %></p>
-<p><%= f.text_field :amount, :label => "amount" %></p>
-<p><%= f.text_field :comment, :label => "comment" %></p>
-<p><%= f.date_select :charge_date, :label => "charge_date" %></p>
-<p><%= f.select :currency_id, Currency.find(:all).map{ |c| [c.name, c.id] }, :label => "Currency" %></p>
+<%= hidden_field_tag :kind, kind %>
+<p><%= f.select(:group_id, groups.map{ |g| [g.short_name, g.id] }, :label => Expense.human_attribute_name(:group)) %></p>
+<p><%= f.select(:tag_id, tags.map{ |tag| [tag.name, tag.id] }, :label => Expense.human_attribute_name(:tag)) %></p>
+<p><%= f.text_field :amount, :label => Expense.human_attribute_name(:amount) %></p>
+<p><%= f.text_field :note, :label => Expense.human_attribute_name(:note) %></p>
+<p><%= f.date_select :entry_date, :label => Expense.human_attribute_name(:entry_date) %></p>
+<p><%= f.select :currency_id, Currency.find(:all).map{ |c| [c.name, c.id] }, :label => Expense.human_attribute_name(:currency) %></p>
