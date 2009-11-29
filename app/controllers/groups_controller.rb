@@ -24,6 +24,7 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    store_location
 
     respond_to do |format|
       format.html
@@ -31,6 +32,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    store_location
   end
 
   def create

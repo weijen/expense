@@ -3,7 +3,7 @@ en:
     create_successfully: 'Group was successfully created.'
     update_successfully: 'Group was successfully updated.'
     new: 'New Group'
-    select_tag: "Please select default tag for this group. If all tags are not suitable, you can create new tags latter."
+    select_tag: "Please select default tag for this group. If all tags are not suitable, you can <a href='{{url}}'>create new tags</a>."
     income_tag: "Imcome Tags"
     outgoing_tag: "Outgoing Tags"
     show: "Group: {{group}}"
