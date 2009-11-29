@@ -13,6 +13,10 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @users = @group.users.approved_users
+    @outgoing_tags = @group.tags.outgoing.sort
+    @income_tags = @group.tags.income.sort
+
     respond_to do |format|
       format.html 
     end

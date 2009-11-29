@@ -3,6 +3,7 @@
     my: "我的帳本"
     group_report: "團體報表"
     tag_report: "分類報表"
+    user_report: "團友報表"
     overview: "總覽"
     add_income_expense: "新增收入"
     add_outgoing_expense: "新增支出"

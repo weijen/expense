@@ -6,12 +6,7 @@
         <tr>
           <th colspan='2'><%= t("expenses.group_report") %></th>
         </tr>
-        <% @groups.each do |group| -%>
-          <tr>
-            <td><%=h group.name %></td>
-            <td class='money'><%=h number_to_currency(group.expenses.by_user(@current_user).total, :precision => 0) %></td>
-          </tr>
-        <% end -%>
+        <%= render :partial => 'report', :locals => { :items => @groups } %>
       </table>
     </div>
 
@@ -20,12 +15,7 @@
         <tr>
           <th colspan='2'><%= t("expenses.tag_report") %></th>
         </tr>
-        <% @tags.each do |tag| -%>
-          <tr>
-            <td><%=h tag.name %></td>
-            <td class='money'><%=h number_to_currency(tag.expenses.by_user(@current_user).total, :precision => 0) %></td>
-          </tr>
-        <% end -%>
+        <%= render :partial => 'report', :locals => { :items => @tags } %>
       </table>
     </div>
     <br />

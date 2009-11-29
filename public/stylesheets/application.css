@@ -2,6 +2,10 @@
   text-align: right;
 }
 
+.total{
+  background: rgb(65, 131, 196);
+}
+
 .menu li{
   float: left;
   list-style-type: none;

@@ -3,6 +3,7 @@ en:
     my: "My Expenses"
     group_report: "Groups' report"
     tag_report: "Tags' report"
+    user_report: "Users' report"
     overview: "Overview"
     add_income_expense: "Add Income Expense"
     add_outgoing_expense: "Add Outgoing Expense"
