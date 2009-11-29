@@ -1,17 +1,45 @@
 <div class="block">
   <div class="content clearfix">
-    <h2>My expenses</h2>
-    <div class="inner grid_10 alpha">
-
+    <h2><%= t("expenses.my") %></h2>
+    <div class = "inner grid_6 alpha">
       <table class='table'>
         <tr>
-          <th>Group</th>
-          <th>Tag</th>
-          <th>Type</th>
-          <th>Amount</th>
-          <th>Comment</th>
-          <th>Charge date</th>
-          <th>Currency</th>
+          <th colspan='2'><%= t("expenses.group_report") %></th>
+        </tr>
+        <% @groups.each do |group| -%>
+          <tr>
+            <td><%=h group.name %></td>
+            <td class='money'><%=h number_to_currency(group.expenses.by_user(@current_user).total, :precision => 0) %></td>
+          </tr>
+        <% end -%>
+      </table>
+    </div>
+
+    <div class = "inner grid_6 omega">
+      <table class='table'>
+        <tr>
+          <th colspan='2'><%= t("expenses.tag_report") %></th>
+        </tr>
+        <% @tags.each do |tag| -%>
+          <tr>
+            <td><%=h tag.name %></td>
+            <td class='money'><%=h number_to_currency(tag.expenses.by_user(@current_user).total, :precision => 0) %></td>
+          </tr>
+        <% end -%>
+      </table>
+    </div>
+    <br />
+
+    <div class="inner grid_12 alpha">
+      <h3><%= t("expenses.overview") %></h3>
+      <table class='table'>
+        <tr>
+          <th><%= Expense.human_attribute_name(:group) %></th>
+          <th><%= Expense.human_attribute_name(:tag) %></th>
+          <th><%= Expense.human_attribute_name(:amount) %></th>
+          <th><%= Expense.human_attribute_name(:note) %></th>
+          <th><%= Expense.human_attribute_name(:entry_date) %></th>
+          <th><%= Expense.human_attribute_name(:currency) %></th>
           <th></th>
         </tr>
 
@@ -19,12 +47,16 @@
           <tr>
             <td><%=link_to expense.group.short_name, group_path(expense.group) %></td>
             <td><%=h expense.tag.name %></td>
-            <td><%=h expense.is_income ? "income" : "outgoing" %></td>
-            <td><%=h expense.amount %></td>
-            <td><%=h expense.comment %></td>
+            <td class='money'><%=h number_to_currency(expense.show_amount, :precision => 0) %></td>
+            <td><%=h expense.note %></td>
             <td><%=h expense.charge_date %></td>
             <td><%=h expense.currency.name %></td>
-            <td><%= link_to 'Show', expense %>|<%= link_to 'Edit', edit_expense_path(expense) %>|<%= link_to 'Destroy', expense, :confirm => 'Are you sure?', :method => :delete %></td>
+            <td>
+              <%= render_list :class => 'manu' do |list|
+                list << link_to(t(:edit), edit_expense_path(expense))
+                list << link_to(t(:destroy), expense, :confirm => t('are_you_sure_to_destroy'), :method => :delete)
+              end -%>
+            </td>
           </tr>
         <% end %>
       </table>

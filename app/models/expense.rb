@@ -25,7 +25,12 @@ class Expense < ActiveRecord::Base
   validates_presence_of :tag_id, :group_id, :user_id
 
   named_scope :income, :conditions => { :is_income => true }
-  named_scope :outgoing, :conditions => { :is_income => false } 
+  named_scope :outgoing, :conditions => { :is_income => false }
+  named_scope :by_user, lambda { |user| {:conditions => ["user_id = ?", user.id]} }
+  named_scope :by_tag, lambda { |tag| {:conditions => ["tag_id = ?", tag.id]} }
+  named_scope :by_group, lambda { |group| {:conditions => ["group_id = ?", group.id]} }
+
+ 
 
   before_save :set_is_income, :increment_tag_used_count
   def charge_date

@@ -3,6 +3,8 @@ class ExpensesController < ApplicationController
 
   def index
     @expenses = @current_user.expenses.all
+    @groups = @current_user.groups.approved_groups
+    @tags = @current_user.expenses.map{ |expense| expense.tag }.uniq
 
     respond_to do |format|
       format.html 

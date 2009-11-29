@@ -13,26 +13,19 @@
       <%=h @expense.user.login %>
       </p>
 
-      <!--
       <p>
       <b>Tag:</b>
       <%=h @expense.tag_id %>
       </p>
-      -->
-
-      <p>
-      <b>Is income:</b>
-      <%=h @expense.is_income %>
-      </p>
 
       <p>
       <b>Amount:</b>
-      <%=h @expense.amount %>
+      <%=h @expense.show_amount %>
       </p>
 
       <p>
-      <b>Comment:</b>
-      <%=h @expense.comment%>
+      <b>Note:</b>
+      <%=h @expense.note%>
       </p>
 
       <p>
