@@ -2,7 +2,6 @@ class TagsController < ApplicationController
   before_filter :login_required
 
   def index
-    @tags = Tag.find(:all, :order =>"counter DESC")
   end
 
   def new

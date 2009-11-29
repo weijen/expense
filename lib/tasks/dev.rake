@@ -22,7 +22,7 @@ namespace :dev do
   task :fake => :environment do
     puts "Create Users"
     (@fake_english_name_man + @fake_english_name_woman).each do |name|
-      User.create!(:login => name, :password => 'expense2009', :password_confirmation => 'expense2009', :email => "#{name}@example.com")
+      User.create!(:login => name, :name => name.capitalize, :password => 'expense2009', :password_confirmation => 'expense2009', :email => "#{name}@example.com")
     end
 
     users = User.find :all

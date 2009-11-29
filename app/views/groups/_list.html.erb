@@ -6,7 +6,7 @@
   </tr>
   <% expenses.each do |expense| -%>
     <tr>
-      <td><%= expense.user.login %></td>
+      <td><%= expense.user.to_brief_info %></td>
       <td class='money'><%= show_amount(expense) %></td>
       <td><%= expense.entry_date %></td>
     </tr>
