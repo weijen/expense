@@ -127,5 +127,5 @@ def log_in_user! *args
   log_in_user *args
   response.should redirect_to('/')
   follow_redirect!
-  response.should have_flash("notice", /Logged in successfully/)
+  response.should have_stickie("notice", /Logged in successfully/)
 end

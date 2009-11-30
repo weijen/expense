@@ -110,7 +110,7 @@ end
 #
 
 Then /^she should +see an? (\w+) message '([\w !\']+)'$/ do |notice, message|
-  response.should have_flash(notice, %r{#{message}})
+  response.should have_stickie(notice, %r{#{message}})
 end
 
 Then "$actor should not see $an $notice message '$message'" do |_, _, notice, message|
@@ -144,6 +144,10 @@ end
 
 def have_flash notice, *args
   have_tag("div.#{notice}", *args)
+end
+
+def have_stickie notice, *args
+  have_tag("div.#{notice}_stickie", @args)
 end
 
 RE_PRETTY_RESOURCE = /the (index|show|new|create|edit|update|destroy) (\w+) (page|form)/i

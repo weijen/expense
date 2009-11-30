@@ -15,7 +15,7 @@ Story: Logging in
     When  she goes to /login
     Then  she should be at the new sessions page
      And  the page should look AWESOME
-     And  she should see a <form> containing a textfield: Login, password: Password, and submit: 'Log in'
+     And  she should see a <form> containing a textfield: 帳號, password: 密碼, and submit: '登入'
   
   #
   # Log in successfully, but don't remember me
@@ -118,16 +118,22 @@ Story: Logging in
     When  she goes to /logout
     Then  she should be redirected to the home page
     When  she follows that redirect!
+          #redirect_to "/"
+     And  she follows that redirect!
+          #redirect_to "/login"
     Then  she should see a notice message 'You have been logged out'
      And  she should not be logged in
      And  she should not have an auth_token cookie
      And  her session store should not have user_id
-
+  
   Scenario: Logged in user can log out.
     Given an activated user logged in as 'reggie'
     When  she goes to /logout
     Then  she should be redirected to the home page
     When  she follows that redirect!
+          #redirect_to "/"
+     And  she follows that redirect!
+          #redirect_to "/login"
     Then  she should see a notice message 'You have been logged out'
      And  she should not be logged in
      And  she should not have an auth_token cookie
