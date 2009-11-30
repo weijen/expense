@@ -40,9 +40,9 @@ class User < ActiveRecord::Base
   has_many :expenses
   has_many :tags
 
-  named_scope :approved_users, :include=> :user_group_relations, :conditions => ["user_group_relations.approved == ?", true]
-  named_scope :unapprove_users, :include => :user_group_relations, :conditions => ["user_group_relations.approved == ?", false]
-  named_scope :managers,  :include => :user_group_relations, :conditions => ["user_group_relations.manager == ?", true]
+  named_scope :approved_users, :include=> :user_group_relations, :conditions => ["user_group_relations.approved = ?", true]
+  named_scope :unapprove_users, :include => :user_group_relations, :conditions => ["user_group_relations.approved = ?", false]
+  named_scope :managers,  :include => :user_group_relations, :conditions => ["user_group_relations.manager = ?", true]
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
