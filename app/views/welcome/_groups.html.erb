@@ -18,8 +18,8 @@
         </td>
         <td>
           <%= render_list :class => "menu" do |list|
-            list << link_to(t("welcome.overview"), group_expenses_path(group))
-            list << link_to(t("welcome.add_expense"), new_group_expense_path(group))
+            list << link_to(t("group.all_expenses"), group_expenses_path(group))
+            list << link_to(t("group.add_outgoing_expense"), new_group_expense_path(group))
           end -%>
         </td>
     </tr>
