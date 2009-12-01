@@ -2,5 +2,5 @@
 @fake_english_name_woman = %w[abby ada adeline alice allison amanda ann amy amber anastasia andrea angela annie anita ariel april ashley bonnie beatrice becky betty blanche brenda candice carmen carol carry catherine cathy chelsea charlene cherry cheryl christina christine cindy clare clement connie cora corrine crystal daisy daphne debbie diana donna doris elaine ella emerald emily emma enid elsa erica esther eudora eva eve frederica frieda gina gladys gloria grace greta ingrid irene iris ivy jacqueline jamie jane janet jean jessica jessie jennifer jenny jill joan joanna jocelyn joyce joy judy june karen kate kathy kay kelly kitty laura lena lydia lillian linda lisa liz lorraine lucia lucy lulu lynn maggie mary mariah mavis maxine may melissa melody meredith michelle miranda miriam monica nancy nicole nina pamela pauline pearl peggy phoebe polly priscilla rachel rebecca rita rose roxanne ruth sandra samantha sarah selma sharon shelley sherry shirley stacy stella stephanie sue sunny tamara teresa tiffany tina tracy ursula vanessa vicky vivian wendy yvette]
 
 @fake_group_name = %w[Ruby Rails Perl PHP Mac JavaScript CSS W3C Java]
-@fake_outgoing_tag_name = %w[吃飯 交通 交際 旅館 書 軟體 飲料 保險費]
+@fake_outgoing_tag_name = %w[差旅費 餐飲費 書報雜誌 影音軟體 雜物 網路服務 吃飯 交通 交際 旅館 書 軟體 飲料 保險費]
 @fake_income_tag_name = %w[會員收費]
