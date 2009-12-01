@@ -10,6 +10,7 @@ en:
     joined_users: "JoinedUsers"
     requiest_to_join: "Request join"
     quit: "Quit"
+    quit_confirm: "Are you sure to quit from this group"
     all_expenses: "AllExpenses"
     add_income_expense: "AddIncome"
     add_outgoing_expense: "AddOutgoing"
