@@ -2,6 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
   # Be sure to include AuthenticatedTestHelper in spec/spec_helper.rb instead
 # Then, you can remove it from this and the units test.
 include AuthenticatedTestHelper
+include AuthenticatedSystem
 
 #
 # A test controller with and without access controls
@@ -33,7 +34,7 @@ end
 ACCESS_CONTROL_FORMATS = [
   ['',     "success"],
   ['xml',  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<hash>\n  <success>xml</success>\n</hash>\n"],
-  ['json', "{\"success\": \"json\"}"],]
+  ['json', "{\"success\":\"json\"}"],]
 ACCESS_CONTROL_AM_I_LOGGED_IN = [
   [:i_am_logged_in,     :quentin],
   [:i_am_not_logged_in, nil],]
@@ -69,7 +70,7 @@ describe AccessControlTestController do
           elsif (login_reqd_status == :login_is_required && logged_in_status == :i_am_not_logged_in)
             if ['html', ''].include? format
               it "redirects me to the log in page" do
-                response.should redirect_to('/session/new')
+                response.should redirect_to('/session/new?locale=zh-TW')
               end
             else
               it "returns 'Access denied' and a 406 (Access Denied) status code" do

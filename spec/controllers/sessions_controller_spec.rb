@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 # Be sure to include AuthenticatedTestHelper in spec/spec_helper.rb instead
 # Then, you can remove it from this and the units test.
 include AuthenticatedTestHelper
+include AuthenticatedSystem
 
 describe SessionsController do
   fixtures        :users
@@ -44,7 +45,7 @@ describe SessionsController do
             it "kills existing login"        do controller.should_receive(:logout_keeping_session!); do_create; end    
             it "authorizes me"               do do_create; controller.send(:authorized?).should be_true;   end    
             it "logs me in"                  do do_create; controller.send(:logged_in?).should  be_true  end    
-            it "greets me nicely"            do do_create; response.flash[:notice].should =~ /success/i   end
+            it "greets me nicely"            do do_create; response.session[:stickies].each { |st| st.message.should =~ /成功/i }   end
             it "sets/resets/expires cookie"  do controller.should_receive(:handle_remember_cookie!).with(want_remember_me); do_create end
             it "sends a cookie"              do controller.should_receive(:send_remember_cookie!);  do_create end
             it 'redirects to the home page'  do do_create; response.should redirect_to('/')   end
@@ -76,7 +77,7 @@ describe SessionsController do
       login_as :quentin
     end
     it 'logs out keeping session'   do controller.should_receive(:logout_keeping_session!); do_create end
-    it 'flashes an error'           do do_create; flash[:error].should =~ /Couldn't log you in as 'quentin'/ end
+    it 'flashes an error'           do do_create; session[:stickies].each { |st| st.message.should =~ /quentin登入失敗/ } end
     it 'renders the log in page'    do do_create; response.should render_template('new')  end
     it "doesn't log me in"          do do_create; controller.send(:logged_in?).should == false end
     it "doesn't send password back" do 
@@ -105,7 +106,7 @@ describe SessionsController do
       route_for(:controller => 'sessions', :action => 'new').should == "/login"
     end
     it "should route the create sessions correctly" do
-      route_for(:controller => 'sessions', :action => 'create').should == "/session"
+      route_for(:controller => 'sessions', :action => 'create').should == {:path => "/session", :method => :post}
     end
     it "should route the destroy sessions action correctly" do
       route_for(:controller => 'sessions', :action => 'destroy').should == "/logout"
@@ -129,10 +130,10 @@ describe SessionsController do
       get :new
     end
     it "should route session_path() correctly" do
-      session_path().should == "/session"
+      session_path().should == "/session?locale=zh-TW"
     end
     it "should route new_session_path() correctly" do
-      new_session_path().should == "/session/new"
+      new_session_path().should == "/session/new?locale=zh-TW"
     end
   end
   
