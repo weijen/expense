@@ -38,25 +38,6 @@
             <%= render :partial => 'total', :locals => {:total => @group.expenses.total} %>
           </table>
         </div>
-        <!--
-        <hr /> 
-        <div class="inner grid_6 alpha">
-          <% summary_array = Array.new -%>
-          <% @users.each do |user|
-            summary_array << {:name => user.login, :percent => ((user.expenses.by_group(@group).total / @group.expenses.total).round(3) * 100).to_i.to_s}
-          end -%>
-          <% src = "http://chart.apis.google.com/chart?chtt=#{t("expenses.user_report")}&cht=p3&chs=400x200&chco=ff0000,00ff00,0000ff&chd=t:" + summary_array.map{|item| item[:percent]}.join(",")+"&chl=" + summary_array.map{|item| item[:name]}.join("|") %>
-          <%= image_tag src %>
-        </div>
-        <div class="inner grid_6 omega">
-          <% summary_array = Array.new -%>
-          <%  (@income_tags + @outgoing_tags).each do |tag|
-            summary_array << {:name => tag.name, :percent => (( tag.expenses.by_group(@group).total / @group.expenses.total).round(3) * 100).to_i.to_s}
-          end -%>
-          <% src = "http://chart.apis.google.com/chart?chtt=#{t("expenses.tag_report")}&cht=p3&chs=400x200&chco=ff0000,00ff00,0000ff&chd=t:" + summary_array.map{|item| item[:percent]}.join(",")+"&chl=" + summary_array.map{|item| item[:name]}.join("|") %>
-          <%= image_tag src %>
-        </div>
-        -->
       <% end -%>
     </div>
   </div>
