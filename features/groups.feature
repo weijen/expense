@@ -4,6 +4,7 @@ Feature: 團體的的操作
   (done)管理員可以修改團體的資料，或者刪除團體。
   團體應該有開始時間與結束時間
 
+  @here
   Scenario: 新增團體的正常狀況
     Given I am logged in as "weijen" 
     When I go to groups/new 

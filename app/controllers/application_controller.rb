@@ -33,7 +33,10 @@ class ApplicationController < ActionController::Base
   private
   
   def set_locale
-    I18n.locale = params[:locale] || (current_user ? current_user.locale : nil) || I18n.locale
+    if params[:locale] && VALID_LOCALES.include?( params[:locale] )
+      locale = params[:locale]
+    end
+    I18n.locale = locale || (current_user ? current_user.locale : nil) || I18n.locale
     logger.debug "* Locale set to '#{I18n.locale}'"
   end
 

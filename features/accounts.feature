@@ -16,7 +16,7 @@ Story: Creating an account
     When  she goes to /signup
     Then  she should be at the 'users/new' page
      And  the page should look AWESOME
-     And  she should see a <form> containing a textfield: Login, textfield: Email, password: Password, password: 'Confirm Password', submit: 'Sign up'
+     And  she should see a <form> containing a textfield: 密碼, textfield: Email, password: 密碼, password: '密碼確認', submit: '註冊'
 
   #
   # Account Creation
@@ -38,15 +38,15 @@ Story: Creating an account
   # Account Creation Failure: Account exists
   #
 
-
+  @here
   Scenario: Anonymous user can not create an account replacing an activated account
     Given an anonymous user
      And  an activated user named 'Reggie'
      And  we try hard to remember the user's updated_at, and created_at
     When  she registers an account with login: 'reggie', password: 'monkey', and email: 'reggie@example.com'
     Then  she should be at the 'users/new' page
-     And  she should     see an errorExplanation message 'Login has already been taken'
-     And  she should not see an errorExplanation message 'Email has already been taken'
+     And  she should     see an errorExplanation message '帳號 已經被使用'
+     And  she should not see an errorExplanation message 'Email 已經被使用'
      And  a user with login: 'reggie' should exist
      And  the user should have email: 'registered@example.com'
 

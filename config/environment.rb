@@ -40,4 +40,6 @@ Rails::Initializer.run do |config|
   config.i18n.default_locale = "zh-TW"
 end
 
-SITE_NAME = "Group Expenses"
+LOCALES_AVAILABLE = [ ["English",'en'],["繁體中文",'zh-TW'] ]
+VALID_LOCALES = LOCALES_AVAILABLE.map{ |l| l[1] }
+SITE_NAME = "GuRuPu"
