@@ -15,7 +15,7 @@ Story: Logging in
     When  she goes to /login
     Then  she should be at the new sessions page
      And  the page should look AWESOME
-     And  she should see a <form> containing a textfield: 帳號, password: 密碼, and submit: '登入'
+     And  she should see a <form> containing a textfield: Account, password: Password, and submit: 'Login'
   
   #
   # Log in successfully, but don't remember me
