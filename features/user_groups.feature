@@ -16,40 +16,39 @@ Feature: 使用者與團體間的關係
 
   要記錄每天的貨幣轉換
 
-
   Scenario: 我可以看到我所追蹤的所有團體
     Given I am logged in as "weijen" 
     When I go to the home page 
-    Then I should see "Groups I followed"
+    Then I should see "Joined Groups"
 
   Scenario: 使用者可以加入團體
     Given I am logged in as "weijen"
     And a group named "test_group" is not belongs to me
     When I go to show group
-    And I follow "Follow"
-    Then I should see "Follow but not proven"
-    And I join this group but not proven
+    And I follow "Request join"
+    Then I should see "You request to join group"
+    And I join this group but not approve
 
   Scenario: 如果我是這個團體的管理員，我不應該看到join
     Given I am logged in as "weijen"
     And a group named "test_group" is belongs to me
     When I go to show group
-    Then I should not see /^Follow$/ 
+    Then I should not see /^Request join/ 
 
   Scenario: 如果我已經加入這個團體了，我不應該看到join
     Given I am logged in as "weijen"
     And a group named "test_group" is not belongs to me
     When I go to show group
-    And I follow "Follow"
+    And I follow "Request join"
     Then I go to show group
-    And I should not see /^Follow$/
+    And I should not see /^Request join/
 
   Scenario:  如果我已經加入這個團體了，我應該看到 unfollow
     Given I am logged in as "weijen"
      And a group named "test_group" is not belongs to me
     When I go to show group
-    And I follow "Follow"
+    And I follow "Request join"
     Then I go to show group
-    And I should see "Unfollow"
-    And I follow "Unfollow"
-    And I should see "Follow but not proven"
+    And I should see "Quit"
+    And I follow "Quit"
+    And I should see "You unjoint group:"

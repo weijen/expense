@@ -50,7 +50,7 @@ Then /^the group is not exist$/ do
   @group.should be_nil
 end
 
-Then /^I join this group but not proven$/ do
+Then /^I join this group but not approve$/ do
   @current_user.reload
   @current_user.groups.should include(@group)
 end
