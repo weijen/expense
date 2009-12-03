@@ -147,7 +147,11 @@ def have_flash notice, *args
 end
 
 def have_stickie notice, *args
-  have_tag("div.#{notice}_stickie", @args)
+  if ['error', 'warning', 'notice'].include?(notice)
+    have_tag("div.#{notice}_stickie", @args)
+  else
+    have_flash(notice, @args)
+  end
 end
 
 RE_PRETTY_RESOURCE = /the (index|show|new|create|edit|update|destroy) (\w+) (page|form)/i

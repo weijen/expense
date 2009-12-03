@@ -37,8 +37,6 @@ Story: Creating an account
   #
   # Account Creation Failure: Account exists
   #
-
-  @here
   Scenario: Anonymous user can not create an account replacing an activated account
     Given an anonymous user
      And  an activated user named 'Reggie'
