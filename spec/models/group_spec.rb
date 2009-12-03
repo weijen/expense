@@ -17,7 +17,7 @@ describe Group do
   before(:each) do
     @valid_attributes = {
       :name => "test_group",
-      :short_name => "tg"
+      :short_name => "tgg"
     }
   end
 
@@ -29,21 +29,21 @@ describe Group do
     before(:each) do
       @group = Group.create!(@valid_attributes)
       @p_user = User.create!(
-        :login => "proven_user",
+        :login => "approved_user",
         :password => 'generic',
         :password_confirmation => 'generic',
-        :email => "proven_user@example.com"
+        :email => "approved_user@example.com"
       )
       @up_user = User.create!(
-        :login => "unproven_user",
+        :login => "unapprove_user",
         :password => 'generic',
         :password_confirmation => 'generic',
-        :email => "unproven_user@example.com"
+        :email => "unapprove_user@example.com"
       )
 
       @group.users << @p_user
       @group.users << @up_user
-      @group.add_follower(@p_user)
+      @group.add_approved_user(@p_user)
     end
     it "should have 2 user_group_relations" do
       @group.user_group_relations.length.should eql(2)
@@ -54,13 +54,13 @@ describe Group do
       group.users.length.should eql(2)
     end
     it "should get a proven users in this group" do
-      @group.users.proven.length.should eql(1)
-      @group.users.proven[0].should eql(@p_user)
+      @group.users.approved_users.length.should eql(1)
+      @group.users.approved_users.should include(@p_user)
     end
 
     it "should get an unproven users in this group"  do
-      @group.users.unproven.length.should eql(1)
-      @group.users.unproven[0].should eql(@up_user)
+      @group.users.unapprove_users.length.should eql(1)
+      @group.users.unapprove_users.should include(@up_user)
     end
 
     it "should get ture when user be added to managers" do
@@ -71,18 +71,18 @@ describe Group do
         :email => "test@example.com"
       )
       @group.add_manager(user)
-      @group.owners.should include(user)
+      @group.managers.should include(user)
     end
 
-    it "should get trun when user be added to followers" do
+    it "should get true when user request to join this group" do
       user =  User.create!(
         :login => "test",
         :password => 'generic',
         :password_confirmation => 'generic',
         :email => "test@example.com"
       )
-      @group.add_follower(user)
-      @group.followers.should include(user)
+      @group.add_unapprove_user(user)
+      @group.unapprove_users.should include(user)
     end
   end
 end

@@ -47,7 +47,7 @@ class Group < ActiveRecord::Base
   end
 
   def unapprove_users
-    self.users.unprove_users
+    self.users.unapprove_users
   end
 
   #Add user or remove a joined user 
