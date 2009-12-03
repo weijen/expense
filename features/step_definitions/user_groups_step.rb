@@ -12,8 +12,8 @@ Given /^I am logged in as "(.*)"$/ do |login|
   visit "/login" 
   fill_in("login", :with => login) 
   fill_in("password", :with => 'generic') 
-  click_button("Log in")
-  response.body.should =~ /Logged/m  
+  click_button
+  response.body.should =~ /successfully/m  
 end
 
 Then /^A group named "(.*)" should be created$/ do |group_name|
@@ -22,7 +22,7 @@ Then /^A group named "(.*)" should be created$/ do |group_name|
 end
 
 Then /^I am the manager of this group$/ do
-  @group.owners.should include(@current_user) 
+  @group.managers.should include(@current_user) 
 end
 
 Given /^a group named "([^\"]*)" is belongs to me$/ do |group_name|
@@ -30,7 +30,7 @@ Given /^a group named "([^\"]*)" is belongs to me$/ do |group_name|
     :name => group_name,
     :short_name => group_name
   )
-  @group.user_group_relations.create(:user_id => @current_user.id, :manager => true, :proven => true)
+  @group.user_group_relations.create(:user_id => @current_user.id, :manager => true, :approved => true)
 end
 
 Given /^a group named "([^\"]*)" is not belongs to me$/ do |group_name|

@@ -11,12 +11,13 @@ Story: Creating an account
   #
   # Account Creation: Get entry form
   #
+  @here
   Scenario: Anonymous user can start creating an account
     Given an anonymous user
     When  she goes to /signup
     Then  she should be at the 'users/new' page
      And  the page should look AWESOME
-     And  she should see a <form> containing a textfield: 密碼, textfield: Email, password: 密碼, password: '密碼確認', submit: '註冊'
+     And  she should see a <form> containing a textfield: Login, textfield: Email, password: Password, password: 'Password Confirmation', submit: 'Sign up'
 
   #
   # Account Creation
