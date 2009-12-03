@@ -74,26 +74,26 @@ class User < ActiveRecord::Base
   # check position for group
   def manager?(group)
     urg = self.user_group_relations.find_by_group_id(group.id) 
-    urg.manager if urg
+    urg && urg.manager ? true :false
   end
 
   def approved?(group)
     urg = self.user_group_relations.find_by_group_id(group.id) 
-    urg.approved if urg
+    urg && urg.approved ? true :false
   end
 
   def approved_but_not_manager?(group)
     urg = self.user_group_relations.find_by_group_id(group.id) 
-    (urg.approved && !urg.manager) if urg
+    urg && (urg.approved && !urg.manager) ? true :false
   end
 
   def join?(group)
-    self.user_group_relations.find_by_group_id(group.id)
+    self.user_group_relations.find_by_group_id(group.id) ? true :false
   end
 
   def unapprove?(group)
     urg = self.user_group_relations.find_by_group_id(group.id)
-    !urg.approved  if urg
+    urg && !urg.approved ? true :false
   end
 
   def not_join?(group)

@@ -251,11 +251,11 @@ describe User, "the relationship with group" do
       :password_confirmation => 'generic',
       :email => "proven_user@example.com"
     )
-    @user.groups.create!(:name => "test group 1", :short_name => "tg1")
-    @user.groups.create!(:name => "test group 2", :short_name => "tg2")
+    @group1 = @user.groups.create!(:name => "test group 1", :short_name => "tg1")
+    @group2 = @user.groups.create!(:name => "test group 2", :short_name => "tg2")
     @user.save
 
-    @user.user_group_relations[0].proven = true
+    @user.user_group_relations[0].approved = true
     @user.user_group_relations[0].save
   end
   
@@ -268,35 +268,37 @@ describe User, "the relationship with group" do
   end
 
   it "should have 1 group this user joined and provened" do
-    @user.groups.proven.length.should eql(1)
-    @user.groups.proven[0].name.should eql("test group 1")
+    @user.groups.approved_groups.length.should eql(1)
+    @user.approved?(@group1)
   end
 
   it "should have 1 group this user joined but still not proven"  do
-    @user.groups.unproven.length.should eql(1)
-    @user.groups.unproven[0].name.should eql("test group 2")
+    @user.groups.unapprove_groups.length.should eql(1)
+    @user.unapprove?(@group2)
   end
 
-  it "should return true if user own this group" do
+  it "should return true if user manage this group" do
     group = Group.create!(:name => "test group 1", :short_name => "tg1")
     group.add_manager(@user)
     @user.manager?(group).should be_true
   end
 
-  it "should return false if user doesn't own this group" do
-    group = Group.create!(:name => "test group 1", :short_name => "tg1", :owner_id => @user.id + 2)
+  it "should return false if user doesn't manage this group" do
+    group = Group.create!(:name => "test group 1", :short_name => "tg1")
     @user.manager?(group).should be_false
   end
 
-  it "should return true if user follow this group" do
-    group = Group.create!(:name => "test group 3", :short_name => "tg3", :owner_id => @user.id + 2)
+  it "should return true if user join this group" do
+    group = Group.create!(:name => "test group 3", :short_name => "tg3")
     @user.groups << group
-    @user.follow?(group).should be_true
+    @user.join?(group).should be_true
+    @user.not_join?(group).should be_false
   end
 
-  it "should return false if user doesn't follow this group" do
-    group = Group.create!(:name => "test group 3", :short_name => "tg3", :owner_id => @user.id + 2)
-    @user.follow?(group).should be_false
+  it "should return false if user doesn't join this group" do
+    group = Group.create!(:name => "test group 3", :short_name => "tg3")
+    @user.join?(group).should be_false
+    @user.not_join?(group).should be_true
   end
 
 end
