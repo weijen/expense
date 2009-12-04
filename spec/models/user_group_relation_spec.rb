@@ -18,7 +18,8 @@ describe UserGroupRelation do
     @valid_attributes = {
       :user_id => 1,
       :group_id => 1,
-      :proven => false
+      :approved => false,
+      :manager => false
     }
   end
 

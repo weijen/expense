@@ -19,14 +19,15 @@ require 'spec_helper'
 
 describe Expense do
   before(:each) do
+    @tag = Tag.create!(:name => "test tag", :user_id => 1, :is_income => false)
+    @group = Group.create!(:name => "test group", :short_name => "tgg")
     @valid_attributes = {
-      :group_id => 1,
+      :group_id => @group.id,
       :user_id => 1,
-      :tag_id => 1,
-      :is_income => false,
+      :tag_id => @tag.id,
       :amount => 1.5,
-      :commit => "value for commit",
-      :charge_date => Date.today,
+      :note => "value for note",
+      :entry_date => Date.today,
       :currency_id => 1
     }
   end
