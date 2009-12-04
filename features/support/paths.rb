@@ -18,8 +18,14 @@ module NavigationHelpers
       edit_group_path(@group)
     when /group users page/
       group_users_path(@group)
-    when /new_expense_path/
-      new_expense_path
+    when /new_income_path/
+      new_expense_path(:kind => :income)
+    when /new_outgoing_path/
+      new_expense_path(:kind => :outgoing)
+    when /new_tag_path/
+      new_tag_path
+    when /tags_path/
+      tags_path
       # Add more mappings here.
       # Here is a more fancy example:
       #

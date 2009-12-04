@@ -12,7 +12,8 @@
           <tr>
             <td><%= tag.name %></td>
             <td>
-              <%= link_to(t(:edit), edit_tag_path(tag)) if tag.user == @current_user %>
+              <%= link_to(t(:edit), edit_tag_path(tag)) if tag.expenses.empty? && tag.user == @current_user %>
+              <%= link_to(t(:destroy), tag_path(tag), :confirm => t(:are_you_sure_to_destroy)) if tag.expenses.empty? && tag.user == @current_user %>
             </td>
           </tr>
         <% end -%>
@@ -27,7 +28,8 @@
           <tr>
             <td><%= tag.name %></td>
             <td>
-              <%= link_to(t(:edit), edit_tag_path(tag)) if tag.user == @current_user %>
+              <%= link_to(t(:edit), edit_tag_path(tag)) if tag.expenses.empty? && tag.user == @current_user %>
+              <%= link_to(t(:destroy), tag_path(tag), :confirm => t(:are_you_sure_to_destroy)) if tag.expenses.empty? && tag.user == @current_user %>
             </td>
           </tr>
         <% end -%>

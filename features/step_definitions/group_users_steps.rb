@@ -20,4 +20,14 @@ Given /^a user "([^\"]*)" is a approved user$/ do |login|
  @group.approved_users.should include(@proved_user)
 end
 
+Given /^I follow this group and be approved$/ do
+  @group.add_approved_user(@current_user)
+end
+
+Given /^I follow this group but still not to be approve$/ do
+   @group.add_unapprove_user(@current_user)
+end
+
+
+
 

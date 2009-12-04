@@ -130,10 +130,10 @@ describe SessionsController do
       get :new
     end
     it "should route session_path() correctly" do
-      session_path().should == "/session?locale=zh-TW"
+      session_path().should == "/session"
     end
     it "should route new_session_path() correctly" do
-      new_session_path().should == "/session/new?locale=zh-TW"
+      new_session_path().should == "/session/new"
     end
   end
   
