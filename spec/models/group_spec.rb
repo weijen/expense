@@ -85,4 +85,5 @@ describe Group do
       @group.unapprove_users.should include(user)
     end
   end
+
 end

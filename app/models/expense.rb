@@ -29,6 +29,7 @@ class Expense < ActiveRecord::Base
   named_scope :by_user, lambda { |user| {:conditions => ["user_id = ?", user.id]} }
   named_scope :by_tag, lambda { |tag| {:conditions => ["tag_id = ?", tag.id]} }
   named_scope :by_group, lambda { |group| {:conditions => ["group_id = ?", group.id]} }
+  named_scope :during, lambda {|start_date, end_date| {:conditions => ["entry_date BETWEEN ? AND ?", start_date.beginning_of_day, end_date.end_of_day] } }
 
   before_save :set_is_income, :increment_tag_used_count, :build_relation_between_group_and_tag
 

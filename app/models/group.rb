@@ -81,6 +81,20 @@ class Group < ActiveRecord::Base
     ugr.destroy if ugr
   end
 
+  # get report
+  
+  def users_report(start_date = Date.parse("2009-01-01"), end_date = Date.today)
+    self.approved_users.map do |user|
+      [user.login, user.expenses.by_group(self).during(start_date, end_date).total]
+    end
+  end
+
+  def tags_report(start_date = Date.parse("2009-01-01"), end_date = Date.today)
+    self.tags.map do |tag|
+      [tag.name, self.expenses.by_tag(tag).during(start_date, end_date).total]
+    end
+  end
+
   private
 
   def set_secret_id

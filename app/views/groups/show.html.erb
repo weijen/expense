@@ -16,15 +16,24 @@
       <p><%=h Group.human_attribute_name("short_name") %>: <%=h @group.short_name %></p>
       <% if @current_user.approved?(@group) -%>
         <p><%=h Group.human_attribute_name("total") %>: <%=h number_to_currency(@group.expenses.total, :precision => 0) %> </p>
+        <br />
+        <div class="inner grid_10 alpha">
+          <% form_for :expense, :url => group_path(@group), :html => {:method => :get} do |f| %>
+            <label>Start Date: </label><%= text_field_tag :start_date, @start_date.to_s(:db) -%>
+            <label>End Date: </label><%= text_field_tag :end_date, @end_date.to_s(:db) -%>
+            <%= f.submit "Search" %>
+          <% end -%>
+        </div>
+        <br /><br />
         <div class="inner grid_6 alpha">
           <table class='table'>
             <tr>
               <th colspan='2'><%= t("expenses.user_report") %></th>
             </tr>
-            <% @users.each do |user| -%>
-              <%= render :partial => "item", :locals => {:name => user.to_brief_info, :total => user.expenses.by_group(@group).total} %>
+            <% @users_report.each do |item| -%>
+              <%= render :partial => "item", :locals => {:name => item[0], :total => item[1]} %>
             <% end -%>
-            <%= render :partial => 'total', :locals => {:total => @group.expenses.total} %>
+            <%= render :partial => 'total', :locals => {:total => @report_total} %>
           </table>
         </div>
         <div class="inner grid_6 omega">
@@ -32,10 +41,10 @@
             <tr>
               <th colspan='2'><%= t("expenses.tag_report") %></th>
             </tr>
-            <% (@income_tags + @outgoing_tags).each do |tag| -%>
-              <%= render :partial => "item", :locals => {:name => tag.name, :total => tag.expenses.by_group(@group).total} %>
+            <% @tags_report.each do |item| -%>
+              <%= render :partial => "item", :locals => {:name => item[0], :total => item[1]} %>
             <% end -%> 
-            <%= render :partial => 'total', :locals => {:total => @group.expenses.total} %>
+            <%= render :partial => 'total', :locals => {:total => @report_total} %>
           </table>
         </div>
       <% end -%>
