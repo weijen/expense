@@ -90,7 +90,7 @@ end
 #
 
 def log_out
-  get '/sessions/destroy'
+  get '/logout' 
 end
 
 def log_out!

@@ -26,7 +26,6 @@ Given /^There are 100 expenses belongs to "([^\"]*)"$/ do |group|
 end
 
 Then /^I should see "([^\"]*)" spend "([^\"]*)" dallors$/ do |name, amount|
-  save_and_open_page
   user = User.find_by_login(name)
   within("tr#user_report_" + user.login) do |tr|
     tr.should contain(name)
