@@ -18,3 +18,4 @@ db/sphinx/*
 db/*.sqlite3
 test/*
 *.swp
+rerun.txt
