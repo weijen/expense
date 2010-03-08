@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   include AuthenticatedSystem
   before_filter :set_locale unless ["test", "cucumber"].include?(Rails.env)
+  before_filter :prepare_for_mobile
 
   def group_manager_required
     unless @current_user.manager?(@group)
@@ -43,6 +44,21 @@ class ApplicationController < ActionController::Base
   def default_url_options(options={})
     logger.debug "default_url_options is passed options: #{options.inspect}\n"
     { :locale => I18n.locale } unless ["test", "cucumber"].include?(Rails.env)
+  end
+
+  def mobile_device?
+    if session[:mobile_param]
+      session[:mobile_param] == '1'
+    else
+      request.user_agent =~ /Mobile|webOS/
+    end
+  end
+
+  helper_method :mobile_device?
+
+  def prepare_for_mobile
+    session[:mobile_param] = params[:mobile] if params[:mobile]
+    request.format = :mobile if mobile_device?
   end
 
 end

@@ -15,12 +15,17 @@
                             'handicraft/themes/default/red',
                             'application',
                             :cache => 'all' %>
-                            <!--<%= stylesheet_link_tag "/css/kuler.css?#{Time.now.to_i}", :id => "current-theme" %>-->
+    <%= stylesheet_link_tag 'mobile' if mobile_device? %>
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="alternate" type="application/atom+xml" href="/">
 </head>
 <%= render_body_tag %>
 <div id="doc">
+  <% if mobile_device? -%>
+    <%= link_to "Full Site", :mobile => 0 %>
+  <% else -%>
+    <%= link_to "Mobile Site", :mobile => 1 %>
+  <% end -%>
   <div id="header">
     <div class="container_16 clearfix">
       <div class="grid_16">
