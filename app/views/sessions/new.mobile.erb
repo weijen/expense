@@ -1,6 +1,15 @@
-<html>
-<head>
-</head>
-<body>
-This is a testing!
-</body>
+<div class="login section">
+  <% form_tag session_path, :class => "form login" do -%>
+    <p class="field">
+    <label><%= label_tag User.human_attribute_name(:login) %></label>
+    <%= text_field_tag 'login', @login, :class => "text" %>
+    </p>
+    <p class="field">
+    <label>密碼</label>
+    <%= password_field_tag 'password', nil, :class => "text" %>
+    </p>
+    <button class="submit"><%=h t('login') %></button>
+  <% end -%>
+</div>
+<p class="help"><a href="#">如何開始GUPUPU</a></p>
+
