@@ -1,5 +1,5 @@
 <div class="login section">
-  <% form_tag session_path, :class => "form login" do -%>
+  <% form_tag session_path do -%>
     <p class="field">
     <label><%= label_tag User.human_attribute_name(:login) %></label>
     <%= text_field_tag 'login', @login, :class => "text" %>

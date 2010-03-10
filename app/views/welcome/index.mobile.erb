@@ -1,0 +1,14 @@
+<% content_for :header_link do -%>
+  <%= link_to "首頁", "/", :class => "button back-button"%>
+  <%= link_to "登出", "/logout", :class => "button logout" %>
+<% end -%>
+
+<h3>團體名稱</h3>
+<ul class="menu list">
+  <% @current_user.groups.each do |group| -%>
+    <li>
+    <%= link_to group.name, "#" %>
+    </li>
+  <% end -%>
+</ul>
+
