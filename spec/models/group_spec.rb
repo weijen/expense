@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: groups
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  short_name :string(255)
-#  secret_id  :string(255)
-#  owner_id   :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 require 'spec_helper'
 
 describe Group do
@@ -22,8 +9,26 @@ describe Group do
   end
 
   it "should create a new instance given valid attributes" do
-    Group.create!(@valid_attributes)
+    group = Group.new(@valid_attributes)
+    puts group.inspect
   end
+
+  it "should set frozen after #set_freeze" do
+    @group = Group.create!(:name => "test_group", :short_name => "tgg")
+    @group.set_freeze
+    @group.reload
+    @group.state.should == "frozen"
+  end
+
+  it "should set alive after #set_alive" do
+    @group = Group.create!(:name => "test_group", :short_name => "tgg")
+    @group.set_freeze
+    @group.reload
+    @group.set_alive
+    @group.reload
+    @group.state.should == "alive"
+  end
+
 
   context "與User間的關係" do 
     before(:each) do
@@ -50,8 +55,7 @@ describe Group do
     end
 
     it "should have 2 users" do
-      group = Group.find_by_name("test_group")
-      group.users.length.should eql(2)
+      @group.users.length.should eql(2)
     end
     it "should get a proven users in this group" do
       @group.users.approved_users.length.should eql(1)
@@ -87,3 +91,21 @@ describe Group do
   end
 
 end
+
+# == Schema Information
+#
+# Table name: groups
+#
+#  id                :integer         not null, primary key
+#  name              :string(255)
+#  short_name        :string(255)
+#  secret_id         :string(255)
+#  owner_id          :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  state             :string(255)     default("alive")
+#  froze_before_date :date
+#  url               :string(255)
+#  description       :text
+#
+

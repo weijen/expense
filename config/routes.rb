@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
     user.resources :groups, :controller => 'user_groups', :member => {:join => :get}
   end
 
-  map.resources :groups do |group|
+  map.resources :groups, :member => {:freeze => :post, :alive => :post} do |group|
     group.resources :users, :controller => 'group_users', :member => {:approve => :get}
     group.resources :expenses, :controller => "group_expenses"
   end

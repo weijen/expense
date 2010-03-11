@@ -1,6 +1,6 @@
 <div class="block">
   <div class="content clearfix">
-    <h2><%= t("group.show", :group => @group.name) %></h2>
+    <h2><%= t("group.show", :group => @group.name) %> <%= t("group.frozen_message") if @group.state == "frozen" %></h2>
     <div class="inner grid_12 alpha">
       <%= render_list :class => 'menu' do |list|
         list << link_to(t("group.joined_users"), group_users_path(@group)) if @current_user.manager?(@group)
@@ -10,6 +10,8 @@
         list << link_to(t("group.add_outgoing_expense"), new_group_expense_path(@group, :kind => :outgoing)) if @current_user.approved?(@group)
         list << link_to(t("group.add_income_expense"), new_group_expense_path(@group, :kind => :income)) if @current_user.approved?(@group)
         list << link_to(t("edit"), edit_group_path(@group)) if @current_user.manager?(@group)
+        list << link_to(t("group.freeze"), freeze_group_path(@group), {:method => :post}) if @current_user.manager?(@group) && @group.state != "frozen"
+        list << link_to(t("group.alive"), alive_group_path(@group), {:method => :post}) if @current_user.manager?(@group) && @group.state == "frozen"
       end -%>
       <br /><br />
       <p><%=h Group.human_attribute_name("name") %>: <%=h @group.name %></p>

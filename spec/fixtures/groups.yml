@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: groups
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  short_name :string(255)
-#  secret_id  :string(255)
-#  owner_id   :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 # one:
@@ -18,3 +5,21 @@
 #
 # two:
 #   column: value
+
+# == Schema Information
+#
+# Table name: groups
+#
+#  id                :integer         not null, primary key
+#  name              :string(255)
+#  short_name        :string(255)
+#  secret_id         :string(255)
+#  owner_id          :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  state             :string(255)     default("alive")
+#  froze_before_date :date
+#  url               :string(255)
+#  description       :text
+#
+

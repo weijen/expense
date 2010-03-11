@@ -17,3 +17,6 @@
     all_tags: "所有類別"
     edit: "編輯團體"
     list: "所有團體"
+    freeze: "凍結"
+    alive: "解凍"
+    frozen_message: "這個團體已經凍結，不接受新的報帳"

@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: user_group_relations
-#
-#  id         :integer         not null, primary key
-#  user_id    :integer         not null
-#  group_id   :integer         not null
-#  approved   :boolean
-#  manager    :boolean
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
@@ -22,3 +9,17 @@ two:
   user_id: 1
   group_id: 1
   proven: false
+
+# == Schema Information
+#
+# Table name: user_group_relations
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer         not null
+#  group_id   :integer         not null
+#  approved   :boolean         default(FALSE)
+#  manager    :boolean         default(FALSE)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

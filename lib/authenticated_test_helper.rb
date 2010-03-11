@@ -13,7 +13,7 @@ module AuthenticatedTestHelper
     user = mock_model(User, :id => 1,
       :login  => 'user_name',
       :name   => 'U. Surname',
-      :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
+      :to_xml => "User-in-XML", :to_json => "User-in-JSON",
       :errors => [])
     user
   end  

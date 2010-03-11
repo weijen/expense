@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :login_required
-  before_filter :get_group, :only=>[:edit, :update, :destroy, :show]
-  before_filter :group_manager_required, :only=>[:edit, :update, :destroy]
+  before_filter :get_group, :only=>[:edit, :update, :destroy, :show, :freeze, :alive]
+  before_filter :group_manager_required, :only=>[:edit, :update, :destroy, :freeze, :alive]
 
 
   def index
@@ -69,6 +69,17 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(groups_url) }
     end
+  end
+
+  def freeze
+    @group.set_freeze
+    notice_stickie t('group.frozen_message')
+    redirect_to(@group)
+  end
+
+  def alive
+    @group.set_alive
+    redirect_to(@group)
   end
 
   private

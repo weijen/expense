@@ -17,3 +17,6 @@ en:
     all_tags: "AllTags"
     edit: "Editing" 
     list: "Group listing"
+    freeze: "Freeze"
+    alive: "Alive"
+    frozen_message: "This group was frozen"

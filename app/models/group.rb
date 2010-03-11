@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: groups
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  short_name :string(255)
-#  secret_id  :string(255)
-#  owner_id   :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 require 'digest/sha1'
 class Group < ActiveRecord::Base
   has_many :user_group_relations
@@ -18,6 +5,8 @@ class Group < ActiveRecord::Base
   has_many :tag_group_relations
   has_many :tags, :through => :tag_group_relations
   has_many :expenses
+
+  STATE=["alive", "frozen"] 
 
   validates_presence_of :name, :short_name
   validates_length_of :name, :within => 3..40
@@ -95,9 +84,37 @@ class Group < ActiveRecord::Base
     end
   end
 
+  #for state
+  
+  def set_freeze
+    update_attribute(:state, "frozen")
+  end
+  
+  def set_alive
+    update_attribute(:state, "alive")
+  end
+
   private
 
   def set_secret_id
     self.secret_id = Digest::SHA1.hexdigest(Time.now.to_f.to_s)
   end
 end
+
+# == Schema Information
+#
+# Table name: groups
+#
+#  id                :integer         not null, primary key
+#  name              :string(255)
+#  short_name        :string(255)
+#  secret_id         :string(255)
+#  owner_id          :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  state             :string(255)     default("alive")
+#  froze_before_date :date
+#  url               :string(255)
+#  description       :text
+#
+

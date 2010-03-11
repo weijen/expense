@@ -1,20 +1,3 @@
-# == Schema Information
-#
-# Table name: expenses
-#
-#  id          :integer         not null, primary key
-#  group_id    :integer         not null
-#  user_id     :integer         not null
-#  tag_id      :integer         not null
-#  is_income   :boolean
-#  amount      :float           not null
-#  note        :string(255)
-#  entry_date  :date
-#  currency_id :integer
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
 require 'spec_helper'
 
 describe Expense do
@@ -36,3 +19,21 @@ describe Expense do
     Expense.create!(@valid_attributes)
   end
 end
+
+# == Schema Information
+#
+# Table name: expenses
+#
+#  id          :integer         not null, primary key
+#  group_id    :integer         not null
+#  user_id     :integer         not null
+#  tag_id      :integer         not null
+#  is_income   :boolean         default(FALSE)
+#  amount      :float           not null
+#  note        :string(255)
+#  entry_date  :date
+#  currency_id :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
