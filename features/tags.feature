@@ -24,19 +24,20 @@ Feature: 帳單的分類
       | gugod | Test tag 2|
       | hlb | Test tag 3|
 
-  Scenario: 登入的使用者可以建立新的收入分類
-    Given I am logged in as "weijen"
-      And I go to new_tag_path
-     When I fill in "name" with "test_tag"
-      And I check "income?"
-      And I press "Create"
-     Then There is a tag named "test_tag" in db
-      And This tag is income tag
-      And This tag.user_id is my id
+ # Scenario: 登入的使用者可以建立新的收入分類
+ #   Given I am logged in as "weijen"
+ #     And I go to new_tag_path
+ #    When I fill in "name" with "test_tag"
+ #     And I check "income?"
+ #     And I press "Create"
+ #    Then There is a tag named "test_tag" in db
+ #     And This tag is income tag
+ #     And This tag.user_id is my id
 
+ @current
   Scenario: 分類的建立者可以有修改的連結，如果沒有帳單屬於這個分類
     Given I am logged in as "weijen"
-      And I create a "income" tag named "test_tag"
+      And I create a "outgoing" tag named "test_tag"
      When I am on tags_path 
      Then I should see "Edit"
 
@@ -50,7 +51,7 @@ Feature: 帳單的分類
 
   Scenario: 分類的建立者可以有刪除的連結，如果沒有帳單屬於這個分類
     Given I am logged in as "weijen"
-      And I create a "income" tag named "test_tag"
+      And I create a "outgoing" tag named "test_tag"
      When I am on tags_path 
      Then I should see "Destroy"
 

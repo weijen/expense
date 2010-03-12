@@ -24,7 +24,6 @@ class TagsController < ApplicationController
         format.html { render :action => "new" }
       end
     end
-
   end
 
   def update
@@ -38,7 +37,6 @@ class TagsController < ApplicationController
         format.html { render :action => "edit" }
       end
     end
-
   end
   
   private
