@@ -12,7 +12,7 @@
 end -%>
 
 <div id="froze_before_date_div" style="display:none;">
-  <% form_tag "#", :class=>'form' do -%>
+  <% form_tag freeze_date_group_path(@group), :class=>'form' do -%>
     <div style='margin-left:10px;'>
       <%= text_field_tag :froze_before_date, @group.froze_before_date, :style=>'float:left;' %>
       <%= submit_tag t("ok") %>

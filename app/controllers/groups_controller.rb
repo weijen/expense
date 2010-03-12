@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :login_required
-  before_filter :get_group, :only=>[:edit, :update, :destroy, :show, :freeze, :alive]
-  before_filter :group_manager_required, :only=>[:edit, :update, :destroy, :freeze, :alive]
+  before_filter :get_group, :except => [:index, :new, :create]
+  before_filter :group_manager_required, :only=>[:edit, :update, :destroy, :freeze, :alive, :freeze_date]
 
 
   def index
@@ -79,6 +79,12 @@ class GroupsController < ApplicationController
 
   def alive
     @group.set_alive
+    redirect_to(@group)
+  end
+
+  def freeze_date
+    fd = Date.parse(params[:froze_before_date]) unless params[:froze_before_date].blank?
+    @group.update_attribute(:froze_before_date, fd)
     redirect_to(@group)
   end
 
