@@ -36,6 +36,19 @@ Feature: 團體的的操作
     And I press "Create"
     Then I should see "Short name can't be blank"
 
+  Scenario: 新增團體的時候，我可以選擇分類
+    Given I am logged in as "weijen"
+    And There are 5 tags
+    When I go to groups/new 
+    And I fill in "group_name" with "group_name"
+    And I fill in "group_short_name" with "group_short_name"
+    And I check "aaa" tag
+    And I press "Create" 
+    Then A group named "group_name" should be created
+    And I should be on show group
+    And I am the manager of this group
+    And this group should have a tag "aaa"
+
   Scenario: 我是這個團體的管理員，我可以修改團體資料
     Given I am logged in as "weijen"
     And a group named "test_group" is belongs to me
@@ -88,7 +101,6 @@ Feature: 團體的的操作
     When I go to groups_path
     Then I should not see "group not belong to me"
 
-  @current
   Scenario: 如果我不屬於任何團體，有一個新增團體的連結給我選
     Given I am logged in as "weijen"
     When I go to groups_path

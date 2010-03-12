@@ -49,10 +49,10 @@ module Handicraft
       li << label(name, options.delete(:label) , :class => "desc" ) if options[:label]
       
       div = Handicraft::Helper::TagNode.new("div", :class=> "col")
-      
+
       field_name = "#{object_name}[#{name}][]"
       check_boxes_options.each do |value, key|
-        div << @template.check_box_tag(field_name, key, object.send(name).include?(key)) + " #{value} "
+        div << @template.check_box_tag(field_name, key, object.send(name).include?(key), {:id => "#{name}_#{key}"}) + "#{value}"
       end
       
       div << @template.hidden_field_tag(field_name, "")

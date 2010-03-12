@@ -1,4 +1,4 @@
 <p><%= f.text_field :name, :label=>Tag.human_attribute_name(:name) %></p>
-<p><%= hidden_field_tag :group_id, @group.secret_id %></p> 
+<p><%= hidden_field_tag :group_id, @group.secret_id if @group %></p> 
 <!--<p><%= f.check_box :is_income, :label => Tag.human_attribute_name(:is_income)  %></p>-->
 

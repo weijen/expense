@@ -45,4 +45,16 @@ Given /^I am an approved user for this group$/ do
   @group.add_approved_user(@current_user) 
 end
 
+Given /^There are 5 tags$/ do
+  %w[aaa bbb ccc ddd eee].each { |name| Tag.create!(:name => name, :user_id => @current_user.id) } 
+end
+
+When /^I check "([^\"]*)" tag$/ do |name|
+  tag = Tag.find_by_name(name)
+  check "tag_ids_#{tag.id}"
+end
+
+Then /^this group should have a tag "([^\"]*)"$/ do |name|
+  @group.tags.should include(Tag.find_by_name(name))
+end
 
