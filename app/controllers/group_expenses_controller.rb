@@ -64,7 +64,7 @@ class GroupExpensesController < ApplicationController
   end
 
   def get_expense_info
-    @tags = Tag.get_sorted_tags(@current_user, params[:kind])
+    @tags = @group.tags.outgoing 
     @kind = params[:kind] == "income" ? "income" : "outgoing"
   end
 

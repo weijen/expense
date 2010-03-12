@@ -5,6 +5,7 @@ class TagsController < ApplicationController
   end
 
   def new
+    @group = Group.find_by_secret_id(params[:group_id]) if params[:group_id]
     @tag = Tag.new
   end
 
@@ -13,11 +14,13 @@ class TagsController < ApplicationController
   end
 
   def create
+    @group = Group.find_by_secret_id(params[:group_id]) if params[:group_id]
     @tag = Tag.new(params[:tag])
     @tag.user = @current_user
 
     respond_to do |format|
       if @tag.save
+        @group.tags << @tag if @group
         notice_stickie(t(:create_successfully_stickie, :name => "#{Tag.human_name} : #{@tag.name}"))
         format.html { redirect_back_or_default(tags_url) }
       else

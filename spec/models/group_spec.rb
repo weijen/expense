@@ -90,6 +90,22 @@ describe Group do
     end
   end
 
+  context ".add_approved_user" do
+    before(:each) do
+      @group = Group.create!(:name => "MyGroup", :short_name=> "foo")
+      @user = User.create!(
+        :login => "approved_user",
+        :password => 'generic',
+        :password_confirmation => 'generic',
+        :email => "approved_user@example.com"
+      )
+    end
+
+    it "應該成為認證會員" do
+      @group.add_approved_user(@user)
+      @group.approved_users.should include(@user)
+    end
+  end
 end
 
 # == Schema Information

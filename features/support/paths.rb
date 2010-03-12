@@ -10,6 +10,8 @@ module NavigationHelpers
     
     when /the home\s?page/
       '/'
+    when /groups_path/
+      groups_path
     when /groups\/new/
       new_group_path
     when /show group/

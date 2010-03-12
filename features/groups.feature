@@ -68,3 +68,23 @@ Feature: 團體的的操作
     And I follow "Alive"
     And I should not see "Alive"
     And I should see "Freeze"
+
+  Scenario: 我可以瀏覽屬於我的團體
+    Given I am logged in as "weijen"
+    And a group named "test_group" is belongs to me
+    When I go to groups_path
+    Then I should see "test_group"
+  
+  @current
+  Scenario: 我可以瀏覽我有被邀請的團體
+    Given I am logged in as "weijen"
+    And a group named "group not belong to me" is not belongs to me
+    And I am an approved user for this group
+    When I go to groups_path
+    Then I should see "group not belong to me"
+
+  Scenario: 我不可以瀏覽我沒被邀請的團體
+    Given I am logged in as "weijen"
+    And a group named "group not belong to me" is not belongs to me
+    When I go to groups_path
+    Then I should not see "group not belong to me"

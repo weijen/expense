@@ -41,3 +41,8 @@ Given /^this group was frozen$/ do
   @group.set_freeze
 end
 
+Given /^I am an approved user for this group$/ do
+  @group.add_approved_user(@current_user) 
+end
+
+

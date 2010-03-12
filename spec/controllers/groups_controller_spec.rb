@@ -100,3 +100,23 @@ describe GroupsController, "alive group" do
     response.should redirect_to(group_path(@group))
   end
 end
+
+describe GroupsController, "index" do
+  before(:each) do
+    @my_group = Group.create!(:name => "MyGroup", :short_name => "foo")
+    @other_group = Group.create!(:name => "OtherGroup", :short_name => "bar")
+    @user  = mock_user
+    login_as(@user)
+    @my_group.add_approved_user(@user)
+  end
+
+  it "我可以看到我所屬於的團體" do
+    get :index
+    assigns[:groups].should include(@my_group) 
+  end
+
+  it "我不可以看到我沒有被邀請的團體" do
+    get :index
+    assigns[:groups].should_not include(@other_group)
+  end
+end

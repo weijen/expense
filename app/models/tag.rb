@@ -38,5 +38,4 @@ class Tag < ActiveRecord::Base
     end
     return [my_tags, groups_tags, all_tags].flatten.uniq
   end
-
 end
