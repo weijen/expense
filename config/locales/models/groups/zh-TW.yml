@@ -7,3 +7,6 @@
         name: "名稱"  
         short_name: "短名"
         total: "總計"
+        url: "網站"
+        description: "簡述"
+        froze_before_date: "凍結入帳日期"

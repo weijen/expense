@@ -7,3 +7,6 @@ en:
         name: "Name"  
         short_name: "Short name"
         total: "Total"
+        url: "URL"
+        description: "Description"
+        froze_before_date: "Froze before"

@@ -22,3 +22,4 @@ en:
     frozen_message: "This group was frozen"
     no_group_message: "You do not belong to any group"
     add_group: "Create a Group"
+    my_groups: "My Groups"

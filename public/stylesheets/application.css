@@ -46,3 +46,11 @@ div.box {
 }/*
   --------------------------------------*/
 
+.tags_checkbox {
+  margin-left: 5px;
+}
+
+#froze_before_date_div {
+  width:200px; 
+  position: absolute;
+}

@@ -52,7 +52,7 @@ module Handicraft
 
       field_name = "#{object_name}[#{name}][]"
       check_boxes_options.each do |value, key|
-        div << @template.check_box_tag(field_name, key, object.send(name).include?(key), {:id => "#{name}_#{key}"}) + "#{value}"
+        div << @template.check_box_tag(field_name, key, object.send(name).include?(key), {:id => "#{name}_#{key}", :class => 'tags_checkbox'}) + " #{value} "
       end
       
       div << @template.hidden_field_tag(field_name, "")

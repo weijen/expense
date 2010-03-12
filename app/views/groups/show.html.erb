@@ -43,13 +43,20 @@
     </div>
   </div>
 </div>
-
 <% content_for :page_specific_javascript do-%>
   <script type="text/javascript">
     var option = {dateFormat: 'yy-mm-dd'};
     $(document).ready(function(){
         $('#start-date').datepicker(option);
         $('#end-date').datepicker(option);
+
+        var freeze_date_link_pos = $('#freeze_date_link').position();
+        $('#froze_before_date_div').css({top: freeze_date_link_pos.top, 
+                                     left: freeze_date_link_pos.left + 70}); 
+        $('#freeze_date_link').click(function(){
+          $('#froze_before_date_div').toggle();
+          });
         });
+        $('#froze_before_date').datepicker(option);
 </script>
 <% end -%>

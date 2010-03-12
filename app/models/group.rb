@@ -11,6 +11,7 @@ class Group < ActiveRecord::Base
   validates_presence_of :name, :short_name
   validates_length_of :name, :within => 3..40
   validates_length_of :short_name, :within => 3..40
+  validates_format_of :url, :with => /^(http|https|ftp):\/\/.*/, :if => Proc.new { |group| !group.url.blank? }
 
   before_create :set_secret_id
 
