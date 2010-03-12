@@ -20,3 +20,5 @@
     freeze: "凍結"
     alive: "解凍"
     frozen_message: "這個團體已經凍結，不接受新的報帳"
+    no_group_message: "你目前不屬於任何團體"
+    add_group: "建立你的團體"

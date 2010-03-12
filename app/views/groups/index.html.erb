@@ -2,28 +2,36 @@
   <div class="content clearfix">
     <h2><%= t("group.list") %></h2>
     <div class="inner grid_10 alpha">
-      <%= link_to t("group.new"), new_group_path %>
-      <table class ='table'>
-        <tr>
-          <th><%= Group.human_attribute_name(:name) %></th>
-          <th><%= Group.human_attribute_name(:short_name) %></th>
-          <th></th>
-        </tr>
-
-        <% @groups.each do |group| %>
+      <% unless @groups.empty? -%>
+        <%= link_to t("group.new"), new_group_path %>
+        <table class ='table'>
           <tr>
-            <td><%=h group.name %></td>
-            <td><%=h group.short_name %></td>
-            <td>
-              <%= render_list :class => 'menu' do |list|
-                list << link_to(t(:show), group)
-                list << link_to(t(:edit), edit_group_path(group)) if @current_user.manager?(group) 
-                list << link_to(t(:destroy), group, :confirm => t(:are_you_sure_to_destroy), :method => :delete) if @current_user.manager?(group) 
-              end -%>
-            </td>
+            <th><%= Group.human_attribute_name(:name) %></th>
+            <th><%= Group.human_attribute_name(:short_name) %></th>
+            <th></th>
           </tr>
-        <% end %>
-      </table>
+
+          <% @groups.each do |group| %>
+            <tr>
+              <td><%=h group.name %></td>
+              <td><%=h group.short_name %></td>
+              <td>
+                <%= render_list :class => 'menu' do |list|
+                  list << link_to(t(:show), group)
+                  list << link_to(t(:edit), edit_group_path(group)) if @current_user.manager?(group) 
+                  list << link_to(t(:destroy), group, :confirm => t(:are_you_sure_to_destroy), :method => :delete) if @current_user.manager?(group) 
+                end -%>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+
+      <% else -%>
+        <div>
+          <p><%= t("group.no_group_message") %></p>
+          <p><%= link_to t("group.add_group"), new_group_path %></p>
+        </div>
+      <% end -%>
 
     </div>
   </div>

@@ -20,3 +20,5 @@ en:
     freeze: "Freeze"
     alive: "Alive"
     frozen_message: "This group was frozen"
+    no_group_message: "You do not belong to any group"
+    add_group: "Create a Group"

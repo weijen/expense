@@ -2,7 +2,7 @@ Feature: 團體的的操作
 
   (done)使用者可以新增一個團體，而這個使用者就必然是這個團體的管理員。
   (done)管理員可以修改團體的資料，或者刪除團體。
-  管理員可以凍結團體，就不再接受報帳了
+  (done)管理員可以凍結團體，就不再接受報帳了
   管理員可以凍結報帳時間，不再接受那個時間之前的報帳
 
   Scenario: 新增團體的正常狀況
@@ -75,7 +75,6 @@ Feature: 團體的的操作
     When I go to groups_path
     Then I should see "test_group"
   
-  @current
   Scenario: 我可以瀏覽我有被邀請的團體
     Given I am logged in as "weijen"
     And a group named "group not belong to me" is not belongs to me
@@ -88,3 +87,9 @@ Feature: 團體的的操作
     And a group named "group not belong to me" is not belongs to me
     When I go to groups_path
     Then I should not see "group not belong to me"
+
+  @current
+  Scenario: 如果我不屬於任何團體，有一個新增團體的連結給我選
+    Given I am logged in as "weijen"
+    When I go to groups_path
+    Then I should see "You do not belong to any group"
