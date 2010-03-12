@@ -21,8 +21,8 @@
         <br />
         <div class="inner grid_10 alpha">
           <% form_for :expense, :url => group_path(@group), :html => {:method => :get} do |f| %>
-            <label>Start Date: </label><%= text_field_tag :start_date, @start_date.to_s(:db) -%>
-            <label>End Date: </label><%= text_field_tag :end_date, @end_date.to_s(:db) -%>
+            <label>Start Date: </label><%= text_field_tag :start_date, @start_date.to_s(:db), :id=>'start-date' -%>
+            <label>End Date: </label><%= text_field_tag :end_date, @end_date.to_s(:db), :id => 'end-date' -%>
             <%= f.submit "Search" %>
           <% end -%>
         </div>
@@ -54,4 +54,12 @@
   </div>
 </div>
 
-
+<% content_for :page_specific_javascript do-%>
+  <script type="text/javascript">
+    var option = {dateFormat: 'yy-mm-dd'};
+    $(document).ready(function(){
+        $('#start-date').datepicker(option);
+        $('#end-date').datepicker(option);
+        });
+</script>
+<% end -%>

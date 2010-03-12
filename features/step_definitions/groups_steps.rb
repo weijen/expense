@@ -37,3 +37,7 @@ Then /^the group is not exist$/ do
   @group.should be_nil
 end
 
+Given /^this group was frozen$/ do
+  @group.set_freeze
+end
+

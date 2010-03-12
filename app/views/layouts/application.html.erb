@@ -14,6 +14,7 @@
                             'handicraft/themes/default/core',
                             'handicraft/themes/default/red',
                             'application',
+                            'jquery-ui/ui.all',
                             :cache => 'all' %>
     <%= stylesheet_link_tag 'mobile' if mobile_device? %>
     <link rel="shortcut icon" href="/favicon.ico">
@@ -73,6 +74,9 @@
                                'jquery.form',
                                'handicraft',
                                'application',
+                               'jquery-ui/ui.core',
+                               'jquery-ui/ui.datepicker',
+                               'jquery-ui/i18n/ui.datepicker-zh-TW',
                                :cache => 'all' %>
 <%= init_tinymce_hammer_if_required %>
 <%= yield_authenticity_token %>
