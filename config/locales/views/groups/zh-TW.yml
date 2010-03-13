@@ -23,3 +23,4 @@
     no_group_message: "你目前不屬於任何團體"
     add_group: "建立你的團體"
     my_groups: "我的團體"
+    frozen_before_date: "這個團體已經凍結{{frozen_date}}之前的報帳"

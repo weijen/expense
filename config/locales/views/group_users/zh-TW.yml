@@ -6,4 +6,7 @@
     approve: "接受"
     remove: "移除"
     confirm_remove: "將{{user}}從團友名單中刪除"
+    add_new_user: "邀請使用者加入團體"
+    input_email: "請輸入email"
+    invite_user: "已經邀請: {{name}}"
 

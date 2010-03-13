@@ -6,3 +6,6 @@ en:
     approve: "Approve"
     remove: "Remove"
     confirm_remove: "Remove {{user}}?"
+    add_new_user: "Invite new user to group"
+    input_email: "Please input email"
+    invite_user: "Invite User: {{name}}"

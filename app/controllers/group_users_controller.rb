@@ -7,9 +7,19 @@ class GroupUsersController < ApplicationController
     @group_users = @group.users
   end
 
+  def new
+  end
+
+  def invite
+    user = User.find_by_email(params[:email])
+    @group.add_approved_user(user) if user
+    notice_stickie t("group_users.invite_user", :name => user.name)
+    redirect_to new_group_user_path(@group)
+  end
+
   def approve
     user = User.find(params[:id])
-    @group.add_approved_user(user)
+    @group.add_approved_user(user) if user
 
     notice_stickie t("group_users.approve_user", :login => user.login)
     redirect_to group_users_path(@group)

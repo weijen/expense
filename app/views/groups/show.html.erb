@@ -1,6 +1,6 @@
 <div class="block">
   <div class="content clearfix">
-    <h2><%= t("group.show", :group => @group.name) %> <%= t("group.frozen_message") if @group.state == "frozen" %></h2>
+    <h2><%= t("group.show", :group => @group.name) %><label style="margin-left:20px;"> <%= group_state_message(@group) %></label></h2>
     <div class="inner grid_12 alpha">
       <%= render :partial => 'menu'  %>
       <br /><br />
@@ -44,6 +44,10 @@
   </div>
 </div>
 <% content_for :page_specific_javascript do-%>
+  <%= javascript_include_tag 'jquery-ui/jquery.ui.datepicker',
+                               'jquery-ui/i18n/jquery.ui.i18n',
+                               'jquery-ui/i18n/jquery.ui.datepicker-zh-TW',
+                               :cache => 'all' %>
   <script type="text/javascript">
     var option = {dateFormat: 'yy-mm-dd'};
     $(document).ready(function(){

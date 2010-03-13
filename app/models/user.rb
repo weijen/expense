@@ -105,6 +105,10 @@ class User < ActiveRecord::Base
   def to_brief_info
     return "#{login}(#{name})"
   end
+
+  def subset_data
+    {:login => login, :name => name, :value => email}
+  end
   
   protected
 end

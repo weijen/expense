@@ -38,8 +38,13 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
   config.i18n.default_locale = "zh-TW"
+
+  config.gem "ambethia-recaptcha", :lib => "recaptcha/rails", :source => "http://gems.github.com"
 end
 
 LOCALES_AVAILABLE = [ ["English",'en'],["繁體中文",'zh-TW'] ]
 VALID_LOCALES = LOCALES_AVAILABLE.map{ |l| l[1] }
 SITE_NAME = "GuRuPu"
+
+RECAPTCHA_PUBLIC_KEY  = "6LcdxgsAAAAAAHtT8oQO5JuzAuVuptEwwUkP1vzK"
+RECAPTCHA_PRIVATE_KEY = "6LcdxgsAAAAAALWiv1ZfuSEWnfQML6ede8ol52c5"

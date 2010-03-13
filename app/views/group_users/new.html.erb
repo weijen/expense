@@ -1,0 +1,57 @@
+<div class="block">
+  <div class="content clearfix">
+    <h2><%=h t('group_users.add_new_user') -%></h2>
+    <div class="inner">
+      <div class='ui-widget'>
+        <label><%=h t('group_users.input_email') %>：</label><%= text_field_tag :user_email, "" %>
+        <div class="result" style="display:none">
+          <table class='table'>
+            <tr>
+              <th><%= User.human_attribute_name(:name)%></th>
+              <th><%= User.human_attribute_name(:email)%></th>
+              <th></th>
+            </tr>
+            <tr>
+              <td id='name'></td>
+              <td id='email'></td>
+              <td id='link'></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :page_specific_javascript do -%>
+  <%= javascript_include_tag "jquery-ui/jquery.ui.widget",
+                             "jquery-ui/jquery.ui.position",
+                             "jquery-ui/jquery.ui.autocomplete.js",
+                             :cache => :all %>
+  <script type="text/javascript">
+    $(function() {
+        var add_user_url = '<%= invite_group_users_path(@group)%>';
+        $('#user_email').autocomplete({
+            source: '/users.json',
+            minLength: 2,
+            select: function(event, ui)
+            {
+              $('.result').show();
+              $('#name').html(ui.item.name);
+              $('#email').html(ui.item.value);
+              $('#link').html('<a href="' + add_user_url + '?email=' + ui.item.value + '">邀請</a>');
+            }
+            });
+        });
+        
+  </script>
+  <style>
+    .ui-widget{
+      margin-bottom: 100px;
+    }
+    .result{
+      width: 300px;
+      margin-top: 50px;
+    }
+  </style>
+<% end -%>

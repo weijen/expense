@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
   before_filter :login_required, :only => [:edit, :update, :destroy]
 
+  def index
+    respond_to do |format|
+      format.json do
+        users = User.find(:all, :conditions => ["email like ?", "%#{params[:term]}%"])
+        render :text => users.map{ |user| user.subset_data }.to_json
+      end
+    end
+  end
+
   def new
     @user = User.new
   end

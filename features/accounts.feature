@@ -11,7 +11,6 @@ Story: Creating an account
   #
   # Account Creation: Get entry form
   #
-  @here
   Scenario: Anonymous user can start creating an account
     Given an anonymous user
     When  she goes to /signup
