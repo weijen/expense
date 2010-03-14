@@ -3,7 +3,7 @@
   list << link_to(t("group.requiest_to_join"), join_user_group_path(@current_user, @group)) if @current_user.not_join?(@group)
   list << link_to(t("group.quit"), user_group_path(@current_user,@group), :method => :delete, :confirm => t("group.quit_confirm")) if !@current_user.manager?(@group) && @current_user.join?(@group)
   list << link_to(t("group.all_expenses"), group_expenses_path(@group)) if @current_user.approved?(@group)
-  list << link_to(t("group.add_outgoing_expense"), new_group_expense_path(@group, :kind => :outgoing)) if @current_user.approved?(@group)
+  list << link_to(t("group.add_outgoing_expense"), new_group_expense_path(@group, :kind => :outgoing)) if @current_user.approved?(@group) && @group.alive?
   #list << link_to(t("group.add_income_expense"), new_group_expense_path(@group, :kind => :income)) if @current_user.approved?(@group)
   list << link_to(t("edit"), edit_group_path(@group)) if @current_user.manager?(@group)
   list << link_to(t("group.freeze"), freeze_group_path(@group), {:method => :post}) if @current_user.manager?(@group) && @group.state != "frozen"

@@ -5,7 +5,7 @@ class ExpensesController < ApplicationController
   def index
     @expenses = @current_user.expenses.find(:all, :order => "entry_date DESC")
     @groups = @current_user.groups.approved_groups
-    @tags = @current_user.expenses.map{ |expense| expense.tag }.uniq.sort
+    @tags = @current_user.groups.approved_groups.first.tags.sort
 
     respond_to do |format|
       format.html 

@@ -95,6 +95,18 @@ class Group < ActiveRecord::Base
     update_attribute(:state, "alive")
   end
 
+  def frozen?
+    return true if self.state == 'frozen'
+
+    false
+  end
+
+  def alive?
+    return true if self.state == 'alive'
+
+    false
+  end
+
   private
 
   def set_secret_id

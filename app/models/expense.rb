@@ -15,6 +15,7 @@ class Expense < ActiveRecord::Base
   named_scope :during, lambda {|start_date, end_date| {:conditions => ["entry_date BETWEEN ? AND ?", start_date.beginning_of_day, end_date.end_of_day] } }
 
   before_save :set_is_income, :increment_tag_used_count, :build_relation_between_group_and_tag
+  validate :entry_date_after_frozen_date
 
   def charge_date
     self["charge_date"] || Date.today
@@ -43,6 +44,14 @@ class Expense < ActiveRecord::Base
 
   def show_amount
     "#{(is_income ? "" : "-")}#{amount}" 
+  end
+
+  private
+
+  def entry_date_after_frozen_date
+    if entry_date < group.froze_before_date
+      errors.add(:entry_date, "已超過報帳期限")
+    end
   end
 end
 

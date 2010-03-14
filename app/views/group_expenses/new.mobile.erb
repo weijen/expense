@@ -1,0 +1,30 @@
+<% content_for :header_link do -%>
+  <%= link_to Group.human_name, group_path(@group), :class => "button back-button" %>
+  <a href="#" class="button next-button">報表</a>
+<% end -%>
+<div class="hd">
+  <h3><%=h @group.name %></h3>
+  <span><%=h t('expenses.add_outgoing_expense') %></span>
+</div>
+<div class="section expense">
+  <% form_for [@group, @expense] do |f| -%>
+    <%= f.error_messages %>
+    <p class="field clearfix">
+    <label><%= Expense.human_attribute_name(:tag) %></label>
+    <%= f.select :tag_id, @tags.map{ |tag| [tag.name, tag.id]} %>
+    </p>
+    <p class="field clearfix">
+    <label><%=h Expense.human_attribute_name(:amount) %></label>
+    <%= f.text_field :amount, :pattern => "[0-9]*" %>
+    </p>
+    <p class="field clearfix">
+    <label><%=h  Expense.human_attribute_name(:entry_date) %></label>
+    <%= f.select :entry_date, selected_entry_date %>
+    </p>
+    <p class="field clearfix">
+    <label><%=h Expense.human_attribute_name(:note) %></label>
+    <%= f.text_field :note %>
+    </p>
+    <%= f.submit t("ok"), :class => 'submit' %>
+  <% end -%>
+ </div>

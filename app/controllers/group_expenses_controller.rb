@@ -11,11 +11,29 @@ class GroupExpensesController < ApplicationController
   end
 
   def new
-    @expense = @group.expenses.new
+    if @group.frozen?
+      error_stickie(t("group.frozen_message"))
+      redirect_to group_path(@group)
+    end
+
+    if @group.froze_before_date
+      notice_stickie(t("group.frozen_before_date", :frozen_date => @group.froze_before_date))
+    end
+    @expense = @group.expenses.new(:entry_date => Date.today)
     store_location
+
+    respond_to do |format|
+      format.html
+      format.mobile
+    end
   end
 
   def create
+    if @group.frozen?
+      error_stickie(t("group.frozen_message"))
+      redirect_to group_path(@group)
+    end
+
     @expense = @group.expenses.new(params[:expense])
     @expense.user = @current_user
 
@@ -23,8 +41,10 @@ class GroupExpensesController < ApplicationController
       if @expense.save
         notice_stickie(t(:create_successfully_stickie, :name => Expense.human_name))
         format.html { redirect_to group_expenses_url(@group) }
+        format.mobile {redirect_to group_expenses_url(@group)}
       else
         format.html { render :action => "new" }
+        format.mobile { render :action => "new" }
       end
     end
   end
@@ -65,7 +85,7 @@ class GroupExpensesController < ApplicationController
 
   def get_expense_info
     @tags = @group.tags.outgoing 
-    @kind = params[:kind] == "income" ? "income" : "outgoing"
+    @kind = "outgoing"
   end
 
 end

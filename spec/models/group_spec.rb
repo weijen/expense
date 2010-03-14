@@ -106,6 +106,37 @@ describe Group do
       @group.approved_users.should include(@user)
     end
   end
+
+  context "#alive?" do
+    before(:each) do
+      @group = Group.create!(:name => "MyGroup", :short_name=> "foo")
+    end
+
+    it "should be true if this group is alive" do
+      @group.alive?.should be_true
+     end
+
+    it "should be false if this group is not alive" do
+      @group.set_freeze
+      @group.alive?.should be_false
+    end
+  end
+
+  context "#frozen?" do
+    before(:each) do
+      @group = Group.create!(:name => "MyGroup", :short_name=> "foo")
+    end
+
+    it "should be true if this group is alive" do
+      @group.set_freeze
+      @group.frozen?.should be_true
+     end
+
+    it "should be false if this group is not alive" do
+      @group.frozen?.should be_false
+    end
+  end
+
 end
 
 # == Schema Information

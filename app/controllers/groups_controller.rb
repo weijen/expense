@@ -13,14 +13,16 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @start_date = Date.parse(params[:start_date]) rescue  @group.created_at.to_date
-    @end_date = Date.parse(params[:end_date]) rescue Date.today
-    @users_report = @group.users_report(@start_date, @end_date)
-    @tags_report = @group.tags_report(@start_date, @end_date)
-    @report_total = 0.0
-    @users_report.each { |item| @report_total += item[1] }
     respond_to do |format|
-      format.html 
+      format.html do
+        @start_date = Date.parse(params[:start_date]) rescue  @group.created_at.to_date
+        @end_date = Date.parse(params[:end_date]) rescue Date.today
+        @users_report = @group.users_report(@start_date, @end_date)
+        @tags_report = @group.tags_report(@start_date, @end_date)
+        @report_total = 0.0
+        @users_report.each { |item| @report_total += item[1] }
+      end
+      format.mobile 
     end
   end
 

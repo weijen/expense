@@ -29,7 +29,6 @@
           <th><%= Expense.human_attribute_name(:amount) %></th>
           <th><%= Expense.human_attribute_name(:note) %></th>
           <th><%= Expense.human_attribute_name(:entry_date) %></th>
-          <th><%= Expense.human_attribute_name(:currency) %></th>
           <th></th>
         </tr>
 
@@ -40,7 +39,6 @@
             <td class='money'><%=h number_to_currency(expense.show_amount, :precision => 0) %></td>
             <td><%=h expense.note %></td>
             <td><%=h expense.entry_date %></td>
-            <td><%=h expense.currency.name %></td>
             <td>
               <%= render_list :class => 'manu' do |list|
                 list << link_to(t(:show), expense_path(expense))

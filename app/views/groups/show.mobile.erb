@@ -1,0 +1,11 @@
+<% content_for :header_link do -%>
+  <a href="/" class="button back-button">首頁</a>
+  <a href="#" class="button logout">報表</a>
+<% end -%>
+
+<div id="container">
+  <h3><%=h @group.name %></h3>
+  <ul class="menu list">
+    <li><%= link_to t("expenses.add_outgoing_expense"), new_group_expense_path(@group) %></li>
+  </ul>
+</div>

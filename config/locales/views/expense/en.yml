@@ -11,4 +11,6 @@ en:
     edit: "Editing expense"
     group_overview: "Group: {{group}} Expenses"
     no_tag_stickie: "Please create a new tag"
-
+    today: "Today"
+    yesterday: "Yesterday"
+    tomorrow: "Tomorrow"

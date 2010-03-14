@@ -1,10 +1,21 @@
 <%= f.error_messages %>
-<%= hidden_field_tag :kind, kind %>
 <p>
 <%= f.select :tag_id, tags.map{ |tag| [tag.name, tag.id]}, :label => Expense.human_attribute_name(:tag) %>
 <label><%= link_to "NewTag", new_tag_path(:group_id => @group.secret_id) %></label>
 </p>
 <p><%= f.text_field :amount, :label => Expense.human_attribute_name(:amount) %></p>
+<p><%= f.text_field :entry_date, :label => Expense.human_attribute_name(:entry_date)  %></p>
 <p><%= f.text_field :note, :label => Expense.human_attribute_name(:note) %></p>
-<p><%= f.date_select :entry_date, :label => Expense.human_attribute_name(:entry_date)  %></p>
-<p><%= f.select :currency_id, Currency.find(:all).map{ |c| [c.name, c.id] }, :label => Expense.human_attribute_name(:currency) %></p>
+
+<% content_for :page_specific_javascript do -%>
+  <%= javascript_include_tag 'jquery-ui/jquery.ui.datepicker',
+                               'jquery-ui/i18n/jquery.ui.i18n',
+                               'jquery-ui/i18n/jquery.ui.datepicker-zh-TW',
+                               :cache => 'all' %>
+  <script type="text/javascript">
+    var option = {dateFormat: 'yy-mm-dd'};
+    $(document).ready(function(){
+      $('#expense_entry_date').datepicker(option);
+    });
+  </script>
+<% end -%>

@@ -7,7 +7,7 @@
 <ul class="menu list">
   <% @current_user.groups.each do |group| -%>
     <li>
-    <%= link_to group.name, "#" %>
+    <%= link_to group.name, group_path(group) %>
     </li>
   <% end -%>
 </ul>
