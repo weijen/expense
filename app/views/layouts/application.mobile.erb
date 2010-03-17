@@ -30,7 +30,16 @@
       <a href="#">聯絡我們</a>
     </div>
 
-    <%= javascript_include_tag "jquery-1.4.2.min", "jquery-ui/jquery.ui.core", "mobile" %>
+    <%= javascript_include_tag "jquery-1.4.2.min",
+                               "jquery-ui/jquery.ui.core",
+                               "mobile",
+                               'jquery-ui/jquery.ui.datepicker',
+                               'jquery-ui/i18n/jquery.ui.i18n',
+                               'jquery-ui/i18n/jquery.ui.datepicker-zh-TW',
+                               'jquery.cookie',
+                               'jquery-ui/jquery.ui.widget',
+                               'jquery-ui/jquery.ui.tabs',
+                               :cache => 'all' %>
     <script>
       $(document).ready(function(){
         setTimeout(function(){window.scrollTo(0, 1);}, 100);

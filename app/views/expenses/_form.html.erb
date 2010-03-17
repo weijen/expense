@@ -13,10 +13,6 @@
 <%= f.text_field :note, :label => Expense.human_attribute_name(:note) %>
 
 <% content_for :page_specific_javascript do -%>
-  <%= javascript_include_tag 'jquery-ui/jquery.ui.datepicker',
-                               'jquery-ui/i18n/jquery.ui.i18n',
-                               'jquery-ui/i18n/jquery.ui.datepicker-zh-TW',
-                               :cache => 'all' %>
   <script type="text/javascript">
     var option = {dateFormat: 'yy-mm-dd'};
 

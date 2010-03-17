@@ -46,12 +46,6 @@
 </div>
 
 <% content_for :page_specific_javascript do-%>
-  <%= javascript_include_tag 'jquery-ui/jquery.ui.datepicker',
-                               'jquery-ui/i18n/jquery.ui.i18n',
-                               'jquery-ui/i18n/jquery.ui.datepicker-zh-TW',
-                               'jquery-ui/jquery.ui.widget',
-                               'jquery-ui/jquery.ui.button',
-                               :cache => 'page' %>
   <script type="text/javascript">
     var option = {dateFormat: 'yy-mm-dd'};
     $(function(){

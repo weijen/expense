@@ -15,11 +15,6 @@
 </div>
 
 <% content_for :page_specific_javascript do-%>
-  <%= javascript_include_tag 'jquery.cookie',
-                             'jquery-ui/jquery.ui.widget',
-                             'jquery-ui/jquery.ui.tabs',
-                             :cache => 'all' %>
-
   <script type="text/javascript">
     $(function(){
       $("#tabs").tabs({

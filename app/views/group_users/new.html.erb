@@ -24,10 +24,6 @@
 </div>
 
 <% content_for :page_specific_javascript do -%>
-  <%= javascript_include_tag "jquery-ui/jquery.ui.widget",
-                             "jquery-ui/jquery.ui.position",
-                             "jquery-ui/jquery.ui.autocomplete.js",
-                             :cache => :all %>
   <script type="text/javascript">
     $(function() {
         var add_user_url = '<%= invite_group_users_path(@group)%>';
