@@ -2,7 +2,7 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  logo: "Group Expenses 0.0.2 | Easy Break Version"
+  logo: "Group Expenses 0.0.3 | Easy Break Version"
   have_no_right_to: "You have no right to access this page"
   create: "Create"
   update: "Update"
