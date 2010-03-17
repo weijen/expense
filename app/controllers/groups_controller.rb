@@ -3,7 +3,6 @@ class GroupsController < ApplicationController
   before_filter :get_group, :except => [:index, :new, :create]
   before_filter :group_manager_required, :only=>[:edit, :update, :destroy, :freeze, :alive, :freeze_date]
 
-
   def index
     @groups = @current_user.groups 
 
@@ -17,10 +16,6 @@ class GroupsController < ApplicationController
       format.html do
         @start_date = Date.parse(params[:start_date]) rescue  @group.created_at.to_date
         @end_date = Date.parse(params[:end_date]) rescue Date.today
-        @users_report = @group.users_report(@start_date, @end_date)
-        @tags_report = @group.tags_report(@start_date, @end_date)
-        @report_total = 0.0
-        @users_report.each { |item| @report_total += item[1] }
       end
       format.mobile 
     end
@@ -88,6 +83,15 @@ class GroupsController < ApplicationController
     fd = Date.parse(params[:froze_before_date]) unless params[:froze_before_date].blank?
     @group.update_attribute(:froze_before_date, fd)
     redirect_to(@group)
+  end
+
+  def report
+    @start_date = Date.parse(params[:start_date]) rescue  @group.created_at.to_date
+    @end_date = Date.parse(params[:end_date]) rescue Date.today
+
+    respond_to do |format|
+      format.mobile
+    end
   end
 
   private

@@ -2,7 +2,7 @@
   <% form_tag session_path do -%>
     <p class="field">
     <label><%= label_tag User.human_attribute_name(:login) %></label>
-    <%= text_field_tag 'login', @login, :class => "text" %>
+    <%= text_field_tag 'login', @login, :class => "text", :autocorrect => "off", :autocapitalize => "off" %>
     </p>
     <p class="field">
     <label>密碼</label>

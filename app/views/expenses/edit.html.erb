@@ -4,7 +4,7 @@
     <div class="inner">
       <% handicraft_form_for(@expense) do |f| %>
         <%= render :partial => 'form', :locals => { :f => f, :groups => @groups, :tags => @tags, :kind => @kind }%>
-        <%= f.submit 'Update' %>
+        <%= f.submit 'Update', :id => 'confirm-button' %>
       <% end %>
     </div>
   </div>

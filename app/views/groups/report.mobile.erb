@@ -1,0 +1,48 @@
+<% content_for :header_link do -%>
+  <%= link_to Group.human_name, group_path(@group), :class => "button back-button" %>
+  <a href="#" class="button next-button">報表</a>
+<% end -%>
+
+<% content_for :select_date do -%>
+  <% form_for report_group_path(@group), :html => {:method => :get} do -%>
+    <div id="date">
+    <%= text_field_tag :start_date, @start_date.to_date, :class => 'text', :readonly => 'true' %>
+    <span>TO</span>
+    <%= text_field_tag :end_date, @end_date.to_date, :class => 'text', :readonly => 'true' %>
+    <%= submit_tag "確定", :style => "float: right;" %>
+  </div>
+  <% end -%>
+  
+<% end -%>
+
+<div id='tabs' class="section account">
+  <ul>
+    <li><%= link_to "團友", users_report_group_expenses_path(@group, :start_date => @start_date, :end_date => @end_date) %></li>
+    <li<%= link_to "分類", tabs_report_group_expenses_path(@group, :start_date => @start_date, :end_date => @end_date) %></li>
+  </ul>
+</div>
+
+<% content_for :page_specific_javascript do -%>
+  <%= javascript_include_tag 'jquery-ui/jquery.ui.datepicker',
+                               'jquery-ui/i18n/jquery.ui.i18n',
+                               'jquery-ui/i18n/jquery.ui.datepicker-zh-TW',
+                               'jquery.cookie',
+                               'jquery-ui/jquery.ui.widget',
+                               'jquery-ui/jquery.ui.tabs',
+                               :cache => 'all' %>
+  <script type="text/javascript">
+    var option = {dateFormat: 'yy-mm-dd'};
+    $(function(){
+        $('#start_date').datepicker(option);
+        $('#end_date').datepicker(option);
+
+        $("#tabs").tabs({
+          ajaxOptions: {
+            error: function(xhr, status, index, anchor) {
+              $(anchor.hash).html("Couldn't load this tab. We'll try to fix this as soon as possible.");
+            }
+          }
+        });
+    });
+  </script>
+<% end -%>

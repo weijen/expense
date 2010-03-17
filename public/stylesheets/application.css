@@ -1,4 +1,4 @@
-.money{
+.amount{
   text-align: right;
 }
 
@@ -54,3 +54,10 @@ div.box {
   width:200px; 
   position: absolute;
 }
+
+/* ------------jquery ui tabs-------------------*/
+
+.ui-tabs .ui-tabs-hide {
+     display: none;
+}
+

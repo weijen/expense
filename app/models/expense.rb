@@ -49,7 +49,7 @@ class Expense < ActiveRecord::Base
   private
 
   def entry_date_after_frozen_date
-    if entry_date < group.froze_before_date
+    if group.froze_before_date && entry_date < group.froze_before_date
       errors.add(:entry_date, "已超過報帳期限")
     end
   end

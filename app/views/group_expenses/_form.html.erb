@@ -4,7 +4,7 @@
 <label><%= link_to "NewTag", new_tag_path(:group_id => @group.secret_id) %></label>
 </p>
 <p><%= f.text_field :amount, :label => Expense.human_attribute_name(:amount) %></p>
-<p><%= f.text_field :entry_date, :label => Expense.human_attribute_name(:entry_date)  %></p>
+<p><%= f.text_field :entry_date, :label => Expense.human_attribute_name(:entry_date), :readonly => true %></p>
 <p><%= f.text_field :note, :label => Expense.human_attribute_name(:note) %></p>
 
 <% content_for :page_specific_javascript do -%>

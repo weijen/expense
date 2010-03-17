@@ -17,27 +17,11 @@
           <% end -%>
         </div>
         <br /><br />
-        <div class="inner grid_6 alpha">
-          <table class='table'>
-            <tr>
-              <th colspan='2'><%= t("expenses.user_report") %></th>
-            </tr>
-            <% @users_report.each do |item| -%>
-              <%= render :partial => "item", :locals => {:name => item[0], :total => item[1]} %>
-            <% end -%>
-            <%= render :partial => 'total', :locals => {:total => @report_total} %>
-          </table>
-        </div>
-        <div class="inner grid_6 omega">
-          <table class='table'>
-            <tr>
-              <th colspan='2'><%= t("expenses.tag_report") %></th>
-            </tr>
-            <% @tags_report.each do |item| -%>
-              <%= render :partial => "item", :locals => {:name => item[0], :total => item[1]} %>
-            <% end -%> 
-            <%= render :partial => 'total', :locals => {:total => @report_total} %>
-          </table>
+        <div id='tabs'>
+          <ul>
+            <li><%= link_to t("expenses.user_report"), users_report_group_expenses_path(@group, :start_date => @start_date, :end_date => @end_date) %></li>
+            <li<%= link_to t("expenses.tag_report"), tabs_report_group_expenses_path(@group, :start_date => @start_date, :end_date => @end_date) %></li>
+          </ul>
         </div>
       <% end -%>
     </div>
@@ -47,10 +31,13 @@
   <%= javascript_include_tag 'jquery-ui/jquery.ui.datepicker',
                                'jquery-ui/i18n/jquery.ui.i18n',
                                'jquery-ui/i18n/jquery.ui.datepicker-zh-TW',
+                               'jquery.cookie',
+                               'jquery-ui/jquery.ui.widget',
+                               'jquery-ui/jquery.ui.tabs',
                                :cache => 'all' %>
   <script type="text/javascript">
     var option = {dateFormat: 'yy-mm-dd'};
-    $(document).ready(function(){
+    $(function(){
         $('#start-date').datepicker(option);
         $('#end-date').datepicker(option);
 
@@ -60,7 +47,15 @@
         $('#freeze_date_link').click(function(){
           $('#froze_before_date_div').toggle();
           });
-        });
         $('#froze_before_date').datepicker(option);
+
+        $("#tabs").tabs({
+          ajaxOptions: {
+            error: function(xhr, status, index, anchor) {
+              $(anchor.hash).html("Couldn't load this tab. We'll try to fix this as soon as possible.");
+            }
+          }
+          });
+    });
 </script>
 <% end -%>

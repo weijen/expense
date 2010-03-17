@@ -6,8 +6,36 @@ class GroupExpensesController < ApplicationController
   before_filter :get_expense_info, :only => [:new, :create, :edit, :update]
 
   def index
-    @expenses = @group.expenses.find(:all, :order => "entry_date DESC")
-    @total = @group.expenses.total
+    @start_date = Date.parse(params[:start_date]) rescue @group.created_at
+    @end_date = Date.parse(params[:end_date]) rescue Date.today
+
+    @expenses = @group.expenses.during(@start_date, @end_date).find(:all, :order => "entry_date DESC")
+    @total = @group.expenses.during(@start_date, @end_date).total
+  end
+
+  def users_report
+    @start_date = Date.parse(params[:start_date]) rescue @group.created_at
+    @end_date = Date.parse(params[:end_date]) rescue Date.today
+
+    @users_report = @group.users_report(@start_date, @end_date)
+    @total = @group.expenses.during(@start_date, @end_date).total
+    respond_to do |format|
+      format.html {render :template => "group_expenses/users_report.html", :layout => false}
+      format.mobile {render :template => "group_expenses/users_report.html", :layout => false}
+    end
+    
+  end
+
+  def tabs_report
+    @start_date = Date.parse(params[:start_date]) rescue @group.created_at
+    @end_date = Date.parse(params[:end_date]) rescue Date.today
+
+    @tabs_report = @group.tags_report(@start_date, @end_date)
+    @total = @group.expenses.during(@start_date, @end_date).total
+    respond_to do |format|
+      format.html {render :template => "group_expenses/tabs_report.html", :layout => false}
+      format.mobile {render :template => "group_expenses/tabs_report.html", :layout => false}
+    end
   end
 
   def new

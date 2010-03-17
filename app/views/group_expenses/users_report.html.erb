@@ -1,0 +1,6 @@
+<table class='table'>
+  <% @users_report.each do |item| -%>
+    <%= render :partial => "groups/item.html", :locals => {:name => item[0], :total => item[1]} %>
+  <% end -%>
+  <%= render :partial => 'groups/total.html', :locals => {:total => @total} %>
+</table>

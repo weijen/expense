@@ -9,9 +9,10 @@ ActionController::Routing::Routes.draw do |map|
     user.resources :groups, :controller => 'user_groups', :member => {:join => :get}
   end
 
-  map.resources :groups, :member => {:freeze => :post, :alive => :post, :freeze_date => :post} do |group|
+  map.resources :groups, :member => {:freeze => :post, :alive => :post, :freeze_date => :post, :report =>:get} do |group|
     group.resources :users, :controller => 'group_users', :member => {:approve => :get}, :collection => {:invite => :get}
-    group.resources :expenses, :controller => "group_expenses"
+    group.resources :expenses, :controller => "group_expenses", :collection => {:users_report => :get, :tabs_report => :get}
+    group.resources :tags, :controller => "group_tags"
   end
 
   map.resources :tags

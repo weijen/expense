@@ -1,6 +1,6 @@
 <% content_for :header_link do -%>
   <%= link_to Group.human_name, group_path(@group), :class => "button back-button" %>
-  <a href="#" class="button next-button">報表</a>
+  <%= link_to "報表", report_group_path(@group), :class => "button next-button" %>
 <% end -%>
 <div class="hd">
   <h3><%=h @group.name %></h3>
@@ -27,4 +27,4 @@
     </p>
     <%= f.submit t("ok"), :class => 'submit' %>
   <% end -%>
- </div>
+</div>

@@ -19,6 +19,7 @@
         <h1>GURUPU</h1>
         <%= yield :header_link %>
       </div>
+      <%= yield :select_date %>
       <div id="container">
         <%= render_stickies :close => nil %>
         <%= yield %>
@@ -29,10 +30,11 @@
       <a href="#">聯絡我們</a>
     </div>
 
-    <%= javascript_include_tag "jquery-1.4.2.min", "mobile" %>
+    <%= javascript_include_tag "jquery-1.4.2.min", "jquery-ui/jquery.ui.core", "mobile" %>
     <script>
       $(document).ready(function(){
         setTimeout(function(){window.scrollTo(0, 1);}, 100);
+        $('input[type=text]:first').focus();
       });
     </script>
     <%= yield :page_specific_javascript %>

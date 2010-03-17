@@ -1,10 +1,16 @@
 <%= f.error_messages %>
 <%= hidden_field_tag :kind, kind %>
-<p><%= f.select(:group_id, groups.map{ |g| [g.short_name, g.id] }, :label => Expense.human_attribute_name(:group)) %></p>
-<p><%= f.select(:tag_id, tags.map{ |tag| [tag.name, tag.id] }, :label => Expense.human_attribute_name(:tag)) %></p>
-<p><%= f.text_field :amount, :label => Expense.human_attribute_name(:amount) %></p>
-<p><%= f.date_select :entry_date, :label => Expense.human_attribute_name(:entry_date) %></p>
-<p><%= f.text_field :note, :label => Expense.human_attribute_name(:note) %></p>
+<li>
+<label class="desc"><%= Expense.human_attribute_name(:group) %></label>
+<div class='col'>
+  <% group_id = @expense.group.secret_id if @expense && @expense.group %>
+  <%= select_tag(:group_id, options_for_select(groups.map{ |g| [g.short_name, g.secret_id] }, :selected => group_id) ) %>
+</div>
+</li>
+<%= f.select(:tag_id, tags.map{ |tag| [tag.name, tag.id] }, :label => Expense.human_attribute_name(:tag)) %>
+<%= f.text_field :amount, :label => Expense.human_attribute_name(:amount) %>
+<%= f.text_field :entry_date, :label => Expense.human_attribute_name(:entry_date) %>
+<%= f.text_field :note, :label => Expense.human_attribute_name(:note) %>
 
 <% content_for :page_specific_javascript do -%>
   <%= javascript_include_tag 'jquery-ui/jquery.ui.datepicker',
@@ -13,8 +19,20 @@
                                :cache => 'all' %>
   <script type="text/javascript">
     var option = {dateFormat: 'yy-mm-dd'};
+
     $(document).ready(function(){
-      $('#expense_entry_date').datepicker(option);
+        $('#expense_entry_date').datepicker(option);
+        $('#group_id').change(function(){
+          $('#expense_tag_id').attr({"disable": "true"});
+          $('#confirm-button').attr({"disable": "true"});
+          $.ajax({
+              url: "/groups/" + $('#group_id').val() + "/tags",
+              success: function(msg){
+                $(msg).replaceAll('#expense_tag_id');
+                $('#confirm-button').attr({"disable": "false"});
+              }
+            });
+          });
     });
   </script>
 <% end -%>

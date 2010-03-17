@@ -34,6 +34,10 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = @current_user.expenses.new(params[:expense])
+
+    group = Group.find_by_secret_id(params[:group_id])
+    @expense.group = group if group
+
     respond_to do |format|
       if @expense.save
         notice_stickie(t(:create_successfully_stickie, :name => Expense.human_name))
@@ -47,8 +51,14 @@ class ExpensesController < ApplicationController
   def update
     @expense = @current_user.expenses.find(params[:id])
 
+    group = Group.find_by_secret_id(params[:group_id])
+    @expense.group = group if group && @expense.group != group
+
+    params[:expense].each{ |key, value| @expense.send("#{key}=",value)}
+
     respond_to do |format|
-      if @expense.update_attributes(params[:expense])
+      if @expense.save
+
         notice_stickie(t(:update_successfully_stickie, :name => Expense.human_name))
         format.html { redirect_to(@expense) }
       else
