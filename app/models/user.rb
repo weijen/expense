@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
   end
 
   def subset_data
-    {:login => login, :name => name, :value => email}
+    {:value => login, :name => name}
   end
   
   protected

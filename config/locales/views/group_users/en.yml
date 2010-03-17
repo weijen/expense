@@ -7,5 +7,5 @@ en:
     remove: "Remove"
     confirm_remove: "Remove {{user}}?"
     add_new_user: "Invite new user to group"
-    input_email: "Please input email"
+    input_login: "Please input name"
     invite_user: "Invite User: {{name}}"

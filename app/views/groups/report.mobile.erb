@@ -1,6 +1,6 @@
 <% content_for :header_link do -%>
   <%= link_to Group.human_name, group_path(@group), :class => "button back-button" %>
-  <a href="#" class="button next-button">報表</a>
+  <%= link_to "新增", new_group_expense_path(@group), :class => "button next-button" %>
 <% end -%>
 
 <% content_for :select_date do -%>

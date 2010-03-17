@@ -11,7 +11,7 @@ class GroupUsersController < ApplicationController
   end
 
   def invite
-    user = User.find_by_email(params[:email])
+    user = User.find_by_login(params[:login])
     @group.add_approved_user(user) if user
     notice_stickie t("group_users.invite_user", :name => user.name)
     redirect_to new_group_user_path(@group)

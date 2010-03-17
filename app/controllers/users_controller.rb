@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def index
     respond_to do |format|
       format.json do
-        users = User.find(:all, :conditions => ["email like ?", "%#{params[:term]}%"])
+        users = User.find(:all, :conditions => ["login like ?", "%#{params[:term]}%"])
         render :text => users.map{ |user| user.subset_data }.to_json
       end
     end

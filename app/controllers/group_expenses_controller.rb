@@ -14,7 +14,7 @@ class GroupExpensesController < ApplicationController
   end
 
   def users_report
-    @start_date = Date.parse(params[:start_date]) rescue @group.created_at
+    @start_date = Date.parse(params[:start_date]) rescue Date.today - 30.days
     @end_date = Date.parse(params[:end_date]) rescue Date.today
 
     @users_report = @group.users_report(@start_date, @end_date)
@@ -27,7 +27,7 @@ class GroupExpensesController < ApplicationController
   end
 
   def tabs_report
-    @start_date = Date.parse(params[:start_date]) rescue @group.created_at
+    @start_date = Date.parse(params[:start_date]) rescue Date.today - 30.days
     @end_date = Date.parse(params[:end_date]) rescue Date.today
 
     @tabs_report = @group.tags_report(@start_date, @end_date)
@@ -69,7 +69,7 @@ class GroupExpensesController < ApplicationController
       if @expense.save
         notice_stickie(t(:create_successfully_stickie, :name => Expense.human_name))
         format.html { redirect_to group_expenses_url(@group) }
-        format.mobile {redirect_to group_expenses_url(@group)}
+        format.mobile {redirect_to report_group_url(@group)}
       else
         format.html { render :action => "new" }
         format.mobile { render :action => "new" }

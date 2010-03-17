@@ -3,7 +3,6 @@
     <h2><%= t("group.my_groups") %></h2>
     <div class="inner grid_10 alpha">
       <% unless @groups.empty? -%>
-        <%= link_to t("group.new"), new_group_path %>
         <table class ='table'>
           <tr>
             <th><%= Group.human_attribute_name(:name) %></th>

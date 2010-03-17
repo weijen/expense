@@ -86,7 +86,7 @@ class GroupsController < ApplicationController
   end
 
   def report
-    @start_date = Date.parse(params[:start_date]) rescue  @group.created_at.to_date
+    @start_date = Date.parse(params[:start_date]) rescue Date.today - 1.month 
     @end_date = Date.parse(params[:end_date]) rescue Date.today
 
     respond_to do |format|
