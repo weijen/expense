@@ -31,11 +31,20 @@
   <script type="text/javascript">
     var option = {dateFormat: 'yy-mm-dd'};
     $(function(){
-        $('#start-date').datepicker(option);
-        $('#end-date').datepicker(option);
+      $("a","#submenu").button();
 
-        $("a","#submenu").button();
+      $("#tabs").tabs({
+          ajaxOptions: {
+            error: function(xhr, status, index, anchor) {
+              $(anchor.hash).html("Couldn't load this tab. We'll try to fix this as soon as possible.");
+            }
+          }
+          });
 
+      $('#start-date').datepicker(option);
+      $('#end-date').datepicker(option);
+
+      if($('#freeze_date_link').length != 0){
         var freeze_date_link_pos = $('#freeze_date_link').position();
         $('#froze_before_date_div').css({top: freeze_date_link_pos.top + 8, 
                                      left: freeze_date_link_pos.left + 110}); 
@@ -43,14 +52,8 @@
           $('#froze_before_date_div').toggle();
           });
         $('#froze_before_date').datepicker(option);
-
-        $("#tabs").tabs({
-          ajaxOptions: {
-            error: function(xhr, status, index, anchor) {
-              $(anchor.hash).html("Couldn't load this tab. We'll try to fix this as soon as possible.");
-            }
-          }
-          });
+      }
+        
     });
 </script>
 <% end -%>
