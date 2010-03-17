@@ -2,6 +2,7 @@
   <tr>
     <th><%= Expense.human_attribute_name(:group) %></th>
     <th><%= Expense.human_attribute_name(:user) %></th>
+    <th><%= Expense.human_attribute_name(:tag) %></th>
     <th><%= Expense.human_attribute_name(:entry_date) %></th>
     <th><%= Expense.human_attribute_name(:amount) %></th>
   </tr>
@@ -9,6 +10,7 @@
     <tr>
       <td><%= link_to expense.group.short_name, group_path(expense.group) %></td>
       <td><%= expense.user.login %></td>
+      <td><%= expense.tag.name %>
       <td><%= expense.entry_date %></td>
       <td class='money'><%= number_to_currency(expense.show_amount, :precision => 0, :unit => "") %></td>
     </tr>
