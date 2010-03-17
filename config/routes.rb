@@ -20,6 +20,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :expenses
 
   map.resource :session
+  
+  map.resources :welcome, :collection => {:joined_groups => :get, :managed => :get, :my => :get}
 
   map.root :controller => 'welcome'
 

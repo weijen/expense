@@ -4,33 +4,31 @@
   <div class="content clearfix">
     <h2><%= t("welcome.new_expenses")%></h2>
 
-    <div id = 'sub-navigation' class="nav clearfix">
+    <div id = 'tabs'>
       <%= render_list [
-        link_to(t("welcome.joined_groups"), "/"),
+        link_to(t("welcome.joined_groups"), "/welcome/joined_groups"),
         link_to(t("welcome.managed_groups"), "/welcome/managed"),
         link_to(t("welcome.my"), "/welcome/my")
       ], :class => 'menu' -%>
     </div>
-    <br />
-    <div class="inner grid_10 alpha">
-      <table class ='table'>
-        <tr>
-          <th><%= Expense.human_attribute_name(:group) %></th>
-          <th><%= Expense.human_attribute_name(:user) %></th>
-          <th><%= Expense.human_attribute_name(:entry_date) %></th>
-          <th><%= Expense.human_attribute_name(:amount) %></th>
-        </tr>
-        <% @expenses.each do |expense| -%>
-          <tr>
-            <td><%= link_to expense.group.short_name, group_path(expense.group) %></td>
-            <td><%= expense.user.login %></td>
-            <td><%= expense.entry_date %></td>
-            <td class='money'><%= number_to_currency(expense.show_amount, :precision => 0, :unit => "") %></td>
-          </tr>
-        <% end -%>
-      </table>
-    </div>
   </div>
 </div>
 
+<% content_for :page_specific_javascript do-%>
+  <%= javascript_include_tag 'jquery.cookie',
+                             'jquery-ui/jquery.ui.widget',
+                             'jquery-ui/jquery.ui.tabs',
+                             :cache => 'all' %>
 
+  <script type="text/javascript">
+    $(function(){
+      $("#tabs").tabs({
+        ajaxOptions: {
+          error: function(xhr, status, index, anchor) {
+            $(anchor.hash).html("Couldn't load this tab. We'll try to fix this as soon as possible.");
+          }
+        }
+      });
+    });
+  </script>
+<% end -%>
