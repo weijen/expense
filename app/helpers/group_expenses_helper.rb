@@ -1,6 +1,6 @@
 module GroupExpensesHelper
   def selected_entry_date
-    (-5..5).map do |i|
+    (-7..0).map do |i|
       case i
       when 0
         [t('expenses.today'), Date.today]
