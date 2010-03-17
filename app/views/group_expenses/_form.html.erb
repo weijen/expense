@@ -1,11 +1,9 @@
 <%= f.error_messages %>
-<p>
+
 <%= f.select :tag_id, tags.map{ |tag| [tag.name, tag.id]}, :label => Expense.human_attribute_name(:tag) %>
-<label><%= link_to "NewTag", new_tag_path(:group_id => @group.secret_id) %></label>
-</p>
-<p><%= f.text_field :amount, :label => Expense.human_attribute_name(:amount) %></p>
-<p><%= f.text_field :entry_date, :label => Expense.human_attribute_name(:entry_date), :readonly => true %></p>
-<p><%= f.text_field :note, :label => Expense.human_attribute_name(:note) %></p>
+<%= f.text_field :amount, :label => Expense.human_attribute_name(:amount) %>
+<%= f.text_field :entry_date, :label => Expense.human_attribute_name(:entry_date), :readonly => true %>
+<%= f.text_field :note, :label => Expense.human_attribute_name(:note) %>
 
 <% content_for :page_specific_javascript do -%>
   <%= javascript_include_tag 'jquery-ui/jquery.ui.datepicker',

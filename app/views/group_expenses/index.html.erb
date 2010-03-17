@@ -1,7 +1,7 @@
 <div class="block">
   <div class="content clearfix">
     <h2><%=h t("expenses.group_overview", :group => @group.name) %></h2>
-    <%= link_to "回到團體", group_path(@group) %>
+    <%= link_to "回到團體", group_path(@group), :id => 'back-button' %>
     <div class="inner grid_10 alpha">
       <div>
         <% form_for :expense, :url => group_expenses_path(@group), :html => {:method => :get} do |f| %>
@@ -49,10 +49,13 @@
   <%= javascript_include_tag 'jquery-ui/jquery.ui.datepicker',
                                'jquery-ui/i18n/jquery.ui.i18n',
                                'jquery-ui/i18n/jquery.ui.datepicker-zh-TW',
+                               'jquery-ui/jquery.ui.widget',
+                               'jquery-ui/jquery.ui.button',
                                :cache => 'all' %>
   <script type="text/javascript">
     var option = {dateFormat: 'yy-mm-dd'};
     $(function(){
+        $('#back-button, input:submit').button();
         $('#start-date').datepicker(option);
         $('#end-date').datepicker(option);
     });

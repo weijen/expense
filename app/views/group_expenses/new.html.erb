@@ -1,6 +1,7 @@
 <div class="block">
   <div class="content clearfix">
     <h2><%=h @group.name + ":" + t("expenses.add_outgoing_expense")%></h2>
+    <%= link_to "回到團體", group_path(@group), :class => 'back-button' %> <%= link_to "新增分類", new_tag_path(:group_id => @group.secret_id), :class => 'back-button' %>
     <div class="inner">
       <% handicraft_form_for([@group,@expense]) do |f| %>
         <%= render :partial => 'form', :locals => { :f => f, :kind => @kind, :tags => @tags }%>
@@ -11,6 +12,7 @@
     </div>
   </div>
 </div>
+<br /><br />
 
-<%= link_to t("group.show", :group => @group.name), group_path(@group) %>
+
 

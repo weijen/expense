@@ -1,7 +1,7 @@
 <div class="block">
   <div class="content clearfix">
     <h2><%= t("expenses.show") %></h2>
-
+    <%= link_to t(:edit), edit_expense_path(@expense), :class => 'back-button' %>
     <div class="inner grid_10 alpha">
       <p>
       <b><%= Expense.human_attribute_name(:group) %>:</b>
@@ -37,16 +37,4 @@
   </div>
 </div>
 
-<%= link_to t(:edit), edit_expense_path(@expense), :id => 'back-button' %>
 
-
-<% content_for :page_specific_javascript do-%>
-  <%= javascript_include_tag 'jquery-ui/jquery.ui.widget',
-                               'jquery-ui/jquery.ui.button',
-                               :cache => 'all' %>
-  <script type="text/javascript">
-    $(function(){
-        $("#back-button").button();
-     });
-</script>
-<% end -%>
