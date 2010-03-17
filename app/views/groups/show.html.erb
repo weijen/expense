@@ -34,6 +34,7 @@
                                'jquery.cookie',
                                'jquery-ui/jquery.ui.widget',
                                'jquery-ui/jquery.ui.tabs',
+                               'jquery-ui/jquery.ui.button',
                                :cache => 'all' %>
   <script type="text/javascript">
     var option = {dateFormat: 'yy-mm-dd'};
@@ -41,9 +42,11 @@
         $('#start-date').datepicker(option);
         $('#end-date').datepicker(option);
 
+        $("a","#submenu").button();
+
         var freeze_date_link_pos = $('#freeze_date_link').position();
-        $('#froze_before_date_div').css({top: freeze_date_link_pos.top, 
-                                     left: freeze_date_link_pos.left + 70}); 
+        $('#froze_before_date_div').css({top: freeze_date_link_pos.top + 8, 
+                                     left: freeze_date_link_pos.left + 110}); 
         $('#freeze_date_link').click(function(){
           $('#froze_before_date_div').toggle();
           });

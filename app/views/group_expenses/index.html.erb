@@ -1,38 +1,60 @@
 <div class="block">
   <div class="content clearfix">
     <h2><%=h t("expenses.group_overview", :group => @group.name) %></h2>
+    <%= link_to "回到團體", group_path(@group) %>
     <div class="inner grid_10 alpha">
-      <%= link_to t("show"), group_path(@group) %>
-      <table class ='table'>
-        <% date = Date.parse("2000-01-01") %>
-        <% @expenses.each do |expense| -%>
-          <% if expense.entry_date != date -%>
-            <% date = expense.entry_date -%>
+      <div>
+        <% form_for :expense, :url => group_expenses_path(@group), :html => {:method => :get} do |f| %>
+          <label>Start Date: </label><%= text_field_tag :start_date, @start_date.to_s(:db), :id=>'start-date' -%>
+          <label>End Date: </label><%= text_field_tag :end_date, @end_date.to_s(:db), :id => 'end-date' -%>
+          <%= f.submit "Search" %>
+        <% end -%>
+      </div>
+      <br /><br />
+      <div class="inner grid_10 alpha">
+        <table class ='table'>
+          <% date = Date.parse("2000-01-01") %>
+          <% @expenses.each do |expense| -%>
+            <% if expense.entry_date != date -%>
+              <% date = expense.entry_date -%>
+              <tr>
+                <th colspan='5'><%= date.to_s(:db) %></th>
+              </tr>
+            <% end -%>
             <tr>
-              <th colspan='5'><%= date.to_s(:db) %></th>
+              <td><%=h expense.user.login %></td>
+              <td><%=h expense.tag.name %></td>
+              <td><%=h expense.note %></td>
+              <td class='money'><%= number_to_currency(expense.show_amount, :precision => 0, :unit => "") %></td>
+              <td>
+                <%= render_list :class => 'menu' do |list|
+                  list << link_to(t("edit"), edit_group_expense_path(@group, expense)) if @current_user.expenses.include?(expense)
+                  list << link_to(t("destroy"), group_expense_path(@group,expense), :method => :delete, :confirm => t(:are_you_sure_to_destroy))  if @current_user.expenses.include?(expense)
+                end -%>
+              </td>
             </tr>
           <% end -%>
-          <tr>
-            <td><%=h expense.user.login %></td>
-            <td><%=h expense.tag.name %></td>
-            <td><%=h expense.note %></td>
-            <td class='money'><%= number_to_currency(expense.show_amount, :precision => 0, :unit => "") %></td>
-            <td>
-              <%= render_list :class => 'menu' do |list|
-                list << link_to(t("edit"), edit_group_expense_path(@group, expense)) if @current_user.expenses.include?(expense)
-                list << link_to(t("destroy"), group_expense_path(@group,expense), :method => :delete, :confirm => t(:are_you_sure_to_destroy))  if @current_user.expenses.include?(expense)
-              end -%>
-            </td>
+          <tr class = 'total'>
+            <td colspan='3'><%= Group.human_attribute_name(:total) %></td>
+            <td class='money'><%= number_to_currency(@total, :precision => 0, :unit => "") %></td>
+            <td></td>
           </tr>
-        <% end -%>
-        <tr class = 'total'>
-          <td colspan='3'><%= Group.human_attribute_name(:total) %></td>
-          <td class='money'><%= number_to_currency(@total, :precision => 0, :unit => "") %></td>
-          <td></td>
-        </tr>
-      </table>
+        </table>
+      </div>
     </div>
   </div>
 </div>
 
-
+<% content_for :page_specific_javascript do-%>
+  <%= javascript_include_tag 'jquery-ui/jquery.ui.datepicker',
+                               'jquery-ui/i18n/jquery.ui.i18n',
+                               'jquery-ui/i18n/jquery.ui.datepicker-zh-TW',
+                               :cache => 'all' %>
+  <script type="text/javascript">
+    var option = {dateFormat: 'yy-mm-dd'};
+    $(function(){
+        $('#start-date').datepicker(option);
+        $('#end-date').datepicker(option);
+    });
+</script>
+<% end -%>

@@ -6,7 +6,7 @@ class GroupExpensesController < ApplicationController
   before_filter :get_expense_info, :only => [:new, :create, :edit, :update]
 
   def index
-    @start_date = Date.parse(params[:start_date]) rescue @group.created_at
+    @start_date = Date.parse(params[:start_date]) rescue Date.today - 30.days 
     @end_date = Date.parse(params[:end_date]) rescue Date.today
 
     @expenses = @group.expenses.during(@start_date, @end_date).find(:all, :order => "entry_date DESC")

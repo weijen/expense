@@ -1,3 +1,4 @@
+<div id='submenu'>
 <%= render_list :class => 'menu' do |list|
   list << link_to(t("group.joined_users"), group_users_path(@group)) if @current_user.manager?(@group)
   list << link_to(t("group.requiest_to_join"), join_user_group_path(@current_user, @group)) if @current_user.not_join?(@group)
@@ -10,12 +11,13 @@
   list << link_to(t("group.alive"), alive_group_path(@group), {:method => :post}) if @current_user.manager?(@group) && @group.state == "frozen"
   list << "<a id='freeze_date_link' href='#'>#{Group.human_attribute_name(:froze_before_date)}</a>" if @current_user.manager?(@group)
 end -%>
+</div>
 
 <div id="froze_before_date_div" style="display:none;">
   <% form_tag freeze_date_group_path(@group), :class=>'form' do -%>
     <div style='margin-left:10px;'>
-      <%= text_field_tag :froze_before_date, @group.froze_before_date, :style=>'float:left;' %>
-      <%= submit_tag t("ok") %>
+      <%= text_field_tag :froze_before_date, @group.froze_before_date, :size => 12, :style=>'float:left;' %>
+      <%= submit_tag t("ok"), :style => "margin-left: 10px;" %>
     </div>
 <% end -%>
 </div>
