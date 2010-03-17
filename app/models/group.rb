@@ -18,6 +18,7 @@ class Group < ActiveRecord::Base
   named_scope :approved_groups, :include=> :user_group_relations, :conditions => ["user_group_relations.approved = ?", true], :order => "groups.created_at DESC"
   named_scope :unapprove_groups, :include => :user_group_relations, :conditions => ["user_group_relations.approved = ?", false], :order => "groups.created_at DESC"
   named_scope :managed_groups, :include => :user_group_relations, :conditions => ["user_group_relations.manager = ?", true], :order => "groups.created_at DESC"
+  named_scope :alive, :conditions => "state = 'alive'"
 
   def to_param
     self.secret_id
