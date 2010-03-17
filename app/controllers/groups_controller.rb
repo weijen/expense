@@ -98,6 +98,10 @@ class GroupsController < ApplicationController
 
   def get_group
     @group = Group.find_by_secret_id(params[:id])
+    unless @group
+      no_right_to_access
+      return false
+    end
   end
 
 end

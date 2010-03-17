@@ -35,6 +35,10 @@ class ApplicationController < ActionController::Base
 
   def get_group_from_group_id
     @group = Group.find_by_secret_id(params[:group_id])
+    unless @group
+      no_right_to_access
+      return false
+    end
   end
 
   private
