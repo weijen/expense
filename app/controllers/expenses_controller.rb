@@ -1,6 +1,7 @@
 class ExpensesController < ApplicationController
   before_filter :login_required
   before_filter :get_expense_info, :only => [:new, :create, :edit, :update]
+  before_filter :get_expense, :only => [:show, :edit, :update, :delete]
 
   def index
     @expenses = @current_user.expenses.find(:all, :order => "entry_date DESC")
@@ -13,7 +14,6 @@ class ExpensesController < ApplicationController
   end
 
   def show
-    @expense = @current_user.expenses.find(params[:id])
 
     respond_to do |format|
       format.html
@@ -29,7 +29,7 @@ class ExpensesController < ApplicationController
   end
 
   def edit
-    @expense = @current_user.expenses.find(params[:id])
+    
   end
 
   def create
@@ -49,8 +49,6 @@ class ExpensesController < ApplicationController
   end
 
   def update
-    @expense = @current_user.expenses.find(params[:id])
-
     group = Group.find_by_secret_id(params[:group_id])
     @expense.group = group if group && @expense.group != group
 
@@ -82,6 +80,15 @@ class ExpensesController < ApplicationController
     @groups = @current_user.groups.approved_groups
     @tags = Tag.get_sorted_tags(@current_user, params[:kind])
     @kind = params[:kind] == "income" ? "income" : "outgoing"
+  end
+
+  def get_expense
+    begin
+      @expense = @current_user.expenses.find(params[:id])
+    rescue
+      no_right_to_access()
+      return
+    end
   end
 
 end

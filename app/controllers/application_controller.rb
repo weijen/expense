@@ -27,6 +27,12 @@ class ApplicationController < ActionController::Base
     return true
   end
 
+  def no_right_to_access
+    error_stickie t(:have_no_right_to)
+    redirect_to "/"
+    return false
+  end
+
   def get_group_from_group_id
     @group = Group.find_by_secret_id(params[:group_id])
   end
