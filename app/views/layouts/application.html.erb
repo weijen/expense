@@ -77,8 +77,8 @@
                                'jquery-ui/i18n/jquery.ui.datepicker-zh-TW',
                                'jquery-ui/jquery.ui.tabs',
                                'jquery-ui/jquery.ui.button',
-                               'jquery-ui/jquery.ui.autocomplete'
-                                %>
+                               'jquery-ui/jquery.ui.autocomplete',
+                               :cache => 'all' %>
 <%= init_tinymce_hammer_if_required %>
 <%= yield_authenticity_token %>
 <%= yield :page_specific_javascript %>
