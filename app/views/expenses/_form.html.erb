@@ -1,5 +1,6 @@
 <%= f.error_messages %>
 <%= hidden_field_tag :kind, kind %>
+<%= f.text_field :amount, :label => Expense.human_attribute_name(:amount) %>
 <li>
 <label class="desc"><%= Expense.human_attribute_name(:group) %></label>
 <div class='col'>
@@ -7,8 +8,8 @@
   <%= select_tag(:group_id, options_for_select(groups.map{ |g| [g.short_name, g.secret_id] }, :selected => group_id) ) %>
 </div>
 </li>
-<%= f.select(:tag_id, tags.map{ |tag| [tag.name, tag.id] }, :label => Expense.human_attribute_name(:tag)) %>
 <%= f.text_field :amount, :label => Expense.human_attribute_name(:amount) %>
+<%= f.select(:tag_id, tags.map{ |tag| [tag.name, tag.id] }, :label => Expense.human_attribute_name(:tag)) %>
 <%= f.text_field :entry_date, :label => Expense.human_attribute_name(:entry_date) %>
 <%= f.text_field :note, :label => Expense.human_attribute_name(:note) %>
 

@@ -1,7 +1,7 @@
 <div class="block">
   <div class="content clearfix">
     <h2><%= t("group.show", :group => @group.name) %><label style="margin-left:20px;"> <%= group_state_message(@group) %></label></h2>
-    <div class="inner grid_12 alpha">
+    <div class="inner grid_10 alpha">
       <%= render :partial => 'menu'  %>
       <br /><br />
       <p><%=h Group.human_attribute_name("name") %>: <%=h @group.name %></p>

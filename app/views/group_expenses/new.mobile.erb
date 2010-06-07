@@ -10,12 +10,12 @@
   <% form_for [@group, @expense] do |f| -%>
     <%= f.error_messages %>
     <p class="field clearfix">
-    <label><%= Expense.human_attribute_name(:tag) %></label>
-    <%= f.select :tag_id, @tags.map{ |tag| [tag.name, tag.id]} %>
-    </p>
-    <p class="field clearfix">
     <label><%=h Expense.human_attribute_name(:amount) %></label>
     <%= f.text_field :amount, :pattern => "[0-9]*" %>
+    </p>
+    <p class="field clearfix">
+    <label><%= Expense.human_attribute_name(:tag) %></label>
+    <%= f.select :tag_id, @tags.map{ |tag| [tag.name, tag.id]} %>
     </p>
     <p class="field clearfix">
     <label><%=h  Expense.human_attribute_name(:entry_date) %></label>

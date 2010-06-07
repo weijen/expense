@@ -1,7 +1,7 @@
 <%= f.error_messages %>
 
-<%= f.select :tag_id, tags.map{ |tag| [tag.name, tag.id]}, :label => Expense.human_attribute_name(:tag) %>
 <%= f.text_field :amount, :label => Expense.human_attribute_name(:amount) %>
+<%= f.select :tag_id, tags.map{ |tag| [tag.name, tag.id]}, :label => Expense.human_attribute_name(:tag) %>
 <%= f.text_field :entry_date, :label => Expense.human_attribute_name(:entry_date), :readonly => true %>
 <%= f.text_field :note, :label => Expense.human_attribute_name(:note) %>
 
