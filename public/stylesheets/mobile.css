@@ -153,6 +153,7 @@ label {
 
 select {
     font-size: 15px;
+    width: 165px; 
 }
 
 .text {
@@ -164,7 +165,7 @@ select {
     font-size: 16px;
 }
 
-button.submit {
+.submit {
     background: url(../images/mobile/submit.png) repeat-x top;
     border: 1px solid rgb(137,68,40);
     width: 100%;
@@ -178,7 +179,7 @@ button.submit {
     margin-top: 10px;
 }
 
-button.submit:active {
+.submit:active {
     background: url(../images/mobile/submit.png) repeat-x bottom;
 }
 
