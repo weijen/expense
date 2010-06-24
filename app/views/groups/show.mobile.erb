@@ -13,7 +13,7 @@
   <h3>快速報帳</h3>
   <ul class="menu list">
     <% @expenses.each do |expense| %>
-      <li><%= link_to( truncate("#{expense.tag.name} / #{expense.amount.to_i} / #{expense.note}", 30), new_group_expense_path(@group, :template => expense.id)) %></li>
+      <li><%= link_to( truncate("#{expense.tag.name} / #{expense.amount.to_i} / #{expense.note}", 25), new_group_expense_path(@group, :template => expense.id)) %></li>
     <% end %> 
   </ul>
 
