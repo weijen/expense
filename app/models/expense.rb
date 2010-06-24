@@ -46,6 +46,19 @@ class Expense < ActiveRecord::Base
     "#{(is_income ? "" : "-")}#{amount}" 
   end
 
+  def self.new_from_template(group, id)
+    tmp = group.expenses.find(id)
+
+    expense = group.expenses.new(:entry_date => Date.today)
+    if tmp
+      expense.tag_id = tmp.tag_id
+      expense.amount = tmp.amount
+      expense.note   = tmp.note
+    end
+
+    expense
+  end
+
   private
 
   def entry_date_after_frozen_date

@@ -5,14 +5,18 @@
     <th><%= Expense.human_attribute_name(:tag) %></th>
     <th><%= Expense.human_attribute_name(:entry_date) %></th>
     <th><%= Expense.human_attribute_name(:amount) %></th>
+    <th></th>
   </tr>
   <% @expenses.each do |expense| -%>
     <tr>
       <td><%= link_to expense.group.short_name, group_path(expense.group) %></td>
-      <td><%= expense.user.login %></td>
-      <td><%= expense.tag.name %>
-      <td><%= expense.entry_date %></td>
-      <td class='money'><%= number_to_currency(expense.show_amount, :precision => 0, :unit => "") %></td>
+      <td><%=h expense.user.login %></td>
+      <td><%=h expense.tag.name %>
+      <td><%=h expense.entry_date %></td>
+      <td class='money'><%=h number_to_currency(expense.show_amount, :precision => 0, :unit => "") %></td>
+      <td>
+        <%= link_to "套用報帳", new_group_expense_path(expense.group, :template => expense.id) if expense.user == current_user %>
+      </td>
     </tr>
   <% end -%>
 </table>

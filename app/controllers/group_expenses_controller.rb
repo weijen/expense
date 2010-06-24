@@ -47,7 +47,13 @@ class GroupExpensesController < ApplicationController
     if @group.froze_before_date
       notice_stickie(t("group.frozen_before_date", :frozen_date => @group.froze_before_date))
     end
-    @expense = @group.expenses.new(:entry_date => Date.today)
+
+    if params[:template]
+      @expense = Expense.new_from_template(@group, params[:template])
+    else
+      @expense = @group.expenses.new(:entry_date => Date.today)
+    end
+
     store_location
 
     respond_to do |format|
