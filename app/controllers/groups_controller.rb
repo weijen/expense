@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
         @end_date = Date.parse(params[:end_date]) rescue Date.today
       end
       format.mobile do
-        @expenses = @group.expenses.find(:all, :limit => 5, :order => "id DESC")
+        @expenses = @group.expenses.find(:all, :limit => 5, :order => "id DESC", :conditions => ["user_id = ?", @current_user.id])
       end
     end
   end
