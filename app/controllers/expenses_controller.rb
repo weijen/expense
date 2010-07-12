@@ -5,6 +5,8 @@ class ExpensesController < ApplicationController
 
   def index
     @expenses = @current_user.expenses.find(:all, :order => "entry_date DESC")
+    @expenses.delete_if { |e| !e.group }
+
     @groups = @current_user.groups.approved_groups
     @tags = @current_user.groups.approved_groups.first.tags.sort
 

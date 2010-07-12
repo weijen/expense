@@ -19,6 +19,8 @@ class WelcomeController < ApplicationController
 
   def my
     @expenses = @current_user.expenses.find(:all, :order => "id DESC")
+    @expenses.delete_if { |e| !e.group }
+
     render :template => 'welcome/expenses.html', :layout => false
   end
 
