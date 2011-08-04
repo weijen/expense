@@ -20,48 +20,44 @@
     <link rel="alternate" type="application/atom+xml" href="/">
 </head>
 <%= render_body_tag %>
-<div id="doc">
-  <div id="header">
+<div id="header">
     <div class="container_16 clearfix">
-      <div class="grid_16">
-        <h1><%= link_to t(:logo), root_path %></h1>
-        <%= render :partial => "common/user_navigation" %>
-        <%= render :partial => "common/main_navigation" %>
-      </div>
+        <div class="grid_16">
+            <h1><%= link_to t(:logo), root_path %></h1>
+            <%= render :partial => "common/user_navigation" %>
+            <%= render :partial => "common/main_navigation" %>
+        </div>
     </div>
-  </div>
+</div>
   <div id="wrapper" class="container_16 clearfix">
-    <div class="grid_16">
+    <div class="section grid_16">
       <%= render_stickies %>
       <% if @content_for_box %>
-        <div id="box"  class="container_16 cleafix">
-          <%= yield(:box) %>
-        </div>
+          <div id="box"  class="section cleafix">
+              <%= yield(:box) %>
+          </div>
       <% else %>
-        <div id="wrapper" class="container_16">
           <% if @content_for_sidebar %>
-            <div id="main" class="grid_11 alpha">
-              <%= yield %>
-            </div>
-            <div id="sidebar" class="grid_5 omega">
-              <%= yield :sidebar %>
-            </div>
+              <div id="main" class="grid_11 alpha">
+                  <%= yield %>
+              </div>
+              <div id="sidebar" class="grid_5 omega">
+                  <%= yield :sidebar %>
+              </div>
           <% else %>
-            <div id="main">
-              <%= yield %>
-            </div>
+              <div id="main" class="grid_16">
+                  <%= yield %>
+              </div>
           <% end %>
           <div class="clear"></div>
-        </div>
       <% end %>
-    </div>
+  </div>
   </div>
   <div id="footer" class="container_16 clearfix">
     <div class="grid_16">
       <address>Copyright &copy; 2009 <a href="http://blog.weijen.net">Wei Jen Lu</a></address>
     </div>
   </div>
-</div>
 <%= javascript_include_tag 'jquery-1.4.2.min',
                                'core',
                                'jquery.metadata',

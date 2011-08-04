@@ -1,7 +1,8 @@
 <% content_for :box do -%>
-  <div class="block" id="block-login">
-    <h2><%= t("sessions.login") %></h2>
-    <div class="content login">
+  <div class="hd" id="block-login">
+      <h2><%= t("sessions.login") %></h2>
+  </div>
+    <div class="content login bd">
       <% form_tag session_path, :class => "form login" do -%>
         <p><%= label_tag User.human_attribute_name(:login) %><br />
         <%= text_field_tag 'login', @login %></p>
