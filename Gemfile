@@ -1,5 +1,6 @@
 source :gemcutter
 gem "rails", "~> 2.3.11"
+gem 'rdoc'
 
 
 # bundler requires these gems in all environments

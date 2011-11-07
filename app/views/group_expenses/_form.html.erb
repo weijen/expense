@@ -7,9 +7,12 @@
 
 <% content_for :page_specific_javascript do -%>
   <script type="text/javascript">
-    var option = {dateFormat: 'yy-mm-dd'};
-    $(document).ready(function(){
-      $('#expense_entry_date').datepicker(option);
-    });
+      var option = {dateFormat: 'yy-mm-dd',
+          numberOfMonths: 2,
+          showButtonPanel: true
+      };
+      $(document).ready(function(){
+          $('#expense_entry_date').datepicker(option);
+      });
   </script>
 <% end -%>
