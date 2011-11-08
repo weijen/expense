@@ -15,24 +15,26 @@
 <% content_for :page_specific_javascript do -%>
   <script type="text/javascript">
       var option = {dateFormat: 'yy-mm-dd',
-                    numberOfMonths: 2,
-			              showButtonPanel: true};
+          numberOfMonths: 2,
+          showCurrentAtPos: 1,
+          showButtonPanel: true
+      };
 
-    $(document).ready(function(){
-        $('#expense_entry_date').datepicker(option);
-        $('#group_id').change(function(){
-          $('#expense_tag_id').attr({"disable": "true"});
-          $('#confirm-button').attr({"disable": "true"});
+      $(document).ready(function(){
+          $('#expense_entry_date').datepicker(option);
+          $('#group_id').change(function(){
+              $('#expense_tag_id').attr({"disable": "true"});
+              $('#confirm-button').attr({"disable": "true"});
 
-          $.ajax({
-              url: "/groups/" + $('#group_id').val() + "/tags",
-              success: function(msg){
-                $(msg).replaceAll('#expense_tag_id');
-                $('#confirm-button').attr({"disable": "false"});
-              }
-            });
+              $.ajax({
+                  url: "/groups/" + $('#group_id').val() + "/tags",
+                  success: function(msg){
+                      $(msg).replaceAll('#expense_tag_id');
+                      $('#confirm-button').attr({"disable": "false"});
+                  }
+              });
           });
-    });
+      });
   </script>
 <% end -%>
 
